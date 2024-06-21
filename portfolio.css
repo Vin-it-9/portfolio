@@ -269,3 +269,30 @@ html {
         opacity: 1;
     }
 }
+ @media (max-width: 768px) {
+            .grid-cols-12 {
+                grid-template-columns: 1fr 3fr;
+            }
+
+            .col-span-1 {
+                grid-column: span 1 / span 1;
+            }
+
+            .col-span-11 {
+                grid-column: span 2 / span 2;
+            }
+
+            .edu {
+                font-size: 2.5rem;
+            }
+
+            .w-24,
+            .h-24 {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .text-xl {
+                font-size: 1rem;
+            }
+        }
