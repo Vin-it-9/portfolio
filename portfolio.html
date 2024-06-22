@@ -7,6 +7,8 @@
     <title>Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="java.png" type="image/x-icon">
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="portfolio.css">
     <style>
 
@@ -122,9 +124,9 @@
 
             <!-- second page  -->
             <div id="about" class="m-20 sec">
-                <p class="mb-5 text-5xl font-bold "><span class="text-purple-400">ABOUT </span>ME</p>
+                <p class="mb-5 text-5xl font-bold" data-aos="zoom-in-up" ><span class="text-purple-400">ABOUT </span>ME</p>
 
-                <div class="flex flex-col gap-4 intro">
+                <div class="flex flex-col gap-4 intro" data-aos="zoom-in-up"  >
                     <div class="p-10 border border-gray-700 rounded-lg introduction">
                         <p class="text-xl font-semibold">Introduction</p>
                         <p class="text-sm text-gray-200">I am a passionate and detail-oriented Electronic and
@@ -137,7 +139,7 @@
                 </div>
 
 
-                <div class="p-6 mt-10 border border-gray-700 rounded-lg skills">
+                <div class="p-6 mt-10 border border-gray-700 rounded-lg skills" data-aos="zoom-in-up" >
                     <h3 class="mb-8 text-xl font-bold text-center">My Tech Skills</h3>
                     <div class="flex flex-wrap justify-center">
                         <div class="flex flex-wrap justify-center w-2/3 gap-4 gred">
@@ -187,10 +189,10 @@
             <!-- third page start here  -->
 
             <div id="projects" class="p-20 mx-auto m-18 pro">
-                <p class="mb-5 text-5xl font-bold projects "><span class="text-purple-400">PRO</span>JECTS</p>
+                <p class="mb-5 text-5xl font-bold projects " data-aos="zoom-in-up"  ><span class="text-purple-400">PRO</span>JECTS</p>
                 <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
                     <!-- Project Card 1 -->
-                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card">
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up"  >
 
                         <div class="p-6 rounded-lg card-img ">
                             <img src="BMW.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
@@ -215,7 +217,7 @@
                         </div>
                     </div>
 
-                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card">
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" data-aos-delay="200" >
 
                         <div class="p-6 rounded-lg card-img ">
                             <img src="portfolio.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
@@ -242,7 +244,7 @@
                         </div>
                     </div>
 
-                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card">
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" >
 
                         <div class="p-6 rounded-lg card-img ">
                             <img src="nexkart.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
@@ -271,7 +273,7 @@
                         </div>
                     </div>
 
-                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card">
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" data-aos-delay="200" >
 
                         <div class="p-6 rounded-lg card-img ">
                             <img src="bank2.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
@@ -344,21 +346,26 @@
                     
                 </div>
             </div>
-
-            
-
-
-
         </div>
-
-
-
-
-
-
     </div>
-
     </div>
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   
+    <script>
+        AOS.init({
+            offset: 240,
+            delay: 50,
+            duration: 350,
+            once: false,  
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+            useClassNames: false,
+            disableMutationObserver: false,
+            debounceDelay: 50,
+            throttleDelay: 99,
+        });
+    </script>
+    
 </body>
 
 </html>
