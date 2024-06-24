@@ -339,3 +339,102 @@ nav {
     animation: linear fade 1.5s;
 
 }
+
+.imagee {
+    width: 100px;
+    height: auto;
+
+}
+
+a {
+    font-size: 15px;
+}
+
+/* gyro effect css  */
+
+:root {
+    --pika2: rgb(167, 139, 250);
+    --card-edge:  rgb(167, 139, 250);
+    --space: 5%;
+    --angle: 133deg;
+    --card-opacity: 0;
+
+}
+
+
+.flip-card-container {
+    padding: 10px;
+    width: 300px;
+    height: 250px;
+    margin: 0 50px;
+    perspective: 800px;
+    border-radius: 5%/3.5%;
+}
+
+
+.flip-card {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%/3.5%;
+}
+
+.flip-card-front {
+    
+    overflow: hidden;
+    position: absolute;
+    /* touch-action: none; */
+    box-shadow:
+        0 0 3px -1px transparent,
+        0 0 2px 1px transparent,
+        0 0 5px 0px transparent,
+        0px 10px 20px -5px black,
+        0 2px 15px -5px black,
+        0 0 20px 0px transparent;
+    background-color: #333;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transform-origin: center;
+}
+
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5%/3.5%;
+}
+
+.flip-card-front:hover{
+    cursor: pointer;
+    box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
+} 
+@media (max-width: 768px) {
+    .flip-card-container {
+        width: 300px;
+        height: 200px;
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flip-card-container {
+        width: 250px;
+        height: 180px;
+        margin: 0 20px;
+    }
+}
+
