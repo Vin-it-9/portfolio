@@ -350,54 +350,7 @@
     </div>
     </div>
 
-      <style>
     
-    .wrapper {
-      perspective: 15px;
-    }
-    #tiltable {
-      height: 400px;
-      transition: transform 0.5s;
-      backface-visibility: hidden;
-    }
-  </style>
-    
-    <div class="wrapper">
-      <img id="tiltable" src="https://cdn.pixabay.com/photo/2020/10/03/14/54/rock-formations-5623735_960_720.jpg"/>
-  </div>
- <script>
-    let counter = 0;
-    const updateRate = 10;
-    const limit = 45;
-    const tiltable = document.getElementById("tiltable");
-
-    function updateNow() {
-      return counter++ % updateRate === 0;
-    }
-
-    function handleOrientationEvent(event) {
-      if (updateNow()) {
-        let gamma = Math.round(event.gamma);
-        let beta = Math.round(event.beta);
-
-        if (Math.abs(gamma) > limit) {
-          gamma = gamma > limit ? limit : -limit;
-        }
-
-        if (Math.abs(beta) > limit) {
-          beta = beta > limit ? limit : -limit;
-        }
-
-        gamma = gamma / -10;
-        beta = beta / 10;
-
-        let style = `rotateY(${gamma}deg) rotateX(${beta}deg)`;
-        tiltable.style.transform = style;
-      }
-    }
-
-    window.addEventListener('deviceorientation', handleOrientationEvent);
-  </script>
     
     
      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
