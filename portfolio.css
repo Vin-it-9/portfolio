@@ -420,6 +420,7 @@ a {
     border-radius: 5%/3.5%;
 }
 
+
 .flip-card-front:hover{
     cursor: pointer;
     box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
@@ -440,3 +441,23 @@ a {
     }
 }
 
+.big {
+    display: block;
+}
+.small {
+    display: none;
+}
+
+@media (max-width: 768px) {
+   .flip-card-front{
+    cursor: pointer;
+    box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
+} 
+
+    .big {
+        display: none;
+    }
+    .small {
+        display: block;
+    }
+}
