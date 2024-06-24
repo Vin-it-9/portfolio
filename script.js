@@ -3,7 +3,7 @@ var x;
 var $cards = $(".flip-card-container");
 var $style = $(".hover");
 VanillaTilt.init(eventBoxes, {
-    max: 25,
+    max: 32,
     speed: 2500,
 });
 
