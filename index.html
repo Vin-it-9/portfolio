@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="pro_lang/java.png" type="image/x-icon">
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="portfolio.css">
+  
+</head>
+
+<body class="blur-sides">
+    <nav class="p-2">
+        <div class="container px-4 mx-auto">
+            <div class="flex items-center justify-between py-4">
+                <div class="text-2xl font-bold text-gray-300">
+                    <img src="logo/logo-transparent-png.png" class=" imagee" alt="">
+                    <!-- portfolio -->
+                </div>
+                <div class="space-x-4 md:flex">
+                    <a href="#about" class="text-gray-400 hover:text-purple-400">About</a>
+                    <a href="#projects" class="text-gray-400 hover:text-purple-400">Projects</a>
+                    <a href="#education" class="text-gray-400 hover:text-purple-400">Education</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="sm:hidden svg-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 450" opacity="0.99">
+            <defs>
+                <filter id="bbblurry-filter" x="-100%" y="-100%" width="400%" height="400%"
+                    filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feGaussianBlur stdDeviation="87" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic"
+                        edgeMode="none" result="blur"></feGaussianBlur>
+                </filter>
+            </defs>
+            <g filter="url(#bbblurry-filter)">
+                <ellipse rx="183.5" ry="187" cx="13.667746546784599" cy="-189.83223945758073"
+                    fill="hsla(272, 99%, 54%, 1.00)"></ellipse>
+                <ellipse rx="183.5" ry="187" cx="-152.62302141685575" cy="-98.66418041800068"
+                    fill="hsla(212, 64%, 68%, 1.00)"></ellipse>
+            </g>
+        </svg>
+    </div>
+
+    <div class="blur-side blur-left"></div>
+    <div class="blur-side blur-right "></div>
+
+    <div class="content">
+        <div class="flex flex-col justify-center align-middle main ">
+
+            <!-- First page  -->
+            <div id="Home"
+                class="flex flex-col items-center justify-between p-4 mb-3 sm:flex-row sm:pt-16 sm:pb-28 sm:pl-16 sm:pr-16m sm:mt-3 sm:ml-20 sm:mr-20 first ">
+                <div class="font-semibold text-center name sm:text-left">
+                    <p class="text-base sm:text-lg">Hello! My Name is </p>
+                    <p class="text-4xl text-purple-400 sm:text-5xl">VINIT SHINDE</p>
+                    <br><br>
+                    <p class="text-5xl sm:text-7xl">JAVA-<span>
+                            <p class="text-5xl developer sm:text-7xl" data-text="Development">Development</p>
+                        </span></p>
+
+                </div>
+                <div class="mt-12 sm:mt-0 profile flex flex-col items-center">
+                    <div class="cards relative">
+                        <div class="flip-card-container flip-card-container-clickable cc">
+                            <div class="flip-card">
+                                <div class="flip-card-front basic relative" data-tilt data-tilt-glare data-tilt-max-glare="0.8" style="background-image: url('vinit_pic.JPG');">
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-center mt-4 sm:mt-6 big">Hover over the image</p>
+                    <p class="text-sm text-center mt-2 sm:mt-3 small">Tilt your device to see the effect.</p>
+                </div>
+                
+            </div>
+
+            <!-- arrow down  -->
+            <div class="flex items-center justify-center">
+                <div>
+                    <button onclick="scrollDown()"
+                        class="flex flex-col items-center justify-center w-10 h-10 mb-4 border-2 border-purple-400 rounded-full animate-bounce">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400 " fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+
+            <script>
+                function scrollUp() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            </script>
+
+
+            <!-- second page  -->
+            <div id="about" class="m-20 sec">
+                <p class="mb-5 text-5xl font-bold" data-aos="zoom-in-up" ><span class="text-purple-400">ABOUT </span>ME</p>
+
+                <div class="flex flex-col gap-4 intro" data-aos="zoom-in-up"  >
+                    <div class="p-10 border border-gray-700 rounded-lg introduction">
+                        <p class="text-xl font-semibold">Introduction</p>
+                        <p class="text-sm text-gray-200">I am a passionate and detail-oriented Engineering student from Pune, Maharashtra, currently pursuing my
+                            Bachelor's degree at Pune Institute Of Computer Technology. With a strong foundation in
+                            coding and a keen interest in emerging technologies, I am dedicated to continuous learning
+                            and professional growth. I am always looking forward to opportunities to connect and
+                            collaborate!</p>
+                    </div>
+                </div>
+
+
+                <div class="p-6 mt-10 border border-gray-700 rounded-lg skills" data-aos="zoom-in-up" >
+                    <h3 class="mb-8 text-xl font-bold text-center">My Tech Skills</h3>
+                    <div class="flex flex-wrap justify-center">
+                        <div class="flex flex-wrap justify-center w-2/3 gap-4 gred">
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="10" data-aos="fade-up" >
+                                Html</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="30" data-aos="fade-up" >
+                                Css</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="50" data-aos="fade-up" >
+                                JavaScript</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="70" data-aos="fade-up" >
+                                Core Java</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="90" data-aos="fade-up" >
+                                Tailwind Css</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="110" data-aos="fade-up" >
+                                Spring Boot</div>
+                            <div
+                                    class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="110" data-aos="fade-up" >
+                                Spring Data</div>
+
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="130" data-aos="fade-up" >
+                                MySQL</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="150" data-aos="fade-up" >
+                                Data Structures</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="170" data-aos="fade-up">
+                                Thymeleaf</div>
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="180" data-aos="fade-up" >
+                                JDBC</div>
+
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="190" data-aos="fade-up">
+                                Servlets</div>
+                            
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="190" data-aos="fade-up">
+                                JSP</div>
+
+                            <div
+                                class="p-4 text-center transition ease-in-out bg-gray-800 rounded-md duration-400 bg-opacity-80 hover:bg-purple-400" data-aos-delay="190" data-aos="fade-up">
+                                REST APIs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- second page end  -->
+            <!-- third page start here  -->
+
+            <div id="projects" class="p-20 mx-auto m-18 pro">
+                <p class="mb-5 text-5xl font-bold projects " data-aos="zoom-in-up"  ><span class="text-purple-400">PRO</span>JECTS</p>
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+                    <!-- Project Card 1 -->
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up"  >
+
+                        <div class="p-6 rounded-lg card-img ">
+                            <img src="project_img/BMW.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
+                        </div>
+
+                        <div class="p-4">
+                            <h3 class="mb-2 text-2xl font-bold">BMW Car Website</h3>
+                            <p class="mb-4">Experience the elegance and innovation of BMW through a stunning website
+                                built with HTML, CSS, and JavaScript. Explore interactive features and dynamic content
+                                that bring the BMW brand to life.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-1">
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="0" data-aos="zoom-in-up" ><img src="pro_lang/html-5.png"
+                                            alt="icon2" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="100" data-aos="zoom-in-up" ><img src="pro_lang/css-3.png"
+                                            alt="icon3" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="200" data-aos="zoom-in-up" ><img src="pro_lang/js.png" alt="icon4"
+                                                                                                                                                                 class="w-6 h-6"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" data-aos-delay="200" >
+
+                        <div class="p-6 rounded-lg card-img ">
+                            <img src="project_img/portfolio.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
+                        </div>
+
+                        <div class="p-4">
+                            <h3 class="mb-2 text-2xl font-bold">Portfolio Website</h3>
+                            <p class="mb-4">Utilized Tailwind CSS for responsive, visually appealing UI and JavaScript
+                                for interactive functionalities. Leveraged design animations to enhance user engagement
+                                and ensure a smooth browsing experience.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-1">
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="0" data-aos="zoom-in-up" ><img src="pro_lang/html-5.png"
+                                            alt="icon2" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="100" data-aos="zoom-in-up" ><img src="pro_lang/css-3.png"
+                                            alt="icon3" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="150" data-aos="zoom-in-up" ><img src="pro_lang/js.png" alt="icon4"
+                                                                                                                                                                 class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="200" data-aos="zoom-in-up" ><img src="pro_lang/Tailwind%20CSS.png"
+                                            alt="icon4" class="w-6 h-6"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" >
+
+                        <div class="p-6 rounded-lg card-img ">
+                            <img src="project_img/nexkart.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
+                        </div>
+
+                        <div class="p-4">
+                            <h3 class="mb-2 text-2xl font-bold">NexKart Ecommerce Website</h3>
+                            <p class="mb-4">Developed an e-commerce website with Java, Spring Boot, Thymeleaf, and
+                                Tailwind CSS. Used Spring Security with OAuth for authentication, and MySQL for data
+                                management. Implemented product browsing, shopping cart, and PayPal payment features.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-1">
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="0" data-aos="zoom-in-up" ><img src="pro_lang/html-5.png"
+                                            alt="icon2" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="00" data-aos="zoom-in-up" ><img src="pro_lang/Tailwind%20CSS.png"
+                                            alt="icon3" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="150" data-aos="zoom-in-up" ><img src="pro_lang/js.png" alt="icon4"
+                                                                                                                                                                 class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="200" data-aos="zoom-in-up" ><img src="pro_lang/mysql.png"
+                                            alt="icon4" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="250" data-aos="zoom-in-up" ><img src="pro_lang/spring%20boot.png"
+                                            alt="icon4" class="w-6 h-6"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 mb-5 border border-gray-600 shadow-lg op card" data-aos="zoom-in-up" data-aos-delay="200" >
+
+                        <div class="p-6 rounded-lg card-img ">
+                            <img src="project_img/bank2.png" alt="Event 3D website" class="object-contain w-full h-auto imga">
+                        </div>
+
+                        <div class="p-4">
+                            <h3 class="mb-2 text-2xl font-bold">bank Management System</h3>
+                            <p class="mb-4">Implemented a Bank Management System using Java Servlets and MySQL. Designed
+                                a responsive interface with Tailwind CSS, enhancing user experience with smooth design.
+                                Focused on transaction and data security. Showcased skills in integrating frontend and
+                                backend technologies for a seamless banking solution.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-1">
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="0" data-aos="zoom-in-up" ><img src="pro_lang/html-5.png"
+                                            alt="icon2" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="100" data-aos="zoom-in-up" ><img src="pro_lang/Tailwind%20CSS.png"
+                                            alt="icon3" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="150" data-aos="zoom-in-up" ><img src="pro_lang/js.png" alt="icon4"
+                                                                                                                                                                 class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="200" data-aos="zoom-in-up" ><img src="pro_lang/java.png"
+                                            alt="icon4" class="w-6 h-6"></span>
+                                    <span class="p-2 border border-gray-400 rounded-full" data-aos-offset="-10" data-aos-delay="250" data-aos="zoom-in-up" ><img src="pro_lang/mysql.png"
+                                            alt="icon4" class="w-6 h-6"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- third page ends  -->
+            <!-- fourth page start -->
+            <div class="m-20 education" id="education">
+                <p class="pb-10 text-6xl edu " data-aos="zoom-in-up" ><span class="text-purple-400">Edu</span>cation</p>
+                <div class="grid gap-10 pb-8 pl-7">
+                    <div class="grid items-center grid-cols-12 gap-4" data-aos="zoom-in-up" >
+                        <div class="col-span-1">
+                            <img src="logo/hat.png " class="w-24 h-24 p-1 bg-white rounded-full" alt="">
+                        </div>
+                        <div class="col-span-11">
+                            <h3 class="text-xl font-bold">Pune Institute Of Computer Technology, Pune</h3>
+                            <p class="text-gray-400">(Current) 2022-2026</p>
+                            <p>Bachelor's of Engineering</p>
+                        </div>
+                    </div>
+
+                    <div class="grid items-center grid-cols-12 gap-4" data-aos="zoom-in-up" >
+                        <div class="col-span-1">
+                            <img src="logo/certification_125230.png" class="w-full h-24 p-1 bg-white rounded-full " alt="">
+                        </div>
+                        <div class="col-span-11">
+                            <h3 class="text-xl font-bold">Disha College, Satara</h3>
+                            <p class="text-gray-400">2020-2022</p>
+                            <p>HSC</p>
+                            <p>Percentage: 82.80%</p>
+                        </div>
+                    </div>
+
+                    <div class="grid items-center grid-cols-12 gap-4" data-aos="zoom-in-up" >
+                        <div class="object-cover col-span-1">
+                          <img src="logo/certification_125230.png" class="w-full h-24 p-1 bg-white rounded-full " alt="">
+                        </div>
+                        <div class="col-span-11">
+                            <h3 class="text-xl font-bold">Annasaheb Kalyani, Satara</h3>
+                            <p class="text-gray-400">2008-2020</p>
+                            <p>SSC</p>
+                            <p>Percentage: 83%</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+               <footer>
+                <div class="flex justify-center items-center space-x-8">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/" target="_blank">
+                        <img src="logo/linkedin-logo.png" alt="LinkedIn" class="w-11 bg-white h-11 rounded-lg">
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/vin-it-9" target="_blank">
+                        <img src="logo/github.png" alt="GitHub" class="w-11 h-11">
+                    </a>
+                </div>
+            </footer>
+
+            <div class="flex justify-center items-center mt-10">
+                <button onclick="scrollUp()"
+                    class="flex flex-col items-center justify-center w-10 h-10 mb-4 border-2 border-purple-400 rounded-full animate-bounce">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="script.js" ></script>
+    
+</body>
+</html>

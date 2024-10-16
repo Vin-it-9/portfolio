@@ -1,0 +1,463 @@
+body {
+    background: rgb(0, 3, 25);
+    transform: rotate(0deg);
+    background-image:
+        repeating-linear-gradient(0deg, rgba(128, 128, 128, 0.22), 0.2px, transparent 0, transparent 50%),
+        repeating-linear-gradient(90deg, rgba(128, 128, 128, 0.22), 0.2px, transparent 0, transparent 50%);
+    background-size: 15vmin 15vmin;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.imagee {
+    width: 100px;
+    height: auto;
+
+}
+
+a {
+    font-size: 15px;
+}
+.flip-card-front {
+    box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
+}
+nav {
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 14px 1px rgb(0, 3, 25);
+}
+
+.content {
+    backdrop-filter: blur(2px);
+}
+
+.developer {
+    position: relative;
+    text-transform: uppercase;
+}
+
+.developer::before {
+    content: attr(data-text);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: rgb(159, 122, 234);
+    -webkit-text-stroke: 0vw #383d52;
+    border-right: 1px solid rgb(159, 122, 234);
+    overflow: hidden;
+    animation: animate 4s ease-in infinite;
+
+}
+
+.blur-sides::before,
+.blur-sides::after {
+    margin-top: 60px;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    height: 400vh;
+    background: rgba(0, 3, 25, 0.01);
+    backdrop-filter: blur(2px);
+    z-index: 0;
+}
+
+.blur-sides::before {
+    left: 0;
+}
+
+.blur-sides::after {
+    right: 0;
+}
+
+@keyframes animate {
+
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+
+    70%,
+    90% {
+        width: 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.svg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    color: #ffffff;
+    padding: 2rem;
+
+}
+
+
+.introduction {
+    background-image: url(images/icon-5974829_1920.png);
+    background-size: cover;
+    backdrop-filter: blur(0.6px);
+    background-position: center;
+    overflow: hidden;
+
+}
+
+.skills {
+    background-image: url(images/grid.svg);
+    background-size: cover;
+    backdrop-filter: blur(2px);
+    background-position: center;
+    overflow: hidden;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+.card {
+
+    border-radius: 15px;
+    backdrop-filter: blur(50px);
+}
+
+.card-img,
+.imga {
+    border-radius: 16px;
+    background-image: url(images/image.webp);
+    background-size: cover;
+    backdrop-filter: blur(15px);
+    background-position: center;
+    overflow: hidden;
+
+}
+
+.card-img img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in;
+
+}
+
+.pro .mb-4 {
+    color: rgb(206, 206, 206);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 678px) {
+
+    .edu{
+        margin-top: 50px;
+        font-size: 35px;
+    }
+    .card-img {
+        padding: 0px;
+    }
+
+    .imagee {
+        width: 74px;
+        height: 100%;
+    }
+
+    a {
+        font-size: 13px;
+    }
+
+    .content {
+        backdrop-filter: blur(1px);
+    }
+
+    body {
+
+        background-image:
+            repeating-linear-gradient(0deg, rgba(128, 128, 128, 0.27), 0.2px, transparent 0, transparent 50%),
+            repeating-linear-gradient(90deg, rgba(128, 128, 128, 0.27), 0.2px, transparent 0, transparent 50%);
+        background-size: 37vmin 37vmin;
+    }
+
+    .projects {
+        font-size: 35px;
+        margin-bottom: 30px;
+    }
+
+    .pro {
+        margin-top: 150px;
+        padding: 0;
+    }
+
+    .card-img {
+        height: 160px;
+    }
+
+    .pro h3 {
+        font-size: 20px;
+    }
+
+    .pro .mb-4 {
+        font-size: 14px;
+    }
+
+    .introduction .text-xl {
+        font-size: 30px;
+        margin-bottom: 8px;
+
+    }
+
+    img {
+        height: auto;
+    }
+
+    .m-20,
+    .sec {
+        margin: 0px;
+        padding: 2px;
+
+    }
+
+    .sec .mb-5 {
+        font-size: 35px;
+    }
+
+    .skills .p-4 {
+        padding: 7px;
+    }
+
+    .skills .text-xl {
+        font-size: 25px;
+    }
+
+    .skills .text-sm {
+        font-size: 10px;
+    }
+
+    .gred {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 7px;
+    }
+
+    .sec {
+        margin-top: 100px;
+    }
+
+}
+
+.name {
+    animation: normal slidein 2s;
+
+}
+
+@keyframes slidein {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+ @media (max-width: 768px) {
+            .grid-cols-12 {
+                grid-template-columns: 1fr 3fr;
+            }
+
+            .col-span-1 {
+                grid-column: span 1 / span 1;
+            }
+
+            .col-span-11 {
+                grid-column: span 2 / span 2;
+            }
+
+            .edu {
+                font-size: 2.5rem;
+            }
+
+            .w-24,
+            .h-24 {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .text-xl {
+                font-size: 1rem;
+            }
+        }
+
+
+@keyframes slidedown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0.1;
+    }
+
+    50% {
+        transform: translateY(-40px);
+        opacity: 0.3;
+    }
+
+    100% {
+
+        opacity: 1;
+    }
+}
+
+nav {
+    animation: linear slidedown 0.6s;
+}
+
+
+@keyframes fade {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.profile {
+
+    animation: linear fade 1.5s;
+
+}
+
+.imagee {
+    width: 100px;
+    height: auto;
+
+}
+
+a {
+    font-size: 15px;
+}
+
+/* gyro effect css  */
+
+:root {
+    --pika2: rgb(167, 139, 250);
+    --card-edge:  rgb(167, 139, 250);
+    --space: 5%;
+    --angle: 133deg;
+    --card-opacity: 0;
+
+}
+
+
+.flip-card-container {
+    padding: 10px;
+   width: 340px;
+    height: 230px;
+    margin: 0 50px;
+    perspective: 800px;
+    border-radius: 5%/3.5%;
+}
+
+
+.flip-card {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%/3.5%;
+}
+
+.flip-card-front {
+    
+    overflow: hidden;
+    position: absolute;
+    /* touch-action: none; */
+    box-shadow:
+        0 0 3px -1px transparent,
+        0 0 2px 1px transparent,
+        0 0 5px 0px transparent,
+        0px 10px 20px -5px black,
+        0 2px 15px -5px black,
+        0 0 20px 0px transparent;
+    background-color: #333;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transform-origin: center;
+}
+
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5%/3.5%;
+}
+
+
+.flip-card-front:hover{
+    cursor: pointer;
+    box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
+} 
+@media (max-width: 768px) {
+    .flip-card-container {
+        width: 300px;
+        height: 200px;
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flip-card-container {
+        width: 270px;
+        height: 200px;
+        margin: 0 20px;
+    }
+}
+
+.big {
+    display: block;
+}
+.small {
+    display: none;
+}
+
+@media (max-width: 768px) {
+   .flip-card-front{
+    cursor: pointer;
+    box-shadow: 0 0 3px -1px  rgb(167, 139, 250), 0 0 3px 1px var(--card-edge), 0 0 12px 2px  rgb(167, 139, 250), 0px 10px 20px -5px black, 0 0 40px -30px  rgb(167, 139, 250), 0 0 50px -20px  rgb(167, 139, 250);
+} 
+
+    .big {
+        display: none;
+    }
+    .small {
+        display: block;
+    }
+}
