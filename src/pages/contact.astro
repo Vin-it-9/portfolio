@@ -18,7 +18,14 @@ import { Icon } from 'astro-icon/components'
     <div class="grid grid-cols-1 gap-32 md:grid-cols-2">
       <!-- Contact Form -->
       <div class="space-content">
-        <form name="contact" action="/" method="post" data-netlify="true" netlify-honeypot="bot-field">
+        <form
+          name="contact"
+          action="/"
+          method="post"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="contact-form"
+        >
           <Notification type="error" ariaLive="polite" variant="accent" hidden />
 
           <input type="hidden" name="form-name" value="contact" />
@@ -176,4 +183,15 @@ import { Icon } from 'astro-icon/components'
       })
     })()
   </script>
+  <style>
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-form > button {
+      margin-top: 0.5rem;
+    }
+  </style>
 </DefaultLayout>
