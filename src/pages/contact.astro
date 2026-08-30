@@ -197,7 +197,10 @@ import { Icon } from 'astro-icon/components'
 
       form.dataset.contactInitialized = 'true'
 
+      let isSubmitting = false
+
       const requiredFields = form.querySelectorAll('[required]')
+      const submitButton = form.querySelector('button[type="submit"]')
       const errorNotification = form.querySelector('.notification')
       const errorNotificationContent = errorNotification?.querySelector('p')
       const defaultErrorSummary =
@@ -321,6 +324,12 @@ import { Icon } from 'astro-icon/components'
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault()
+
+        // Guard against double submissions (double-click, double Enter, etc.)
+        if (isSubmitting) {
+          return
+        }
+
         clearValidation()
 
         const invalidFields = []
@@ -340,6 +349,11 @@ import { Icon } from 'astro-icon/components'
 
         const formData = new URLSearchParams(new FormData(form)).toString()
 
+        isSubmitting = true
+        if (submitButton) {
+          submitButton.disabled = true
+        }
+
         try {
           const response = await fetch('/', {
             method: 'POST',
@@ -353,12 +367,19 @@ import { Icon } from 'astro-icon/components'
             throw new Error('Your message could not be sent. Please try again.')
           }
 
-          window.location.href = '/thank-you/'
+          // Use replace() so the POST page is not kept in history,
+          // preventing any back/forward-triggered resubmission or
+          // reload loop once the browser lands on /thank-you.
+          window.location.replace('/thank-you/')
         } catch (error) {
           const message =
             error instanceof Error ? error.message : 'Your message could not be sent. Please try again.'
 
           setErrorMessage(message)
+          isSubmitting = false
+          if (submitButton) {
+            submitButton.disabled = false
+          }
         }
       })
     })()
