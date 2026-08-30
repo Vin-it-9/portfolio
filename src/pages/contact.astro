@@ -163,7 +163,7 @@ import { Icon } from 'astro-icon/components'
             throw new Error('Your message could not be sent. Please try again.')
           }
 
-          window.location.href = '/thank-you'
+          window.location.href = '/thank-you/'
         } catch (error) {
           const message = error instanceof Error ? error.message : 'Your message could not be sent. Please try again.'
 
