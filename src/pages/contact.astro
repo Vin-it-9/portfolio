@@ -1,23 +1,12 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import PageHeader from '@components/PageHeader.astro'
-import {
-  Input,
-  Button,
-  Textarea,
-  Heading,
-  Link,
-  Notification,
-} from 'accessible-astro-components'
+import { Input, Button, Textarea, Heading, Link, Notification } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 ---
 
 <DefaultLayout title="Contact">
-  <PageHeader
-    title="Contact"
-    subtitle="Have a question? Get in touch with me!"
-    bgType="gradient"
-  />
+  <PageHeader title="Contact" subtitle="Have a question? Get in touch with me!" bgType="gradient" />
 
   <section class="my-8">
     <div class="container">
@@ -29,13 +18,7 @@ import { Icon } from 'astro-icon/components'
     <div class="grid grid-cols-1 gap-32 md:grid-cols-2">
       <!-- Contact Form -->
       <div class="space-content">
-        <form
-          name="contact"
-          action="/"
-          method="post"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
+        <form name="contact" action="/" method="post" data-netlify="true" netlify-honeypot="bot-field">
           <Notification type="error" ariaLive="polite" variant="accent" hidden />
 
           <input type="hidden" name="form-name" value="contact" />
@@ -46,31 +29,13 @@ import { Icon } from 'astro-icon/components'
             </label>
           </p>
 
-          <Input
-            name="name"
-            label="Your name"
-            required
-            data-validation="Please enter your name"
-            autocomplete="name"
-          />
+          <Input name="name" label="Your name" required data-validation="Please enter your name" autocomplete="name" />
 
-          <Input
-            name="email"
-            label="Email address"
-            type="email"
-            required
-            autocomplete="email"
-          />
+          <Input name="email" label="Email address" type="email" required autocomplete="email" />
 
-          <Textarea
-            name="message"
-            label="Message"
-            required
-          />
+          <Textarea name="message" label="Message" required />
 
-          <Button htmlType="submit" type="primary">
-            Send Message
-          </Button>
+          <Button htmlType="submit" type="primary"> Send Message </Button>
         </form>
       </div>
 
@@ -79,66 +44,42 @@ import { Icon } from 'astro-icon/components'
         <Heading level="h3">Get in touch</Heading>
 
         <p class="text-lg">
-          I'm a Java Developer interested in building reliable, maintainable
-          and practical software applications. I'm always open to discussing
-          development opportunities, projects, ideas, and professional
-          connections.
+          I'm a Java Developer interested in building reliable, maintainable and practical software applications. I'm
+          always open to discussing development opportunities, projects, ideas, and professional connections.
         </p>
 
         <p>
-          You can contact me directly through email or connect with me on
-          LinkedIn and GitHub to learn more about my work and projects.
+          You can contact me directly through email or connect with me on LinkedIn and GitHub to learn more about my
+          work and projects.
         </p>
 
         <!-- Email -->
         <div class="gap-2xs flex items-center">
-          <Icon
-            aria-hidden="true"
-            name="lucide:mail"
-            size={20}
-            class="flex-shrink-0"
-          />
+          <Icon aria-hidden="true" name="lucide:mail" size={20} class="flex-shrink-0" />
 
           <p>
             <span class="font-bold">Email:</span>
-            <Link href="mailto:vineetshinde2559@gmail.com">
-              vineetshinde2559@gmail.com
-            </Link>
+            <Link href="mailto:vineetshinde2559@gmail.com"> vineetshinde2559@gmail.com </Link>
           </p>
         </div>
 
         <!-- Phone -->
         <div class="gap-2xs flex items-center">
-          <Icon
-            aria-hidden="true"
-            name="lucide:phone"
-            size={20}
-            class="flex-shrink-0"
-          />
+          <Icon aria-hidden="true" name="lucide:phone" size={20} class="flex-shrink-0" />
 
           <p>
             <span class="font-bold">Phone:</span>
-            <Link href="tel:+919623912441">
-              +91 9623912441
-            </Link>
+            <Link href="tel:+919623912441"> +91 9623912441 </Link>
           </p>
         </div>
 
         <!-- LinkedIn -->
         <div class="gap-2xs flex items-center">
-          <Icon
-            aria-hidden="true"
-            name="lucide:linkedin"
-            size={20}
-            class="flex-shrink-0"
-          />
+          <Icon aria-hidden="true" name="lucide:linkedin" size={20} class="flex-shrink-0" />
 
           <p>
             <span class="font-bold">LinkedIn:</span>
-            <Link
-              href="https://www.linkedin.com/in/vinit-shinde-920531254/"
-              isExternal
-            >
+            <Link href="https://www.linkedin.com/in/vinit-shinde-920531254/" isExternal>
               Connect with me on LinkedIn
             </Link>
           </p>
@@ -146,47 +87,29 @@ import { Icon } from 'astro-icon/components'
 
         <!-- GitHub -->
         <div class="gap-2xs flex items-center">
-          <Icon
-            aria-hidden="true"
-            name="lucide:github"
-            size={20}
-            class="flex-shrink-0"
-          />
+          <Icon aria-hidden="true" name="lucide:github" size={20} class="flex-shrink-0" />
 
           <p>
             <span class="font-bold">GitHub:</span>
-            <Link
-              href="https://github.com/Vin-it-9/"
-              isExternal
-            >
-              View my GitHub
-            </Link>
+            <Link href="https://github.com/Vin-it-9/" isExternal> View my GitHub </Link>
           </p>
         </div>
 
         <!-- Resume -->
         <div class="gap-2xs flex items-center">
-          <Icon
-            aria-hidden="true"
-            name="lucide:file-text"
-            size={20}
-            class="flex-shrink-0"
-          />
+          <Icon aria-hidden="true" name="lucide:file-text" size={20} class="flex-shrink-0" />
 
           <p>
             <span class="font-bold">Resume:</span>
-            <Link href="/resume">
-              View my resume
-            </Link>
+            <Link href="/resume"> View my resume </Link>
           </p>
         </div>
-
       </div>
     </div>
   </section>
 
   <script is:inline>
-    (() => {
+    ;(() => {
       const form = document.querySelector('form[name="contact"]')
 
       if (!form || form.dataset.netlifyAjaxBound === 'true') {
@@ -195,6 +118,9 @@ import { Icon } from 'astro-icon/components'
 
       form.dataset.netlifyAjaxBound = 'true'
 
+      let isSubmitting = false
+
+      const submitButton = form.querySelector('button[type="submit"]')
       const errorNotification = form.querySelector('.notification')
       const errorNotificationContent = errorNotification?.querySelector('p')
 
@@ -210,9 +136,18 @@ import { Icon } from 'astro-icon/components'
       form.addEventListener('submit', async (event) => {
         event.preventDefault()
 
+        if (isSubmitting) {
+          return
+        }
+
         if (!form.checkValidity()) {
           form.reportValidity()
           return
+        }
+
+        isSubmitting = true
+        if (submitButton) {
+          submitButton.disabled = true
         }
 
         try {
@@ -228,12 +163,15 @@ import { Icon } from 'astro-icon/components'
             throw new Error('Your message could not be sent. Please try again.')
           }
 
-          window.location.assign('/thank-you')
+          window.location.href = '/thank-you'
         } catch (error) {
-          const message =
-            error instanceof Error ? error.message : 'Your message could not be sent. Please try again.'
+          const message = error instanceof Error ? error.message : 'Your message could not be sent. Please try again.'
 
           setSubmissionError(message)
+          isSubmitting = false
+          if (submitButton) {
+            submitButton.disabled = false
+          }
         }
       })
     })()
