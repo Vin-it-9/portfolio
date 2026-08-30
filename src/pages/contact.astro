@@ -31,12 +31,10 @@ import { Icon } from 'astro-icon/components'
       <div class="space-content">
         <form
           name="contact"
-          class="form js-validate"
           action="/"
           method="post"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          novalidate
         >
           <Notification type="error" ariaLive="polite" variant="accent" hidden />
 
@@ -191,167 +189,30 @@ import { Icon } from 'astro-icon/components'
     (() => {
       const form = document.querySelector('form[name="contact"]')
 
-      if (!form || form.dataset.contactInitialized === 'true') {
+      if (!form || form.dataset.netlifyAjaxBound === 'true') {
         return
       }
 
-      form.dataset.contactInitialized = 'true'
+      form.dataset.netlifyAjaxBound = 'true'
 
-      let isSubmitting = false
-
-      const requiredFields = form.querySelectorAll('[required]')
-      const submitButton = form.querySelector('button[type="submit"]')
       const errorNotification = form.querySelector('.notification')
       const errorNotificationContent = errorNotification?.querySelector('p')
-      const defaultErrorSummary =
-        'There was a problem with your submission. The following inputs need attention:'
 
-      const escapeHTML = (value) =>
-        String(value ?? '').replace(/[&<>"']/g, (character) => {
-          switch (character) {
-            case '&':
-              return '&amp;'
-            case '<':
-              return '&lt;'
-            case '>':
-              return '&gt;'
-            case '"':
-              return '&quot;'
-            case "'":
-              return '&#39;'
-            default:
-              return character
-          }
-        })
-
-      const validateField = (field) => {
-        if (!field.willValidate) return true
-
-        const value = field.value.trim()
-        const type = field.type
-
-        if (field.required && type === 'checkbox') {
-          return field.checked
-        }
-
-        if (field.required && type === 'radio') {
-          return field.checked
-        }
-
-        if (field.required && !value) {
-          return false
-        }
-
-        if (type === 'email' && value) {
-          return /\S+@\S+\.\S+/.test(value)
-        }
-
-        return true
-      }
-
-      const setSummary = (fields) => {
-        if (!errorNotification || !errorNotificationContent) return
-
-        errorNotification.setAttribute('tabindex', '-1')
-        errorNotificationContent.innerHTML = `
-          <div class="space-content">
-            <p>${escapeHTML(defaultErrorSummary)}</p>
-            <ol class="incremented">
-              ${fields
-                .map((field) => {
-                  const elementId = escapeHTML(field.id)
-                  const label = field
-                    .closest('.input-group, .checkbox-group, .textarea-group')
-                    ?.querySelector('label')
-                  const labelText = escapeHTML(label?.textContent || field.name)
-                  const validation = escapeHTML(
-                    label?.dataset.validation || 'This field is required'
-                  )
-
-                  return `<li><a href="#${elementId}">${labelText}: ${validation}</a></li>`
-                })
-                .join('')}
-            </ol>
-          </div>
-        `
-
-        errorNotification.hidden = false
-        errorNotification.focus()
-        errorNotification.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
-      }
-
-      const setInlineMessages = (fields) => {
-        fields.forEach((field) => {
-          const label = field
-            .closest('.input-group, .checkbox-group, .textarea-group')
-            ?.querySelector('label')
-          const validation = label?.dataset.validation || 'This field is required'
-          const messageElement = field.nextElementSibling?.querySelector('.message')
-
-          if (messageElement) {
-            messageElement.textContent = validation
-          }
-        })
-      }
-
-      const clearValidation = () => {
-        requiredFields.forEach((field) => {
-          field.setAttribute('aria-invalid', 'false')
-        })
-
-        if (errorNotification) {
-          errorNotification.hidden = true
-          errorNotification.setAttribute('role', 'none')
-        }
-
-        if (errorNotificationContent) {
-          errorNotificationContent.innerHTML = ''
-        }
-
-        form.querySelectorAll('.message').forEach((message) => {
-          message.textContent = ''
-        })
-      }
-
-      const setErrorMessage = (message) => {
+      const setSubmissionError = (message) => {
         if (!errorNotification || !errorNotificationContent) return
 
         errorNotification.hidden = false
         errorNotification.setAttribute('role', 'alert')
-        errorNotificationContent.innerHTML = `<strong>Message:</strong> ${escapeHTML(message)}`
+        errorNotificationContent.innerHTML = `<strong>Message:</strong> ${message}`
         errorNotification.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
       }
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault()
 
-        // Guard against double submissions (double-click, double Enter, etc.)
-        if (isSubmitting) {
+        if (!form.checkValidity()) {
+          form.reportValidity()
           return
-        }
-
-        clearValidation()
-
-        const invalidFields = []
-
-        requiredFields.forEach((field) => {
-          if (!validateField(field)) {
-            field.setAttribute('aria-invalid', 'true')
-            invalidFields.push(field)
-          }
-        })
-
-        if (invalidFields.length > 0) {
-          setSummary(invalidFields)
-          setInlineMessages(invalidFields)
-          return
-        }
-
-        const formData = new URLSearchParams(new FormData(form)).toString()
-
-        isSubmitting = true
-        if (submitButton) {
-          submitButton.disabled = true
         }
 
         try {
@@ -360,26 +221,19 @@ import { Icon } from 'astro-icon/components'
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: formData,
+            body: new URLSearchParams(new FormData(form)).toString(),
           })
 
           if (!response.ok) {
             throw new Error('Your message could not be sent. Please try again.')
           }
 
-          // Use replace() so the POST page is not kept in history,
-          // preventing any back/forward-triggered resubmission or
-          // reload loop once the browser lands on /thank-you.
-          window.location.replace('/thank-you/')
+          window.location.assign('/thank-you')
         } catch (error) {
           const message =
             error instanceof Error ? error.message : 'Your message could not be sent. Please try again.'
 
-          setErrorMessage(message)
-          isSubmitting = false
-          if (submitButton) {
-            submitButton.disabled = false
-          }
+          setSubmissionError(message)
         }
       })
     })()
