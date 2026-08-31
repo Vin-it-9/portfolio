@@ -2,6 +2,7 @@
 import { Link } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
+import logoImage from '@assets/img/logo.svg'
 
 /**
  * Hero Component
@@ -15,40 +16,45 @@ interface Props {
   src?: string
 }
 
-const { src = '/astronaut-hero-img.webp' }: Props = Astro.props
+const { src = logoImage }: Props = Astro.props
 ---
 
-<section class="hero my-24">
+<section class="hero my-4">
   <div class="container">
     <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
         <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Accessible</span> Starter for Astro</slot>
+          <slot><span class="text-gradient">Building</span> with Java</slot>
         </h1>
+        <p class="text-center text-lg md:text-left">
+          I enjoy building practical software with Java and the JVM ecosystem, exploring different frameworks
+          and technologies to solve problems and create clean, maintainable applications. I’m continuously
+          learning, improving my problem-solving skills, and turning what I learn into real-world projects.
+        </p>
         <div class="flex flex-col gap-3 min-[500px]:flex-row">
           <Link
-            href="https://github.com/incluud/accessible-astro-starter"
+            href="/portfolio"
             isButton
             type="primary"
             animateOnHover
             animationType="boop"
           >
-            <Icon aria-hidden="true" name="lucide:star" size="1.5rem" />
-            Star on GitHub
+            <Icon aria-hidden="true" name="lucide:folder-code" size="1.5rem" />
+            View My Projects
           </Link>
           <Link
-            href="https://accessible-astro.incluud.dev/"
+            href="/resume"
             isButton
             type="secondary"
             animateOnHover
             animationType="boop"
           >
-            <Icon aria-hidden="true" name="lucide:bookmark" size="1.5rem" />
-            Read the docs
+            <Icon aria-hidden="true" name="lucide:file-text" size="1.5rem" />
+            View Resume
           </Link>
         </div>
       </div>
-      <Image class="hidden lg:block" src={src} alt="" decoding="async" width={800} height={600} loading="eager" />
+      <Image class="hero-logo hidden lg:block" src={src} alt="Java Duke mascot" decoding="async" loading="eager" />
     </div>
   </div>
 </section>
@@ -56,6 +62,12 @@ const { src = '/astronaut-hero-img.webp' }: Props = Astro.props
 <style lang="scss">
   h1 {
     text-wrap: unset;
+  }
+
+  .hero-logo {
+    display: block;
+    width: min(28rem, 100%);
+    height: auto;
   }
 
   .text-gradient {

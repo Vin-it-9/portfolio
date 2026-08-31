@@ -1,17 +1,15 @@
 import { defineThemeConfig } from '@utils/defineThemeConfig'
-import previewImage from '@assets/img/social-preview-image.png'
 import logoImage from '@assets/img/logo.svg'
 
 export default defineThemeConfig({
-  name: 'Accessible Astro',
-  id: 'accessible-astro-starter',
+  name: 'Vinit Shinde',
+  id: 'vinit-shinde-portfolio',
   logo: logoImage,
   seo: {
-    title: 'Accessible Astro Starter',
+    title: 'Vinit Shinde',
     description:
-      'An Accessible Starter Theme for Astro including several accessibility features and tools to help you build faster.',
-    author: 'Incluud',
-    image: previewImage, // Can also be a string e.g. '/social-preview-image.png',
+      'Portfolio of Vinit Shinde, a Java Developer.',
+    author: 'Vinit Shinde',
   },
   colors: {
     primary: '#d648ff',
@@ -34,7 +32,7 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
-        label: 'Portfolio',
+        label: 'Projects',
         href: '/portfolio',
       },
       {
@@ -83,8 +81,16 @@ export default defineThemeConfig({
       {
         type: 'link',
         label: 'Go to our GitHub page, opens in new tab',
-        href: 'https://github.com/incluud/accessible-astro-starter',
+        href: 'https://github.com/Vin-it-9/',
         icon: 'lucide:github',
+        external: true,
+        excludeFromLauncher: true,
+      },
+      {
+        type: 'link',
+        label: 'Go to our LinkedIn page, opens in new tab',
+        href: 'https://www.linkedin.com/in/vinit-shinde-920531254/',
+        icon: 'lucide:linkedin',
         external: true,
         excludeFromLauncher: true,
       },
@@ -93,18 +99,13 @@ export default defineThemeConfig({
   socials: [
     {
       label: 'GitHub',
-      href: 'https://github.com/incluud/',
+      href: 'https://github.com/Vin-it-9/',
       icon: 'lucide:github',
     },
     {
-      label: 'Bluesky',
-      href: 'https://bsky.app/profile/incluud.dev',
-      icon: 'lucide:bot-message-square',
-    },
-    {
-      label: 'Open Collective',
-      href: 'https://opencollective.com/incluud',
-      icon: 'lucide:hand-heart',
-    },
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/vinit-shinde-920531254/',
+      icon: 'lucide:linkedin',
+    }
   ],
 })
