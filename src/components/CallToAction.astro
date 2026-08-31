@@ -26,7 +26,7 @@ interface Props {
 }
 
 const {
-  title = 'Get this theme on GitHub',
+  title = 'Made with curiosity & code',
   link = 'https://github.com/incluud/accessible-astro-starter',
   linkText = 'Use this theme',
 } = Astro.props
@@ -35,10 +35,6 @@ const {
 <div class="container">
   <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 rounded-xl px-12 py-20 md:px-24">
     <Heading level="h2" class="text-center text-3xl md:text-6xl">{title}</Heading>
-    <Link href={link} isButton size="lg" animateOnHover animationType="nudge">
-      {linkText}
-      <Icon aria-hidden="true" name="lucide:rocket" size="1.5rem" />
-    </Link>
   </div>
 </div>
 

@@ -33,7 +33,7 @@ export default defineThemeConfig({
       {
         type: 'link',
         label: 'Projects',
-        href: '/portfolio',
+        href: '/projects',
       },
       {
         label: 'Features',

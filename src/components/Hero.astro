@@ -38,6 +38,7 @@ const { src = logoImage }: Props = Astro.props
             type="primary"
             animateOnHover
             animationType="boop"
+            class="hero-button hero-button-primary"
           >
             <Icon aria-hidden="true" name="lucide:folder-code" size="1.5rem" />
             View My Projects
@@ -48,6 +49,7 @@ const { src = logoImage }: Props = Astro.props
             type="secondary"
             animateOnHover
             animationType="boop"
+            class="hero-button hero-button-secondary"
           >
             <Icon aria-hidden="true" name="lucide:file-text" size="1.5rem" />
             View Resume
@@ -57,6 +59,7 @@ const { src = logoImage }: Props = Astro.props
       <Image class="hero-logo hidden lg:block" src={src} alt="Java Duke mascot" decoding="async" loading="eager" />
     </div>
   </div>
+  <div class="hero-scroll-cue" aria-hidden="true">↓ Explore</div>
 </section>
 
 <style lang="scss">
@@ -64,10 +67,100 @@ const { src = logoImage }: Props = Astro.props
     text-wrap: unset;
   }
 
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      border-radius: 9999px;
+      filter: blur(64px);
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    &::before {
+      width: 26rem;
+      height: 26rem;
+      right: 8%;
+      top: 10%;
+      background: radial-gradient(circle, rgba(163, 87, 255, 0.36), rgba(163, 87, 255, 0));
+    }
+
+    &::after {
+      width: 24rem;
+      height: 24rem;
+      left: 10%;
+      bottom: 18%;
+      background: radial-gradient(circle, rgba(39, 224, 255, 0.2), rgba(39, 224, 255, 0));
+    }
+  }
+
+  .hero > .container {
+    position: relative;
+    z-index: 1;
+  }
+
   .hero-logo {
     display: block;
-    width: min(28rem, 100%);
-    height: auto;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 22px rgba(125, 88, 255, 0.22));
+    animation: duke-float 5s ease-in-out infinite;
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .hero-logo:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 28px rgba(125, 88, 255, 0.28));
+  }
+
+  .hero-button {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .hero-button:hover,
+  .hero-button:focus-visible {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+  }
+
+  .hero-button:focus-visible {
+    outline: 2px solid var(--outline-color);
+    outline-offset: 3px;
+  }
+
+  .hero-button-primary {
+    border-color: rgba(214, 72, 255, 0.35);
+    box-shadow: 0 12px 28px rgba(214, 72, 255, 0.1);
+  }
+
+  .hero-button-secondary {
+    border-color: rgba(59, 130, 246, 0.25);
+    box-shadow: 0 10px 24px rgba(31, 41, 55, 0.1);
+  }
+
+  .hero-scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 0.9rem;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--foreground-color) 78%, transparent);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+    animation: cue-breathe 1s ease-in-out infinite;
   }
 
   .text-gradient {
@@ -79,5 +172,36 @@ const { src = logoImage }: Props = Astro.props
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes duke-float {
+    0%,
+    100% {
+      transform: translateY(5px);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes cue-breathe {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translateX(-50%) translateY(2px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-logo,
+    .hero-scroll-cue,
+    .hero-button {
+      animation: none;
+      transition: none;
+    }
   }
 </style>
