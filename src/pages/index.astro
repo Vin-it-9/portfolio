@@ -2,12 +2,10 @@
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import Hero from '@components/Hero.astro'
 import Feature from '@components/Feature.astro'
-import Counter from '@components/Counter.astro'
-import ContentMedia from '@components/ContentMedia.astro'
 import FeaturedProjects from '@components/FeaturedProjects.astro'
 import FeaturedPosts from '@components/FeaturedPosts.astro'
 import { Accordion, AccordionItem, Avatar, AvatarGroup, Heading, Link } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
+import TechnicalSkills from '@components/TechnicalSkills.astro'
 ---
 
 <DefaultLayout title="Vinit Shinde | Portfolio" useTitleTemplate={false}>
@@ -48,7 +46,7 @@ import { Icon } from 'astro-icon/components'
     </div>
   </section>
 
-
+  <TechnicalSkills />
   <FeaturedProjects />
   <FeaturedPosts />
 
