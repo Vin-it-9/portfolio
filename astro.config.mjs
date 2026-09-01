@@ -37,9 +37,13 @@ const viteConfig = {
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   compressHTML: true,
   site: 'https://vinits-portfolio.netlify.app/',
   trailingSlash: 'never',
+  build: {
+    format: 'file'
+  },
   integrations: [compress(), icon(), mdx(), sitemap()],
   vite: viteConfig,
   env: {
