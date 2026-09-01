@@ -5,7 +5,6 @@ import themeConfig from '@theme-config'
 import { SEO } from 'astro-seo'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
-import { ClientRouter } from 'astro:transitions'
 import type { ImageMetadata } from 'astro'
 
 interface Props {
@@ -115,8 +114,6 @@ const imageUrl = new URL(imagePath, Astro.site).href
       }}
     />
 
-    <!-- Enable Astro View Transitions for all browsers -->
-    <ClientRouter />
   </head>
   <body>
     <Header />
