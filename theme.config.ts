@@ -36,44 +36,6 @@ export default defineThemeConfig({
         href: '/projects',
       },
       {
-        label: 'Features',
-        type: 'dropdown',
-        items: [
-          {
-            label: 'Accessibility statement',
-            href: '/accessibility-statement',
-          },
-          {
-            label: 'Accessible components',
-            href: '/accessible-components',
-          },
-          {
-            label: 'Accessible launcher',
-            href: '/accessible-launcher',
-          },
-          {
-            label: 'Color contrast checker',
-            href: '/color-contrast-checker',
-          },
-          {
-            label: 'Markdown page',
-            href: '/markdown-page',
-          },
-          {
-            label: 'MDX page',
-            href: '/mdx-page',
-          },
-          {
-            label: '404 page',
-            href: '/404',
-          },
-          {
-            label: 'Sitemap',
-            href: '/sitemap',
-          },
-        ],
-      },
-      {
         type: 'link',
         label: 'Contact',
         href: '/contact',

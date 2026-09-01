@@ -1,11 +1,11 @@
 {
-  "name": "accessible-astro-starter",
-  "description": "An Accessible Starter Theme for Astro including several accessibility features and tools to help you build faster.",
+  "name": "vinits-portfolio",
+  "description": "Personal portfolio website showcasing projects, skills, and professional work.",
   "version": "6.0.0",
-  "author": "Incluud",
+  "author": "Vinit Shinde",
   "license": "MIT",
   "type": "module",
-  "homepage": "https://accessible-astro-starter.incluud.dev/",
+  "homepage": "https://vinits-portfolio.netlify.app/",
   "workspaces": [
     "packages/*"
   ],
@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/incluud/accessible-astro-starter.git"
+    "url": "https://github.com/Vin-it-9/portfolio.git"
   },
   "bugs": {
     "url": "https://github.com/incluud/accessible-astro-starter/issues"
