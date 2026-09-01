@@ -23,7 +23,7 @@ import { Icon } from 'astro-icon/components'
             <Icon aria-hidden="true" name="lucide:chevron-down" size="32" />
           </button>
         ) : !item.type || item.type === 'link' ? (
-          <Link href={item.href} isExternal={item.external ?? false} hideIcon={!!item.icon} {...(!item.external ? { 'data-astro-prefetch': 'hover' } : {})}>
+          <Link href={item.href} isExternal={item.external ?? false} hideIcon={!!item.icon}>
             {item.icon ? (
               <>
                 <Icon aria-hidden="true" name={item.icon} size="32" />
@@ -38,7 +38,7 @@ import { Icon } from 'astro-icon/components'
           <ul class="dropdown-menu">
             {item.items.map((subItem) => (
               <li class="submenu-item">
-                <Link href={subItem.href} isExternal={subItem.external ?? false} {...(!subItem.external ? { 'data-astro-prefetch': 'hover' } : {})}>
+                <Link href={subItem.href} isExternal={subItem.external ?? false}>
                   {subItem.label}
                 </Link>
               </li>

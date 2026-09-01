@@ -8,7 +8,7 @@ export default defineThemeConfig({
   seo: {
     title: 'Vinit Shinde',
     description:
-      'Portfolio of Vinit Shinde, a Java Developer.',
+      'Portfolio of Vinit Shinde.',
     author: 'Vinit Shinde',
   },
   colors: {

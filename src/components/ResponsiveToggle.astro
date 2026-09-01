@@ -27,12 +27,12 @@ const { class: className } = Astro.props
 </button>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    // variables
+  const initResponsiveToggle = () => {
     const responsiveToggle = document.querySelector('.responsive-toggle')
-    if (!responsiveToggle) return
+    if (!responsiveToggle || responsiveToggle.getAttribute('data-bound') === 'true') return
 
-    // functions
+    responsiveToggle.setAttribute('data-bound', 'true')
+
     const openMenu = (toggle: Element) => {
       const text = toggle.querySelector('span')
       const icon = toggle.querySelector('svg')
@@ -55,19 +55,28 @@ const { class: className } = Astro.props
       icon.innerHTML = `<path d="M2 1.667h24m-24 8h24m-24 8h24" stroke="var(--foreground-color)" stroke-width="2.667" stroke-linecap="round" stroke-linejoin="round"/>`
     }
 
-    // execution
     responsiveToggle.addEventListener('click', () => {
       const mobileNavigation = document.querySelector('.mobile-menu')
       if (!mobileNavigation) return
 
-      mobileNavigation.classList.toggle('show')
-      if (mobileNavigation.classList.contains('show')) {
+      const willOpen = !mobileNavigation.classList.contains('show')
+      mobileNavigation.classList.toggle('show', willOpen)
+
+      if (willOpen) {
         openMenu(responsiveToggle)
       } else {
         closeMenu(responsiveToggle)
       }
     })
-  })
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResponsiveToggle, { once: true })
+  } else {
+    initResponsiveToggle()
+  }
+
+  document.addEventListener('astro:page-load', initResponsiveToggle)
 </script>
 
 <style lang="scss">

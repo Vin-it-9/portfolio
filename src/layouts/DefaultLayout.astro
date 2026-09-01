@@ -121,6 +121,61 @@ const imageUrl = new URL(imagePath, Astro.site).href
       <slot />
     </main>
     <Footer />
+
+    <script>
+      (() => {
+        const tracked = new Set<string>()
+        const page = window.location.pathname.replace(/\/+$/, '') || '/'
+        const targetPaths = new Set(['/projects', '/resume', '/contact', '/blog'])
+
+        const scheduleIdlePreload = () => {
+          const preload = () => {
+            const candidates = Array.from(document.querySelectorAll('nav a[href]'))
+              .map((anchor) => {
+                const element = anchor as HTMLAnchorElement
+                const href = element.href
+                if (!href) return null
+
+                const url = new URL(href, window.location.href)
+                if (url.origin !== window.location.origin) return null
+                if (!url.pathname || url.pathname === page || url.hash || url.search) return null
+
+                const normalized = url.pathname.replace(/\/+$/, '') || '/'
+                if (!targetPaths.has(normalized)) return null
+
+                return normalized
+              })
+              .filter((value): value is string => Boolean(value))
+
+            for (const candidate of candidates) {
+              if (tracked.has(candidate)) continue
+              tracked.add(candidate)
+              fetch(candidate, {
+                method: 'GET',
+                cache: 'force-cache',
+                credentials: 'same-origin',
+                headers: { Accept: 'text/html' },
+              }).catch(() => {})
+            }
+          }
+
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(preload, { timeout: 1500 })
+            return
+          }
+
+          setTimeout(preload, 250)
+        }
+
+        if (document.readyState === 'loading') {
+          window.addEventListener('DOMContentLoaded', scheduleIdlePreload, { once: true })
+          return
+        }
+
+        scheduleIdlePreload()
+      })()
+    </script>
+
     <style lang="scss" is:global>
       @use 'scss/base/mixins' as *;
 
