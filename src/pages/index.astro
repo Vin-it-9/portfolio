@@ -12,42 +12,42 @@ import { Icon } from 'astro-icon/components'
 
 <DefaultLayout title="Vinit Shinde | Portfolio" useTitleTemplate={false}>
   <Hero />
-  <section class="my-64">
+
+  <section class="my-32">
     <div class="container">
-      <Heading level="h2" class="mb-8">Features</Heading>
+      <Heading level="h2" class="mb-8">How I Approach Development</Heading>
+      <p class="mb-12 max-w-3xl text-xl">
+        I focus on understanding problems, writing clean code, and continuously improving through practical development.
+      </p>
+
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <Feature icon="lucide:accessibility" title="Accessible by default">
-          Keyboard navigation, focus indicators, ARIA labels, semantic HTML, and more. This theme is designed to be
-          inclusive.
+        <Feature icon="lucide:code-2" title="Clean & Maintainable">
+          I focus on writing readable, structured code that is easy to understand, maintain, and improve.
         </Feature>
-        <Feature icon="lucide:puzzle" title="A11Y components">
-          35+ components and counting, all tried and tested for the most optimal accessible experience for your
-          visitors.
+
+        <Feature icon="lucide:brain" title="Problem Solving">
+          I break complex problems into smaller pieces and work toward practical and reliable solutions.
         </Feature>
-        <Feature icon="lucide:moon" title="Dark mode">
-          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
+
+        <Feature icon="lucide:book-open" title="Continuous Learning">
+          I learn by exploring new concepts, experimenting with technologies, and turning what I learn into projects.
         </Feature>
-        <Feature icon="lucide:paintbrush" title="Tailwind 4.0">
-          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
+
+        <Feature icon="lucide:wrench" title="Practical Development">
+          I prefer learning through building real applications and applying concepts to solve practical problems.
         </Feature>
-        <Feature icon="lucide:sparkles" title="Prettier">
-          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
+
+        <Feature icon="lucide:search-check" title="Attention to Detail">
+          I care about correctness, code quality, usability, and the small details that make software better.
         </Feature>
-        <Feature icon="lucide:code" title="ESLint">
-          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
-        </Feature>
-        <Feature icon="lucide:bookmark" title="Blog & portfolio">
-          This theme comes with a fully integrated blog and portfolio, dynamic pages and SEO optimization.
-        </Feature>
-        <Feature icon="lucide:file-text" title="Markdown & MDX">
-          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
-        </Feature>
-        <Feature icon="lucide:blocks" title="Design system">
-          The theme offers some very handy utilities to help you build your website faster.
+
+        <Feature icon="lucide:lightbulb" title="Curiosity & Experimentation">
+          I enjoy trying different approaches and technologies to understand how things work and find better solutions.
         </Feature>
       </div>
     </div>
   </section>
+
   <ContentMedia imgSrc="/accessible-components.webp">
     <Heading level="h2">Accessible components</Heading>
     <p class="text-2xl">
