@@ -7,8 +7,7 @@ export default defineThemeConfig({
   logo: logoImage,
   seo: {
     title: 'Vinit Shinde',
-    description:
-      'Portfolio of Vinit Shinde.',
+    description: 'Portfolio of Vinit Shinde.',
     author: 'Vinit Shinde',
   },
   colors: {
@@ -27,11 +26,6 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
-        label: 'Blog',
-        href: '/blog',
-      },
-      {
-        type: 'link',
         label: 'Projects',
         href: '/projects',
       },
@@ -39,6 +33,11 @@ export default defineThemeConfig({
         type: 'link',
         label: 'Skills',
         href: '/skills',
+      },
+      {
+        type: 'link',
+        label: 'Resume',
+        href: '/resume',
       },
       {
         type: 'link',
@@ -73,6 +72,6 @@ export default defineThemeConfig({
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/vinit-shinde-920531254/',
       icon: 'lucide:linkedin',
-    }
+    },
   ],
 })
