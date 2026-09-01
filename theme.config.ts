@@ -37,6 +37,11 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
+        label: 'Skills',
+        href: '/skills',
+      },
+      {
+        type: 'link',
         label: 'Contact',
         href: '/contact',
       },
