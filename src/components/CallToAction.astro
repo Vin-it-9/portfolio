@@ -1,6 +1,5 @@
 ---
-import { Heading, Link } from 'accessible-astro-components'
-import { Icon } from 'astro-icon/components'
+import { Heading} from 'accessible-astro-components'
 
 /**
  * CallToAction Component
@@ -15,7 +14,7 @@ interface Props {
   title?: string
   /**
    * The URL the button should link to
-   * @default "https://github.com/incluud/accessible-astro-starter"
+   * @default "https://vinits-portfolio.netlify.app/"
    */
   link?: string
   /**
@@ -26,9 +25,7 @@ interface Props {
 }
 
 const {
-  title = 'Made with curiosity & code',
-  link = 'https://github.com/incluud/accessible-astro-starter',
-  linkText = 'Use this theme',
+  title = 'Made with curiosity & code'
 } = Astro.props
 ---
 
