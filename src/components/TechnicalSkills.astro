@@ -1,0 +1,325 @@
+---
+// Define the tools with their brand colors and simplified inline SVGs
+import { Link } from 'accessible-astro-components'
+import { Icon } from 'astro-icon/components'
+import { Heading } from 'accessible-astro-components'
+
+const topRow = [
+  {
+    name: 'Intercom',
+    bg: '#1F8DED',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M6 14v-2M10 16v-6M14 16v-6M18 14v-2"/></svg>`
+  },
+  {
+    name: 'Kickstarter',
+    bg: '#05CE78',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 4h3v16H8zM12.5 12.5l5.5 6.5h-3.5l-4.5-5.5 4.5-6.5h3.5z"/></svg>`
+  },
+  {
+    name: 'Hubspot',
+    bg: '#FF7A59',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="7" r="2.5" fill="white"/><circle cx="19" cy="16" r="2.5" fill="white"/><circle cx="5" cy="16" r="2.5" fill="white"/><path d="M11 9L7 14M13 9l4 5M6 16h12"/></svg>`
+  },
+  {
+    name: 'Hubspot',
+    bg: '#FF7A59',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="7" r="2.5" fill="white"/><circle cx="19" cy="16" r="2.5" fill="white"/><circle cx="5" cy="16" r="2.5" fill="white"/><path d="M11 9L7 14M13 9l4 5M6 16h12"/></svg>`
+  },
+  {
+    name: 'Intercom',
+    bg: '#1F8DED',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M6 14v-2M10 16v-6M14 16v-6M18 14v-2"/></svg>`
+  }
+];
+
+const bottomRow = [
+  {
+    name: 'Shopify',
+    bg: '#95BF47',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17 7h-3V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H3v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM10 5h4v2h-4V5zm-4 5h12v9H6v-9z"/></svg>`
+  },
+  {
+    name: 'Slack',
+    bg: '#ffffff',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" fill="none"><path stroke="#E01E5A" d="M9 5v14"/><path stroke="#36C5F0" d="M15 5v14"/><path stroke="#2EB67D" d="M5 9h14"/><path stroke="#ECB22E" d="M5 15h14"/></svg>`
+  },
+  {
+    name: 'Zapier',
+    bg: '#FF4A00',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"><path d="M12 4v16M5 8.5l14 7M5 15.5l14-7"/></svg>`
+  },
+  {
+    name: 'Mailchimp',
+    bg: '#FFE01B',
+    color: '#000',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M5 13l4-6 3 4 3-4 4 6"/><path d="M9 17c1.5 1.5 4.5 1.5 6 0" stroke-linecap="round"/></svg>`
+  },
+  {
+    name: 'Shopify',
+    bg: '#95BF47',
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17 7h-3V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H3v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM10 5h4v2h-4V5zm-4 5h12v9H6v-9z"/></svg>`
+  }
+];
+---
+
+<section class="tools-connect-section" aria-labelledby="tools-title">
+  <div class="glow-wrapper" aria-hidden="true">
+    <div class="glow-effect"></div>
+  </div>
+
+  <div class="container">
+    <Heading level="h2" class="mb-8">Technical Skills &amp; Expertise</Heading>
+    <p class="mb-12 max-w-3xl text-xl">
+      Technologies and tools I use to build reliable, practical, and
+      user-focused software solutions.</p>
+
+    <div class="marquee-stack" aria-label="Technical skills and technologies">
+
+      <div class="marquee-row">
+        <ul class="marquee-group">
+          {topRow.map((tool) => (
+            <li class="tool-card">
+              <div
+                class="icon-circle"
+                style={`background-color: ${tool.bg};`}
+                set:html={tool.icon}
+              />
+              <span
+                class="tool-name"
+                style={`color: ${tool.color || '#ffffff'}`}
+              >
+                {tool.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="marquee-group" aria-hidden="true">
+          {topRow.map((tool) => (
+            <li class="tool-card">
+              <div
+                class="icon-circle"
+                style={`background-color: ${tool.bg};`}
+                set:html={tool.icon}
+              />
+              <span
+                class="tool-name"
+                style={`color: ${tool.color || '#ffffff'}`}
+              >
+                {tool.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="marquee-row marquee-row--reverse">
+        <ul class="marquee-group">
+          {bottomRow.map((tool) => (
+            <li class="tool-card">
+              <div
+                class="icon-circle"
+                style={`background-color: ${tool.bg};`}
+                set:html={tool.icon}
+              />
+              <span
+                class="tool-name"
+                style={`color: ${tool.color || '#ffffff'}`}
+              >
+                {tool.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="marquee-group" aria-hidden="true">
+          {bottomRow.map((tool) => (
+            <li class="tool-card">
+              <div
+                class="icon-circle"
+                style={`background-color: ${tool.bg};`}
+                set:html={tool.icon}
+              />
+              <span
+                class="tool-name"
+                style={`color: ${tool.color || '#ffffff'}`}
+              >
+                {tool.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex justify-start mt-12">
+      <Link
+        href="/skills"
+        isButton
+        animateOnHover
+        animationType="boop"
+      >
+        <Icon aria-hidden="true" name="lucide:code-2" size="1.5rem" />
+        Explore My Skills
+      </Link>
+    </div>
+
+  </div>
+</section>
+<style>
+  .tools-connect-section {
+    position: relative;
+    padding: 2rem 0 2rem;
+    overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  .glow-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-effect {
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(circle at center, rgba(30, 64, 175, 0.25) 0%, rgba(0, 0, 0, 0) 65%);
+    filter: blur(60px);
+    transform: translateY(-20%);
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .header-content {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .header-content h2 {
+    color: #ffffff;
+    font-size: 2.75rem;
+    font-weight: 400;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header-content p {
+    color: #a1a1aa;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+  }
+
+  .marquee-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .marquee-row {
+    padding: 5px;
+    display: flex;
+    gap: 1.25rem;
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  .marquee-group {
+    display: flex;
+    gap: 1.25rem;
+    flex-shrink: 0;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: scroll-x 30s linear infinite;
+  }
+
+  .marquee-row--reverse .marquee-group {
+    animation-direction: reverse;
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 150px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    gap: 1.25rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .tool-card:hover {
+    background: #121212;
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .tool-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  @keyframes scroll-x {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* Shifts the row left by exactly 100% of its width + 1 gap to perfectly loop */
+      transform: translateX(calc(-100% - 1.25rem));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-content h2 {
+      font-size: 2rem;
+    }
+
+    .header-content p {
+      font-size: 0.9rem;
+    }
+
+    .tool-card {
+      width: 150px;
+      height: 130px;
+    }
+
+    .icon-circle {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-group {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>
