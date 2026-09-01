@@ -1,43 +1,62 @@
 ---
-import { Heading} from 'accessible-astro-components'
+import { Heading } from 'accessible-astro-components'
 
 /**
  * CallToAction Component
  *
- * @description A prominent call-to-action section with a title and link
+ * @description A simple rotating quote section displayed at the bottom of pages.
  */
 interface Props {
-  /**
-   * The title text to display
-   * @default "Get this theme on GitHub"
-   */
   title?: string
-  /**
-   * The URL the button should link to
-   * @default "https://vinits-portfolio.netlify.app/"
-   */
-  link?: string
-  /**
-   * The text to display on the button
-   * @default "Get Started"
-   */
-  linkText?: string
 }
 
-const {
-  title = 'Made with curiosity & code'
-} = Astro.props
+const { title = 'Made with curiosity & code.' } = Astro.props
+
+const quotes = [
+  'Made with curiosity & code.',
+  'Built to learn. Made to last.',
+  'Always learning. Always building.',
+  'Curious mind. Practical code.',
+  'Learn. Build. Improve. Repeat.',
+  'Turning ideas into working software.',
+  'Good code starts with curiosity.',
+  'Building today. Learning for tomorrow.',
+  'Code with purpose. Learn with curiosity.',
+  'One idea, one project, one lesson at a time.',
+]
 ---
 
 <div class="container">
-  <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 rounded-xl px-12 py-20 md:px-24">
-    <Heading level="h2" class="text-center text-3xl md:text-6xl">{title}</Heading>
+  <div class="call-to-action mt-12 mb-12 flex flex-col items-center gap-12 rounded-xl px-12 py-20 md:px-24">
+    <Heading level="h2" class="text-center text-3xl md:text-6xl" id="rotating-quote">
+      {title}
+    </Heading>
   </div>
 </div>
 
-<style lang="scss">
-  @use 'scss/base/mixins' as *;
+<script>
+  const quotes = [
+    'Made with curiosity & code.',
+    'Built to learn. Made to last.',
+    'Always learning. Always building.',
+    'Curious mind. Practical code.',
+    'Learn. Build. Improve. Repeat.',
+    'Turning ideas into working software.',
+    'Good code starts with curiosity.',
+    'Building today. Learning for tomorrow.',
+    'Code with purpose. Learn with curiosity.',
+    'One idea, one project, one lesson at a time.',
+  ]
 
+  const quoteElement = document.querySelector('#rotating-quote')
+
+  if (quoteElement) {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
+    quoteElement.textContent = randomQuote
+  }
+</script>
+
+<style lang="scss">
   .call-to-action {
     position: relative;
     background-image: linear-gradient(
