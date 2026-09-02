@@ -4,24 +4,101 @@ import PageHeader from '@components/PageHeader.astro'
 
 const categories = [
   {
-    title: 'Core Development',
-    skills: ['Java', 'Object-Oriented Programming', 'Collections', 'Exception Handling', 'Multithreading', 'JVM'],
+    title: 'Java & JVM',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+    skills: [
+      'Java',
+      'Object-Oriented Programming',
+      'Collections',
+      'Exception Handling',
+      'Multithreading',
+      'JVM',
+      'Kotlin',
+      'GraalVM',
+    ],
+  },
+  {
+    title: 'Backend Frameworks',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
+    skills: [
+      'Spring Boot',
+      'Quarkus',
+      'Grails',
+      'Micronaut',
+      'Helidon',
+      'Vaadin',
+      'NodeJS',
+      'Dropwizard',
+    ],
   },
   {
     title: 'Backend & APIs',
-    skills: ['REST APIs', 'Spring Boot', 'Spring Framework', 'API Design', 'Backend Development'],
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"></path><path d="M8 9l3 3-3 3"></path><path d="M13 15h3"></path></svg>`,
+    skills: [
+      'REST APIs',
+      'API Design',
+      'Backend Development',
+      'JDBC',
+      'JPA',
+      'Panache',
+      'Hibernate',
+    ],
   },
   {
-    title: 'Databases',
-    skills: ['SQL', 'MySQL', 'JDBC', 'JPA / Hibernate'],
+    title: 'Databases & SQL',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>`,
+    skills: [
+      'SQL',
+      'MySQL',
+      'PostgreSQL',
+      'Relational Databases',
+      'Database Design',
+    ],
   },
   {
-    title: 'Development Tools',
-    skills: ['Git', 'GitHub', 'Maven', 'IntelliJ IDEA', 'Postman'],
+    title: 'Build Tools',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-8 8"></path><path d="M6 6l8 8"></path><path d="M16 3l5 5"></path><path d="M3 16l5 5"></path></svg>`,
+    skills: [
+      'Maven',
+      'Gradle',
+      'Git',
+      'GitHub',
+      'IntelliJ IDEA',
+      'Visual Studio Code',
+      'DataGrip',
+      'Postman',
+    ],
   },
   {
     title: 'Problem Solving',
-    skills: ['Data Structures & Algorithms', 'Problem Solving', 'Debugging', 'Clean Code'],
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>`,
+    skills: [
+      'Data Structures & Algorithms',
+      'Problem Solving',
+      'Debugging',
+      'Clean Code',
+      'Software Design',
+      'Performance Optimization',
+    ],
+  },
+  {
+    title: 'Web Technologies',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+    skills: [
+      'JavaScript',
+      'React.js',
+      'Next.js',
+      'Thymeleaf',
+      'Astro',
+      'Tailwind CSS',
+      'Docusaurus',
+      'HTML',
+      'CSS',
+      'Responsive Web Design',
+      'Web Accessibility',
+      'HTTP',
+      'JSON',
+    ],
   },
 ]
 ---
@@ -34,22 +111,33 @@ const categories = [
   />
 
   <section class="skills-section" aria-labelledby="skills-heading">
+    <div class="glow-wrapper" aria-hidden="true">
+      <div class="glow-effect"></div>
+    </div>
+
     <div class="container">
       <div class="skills-grid">
-        {categories.map((category) => (
-          <article class="skill-card" aria-labelledby={`${category.title.toLowerCase().replace(/\s+/g, '-')}-heading`}>
-            <div class="card-header">
-              <span class="card-badge">Skill set</span>
-              <h2 id={`${category.title.toLowerCase().replace(/\s+/g, '-')}-heading`}>{category.title}</h2>
-            </div>
+        {
+          categories.map((category) => (
+            <article
+              class="skill-card"
+              aria-labelledby={`${category.title.toLowerCase().replace(/\s+/g, '-')}-heading`}
+            >
+              <div class="card-header">
+                <div class="icon-wrapper" set:html={category.icon} />
+                <h2 id={`${category.title.toLowerCase().replace(/\s+/g, '-')}-heading`}>{category.title}</h2>
+              </div>
 
-            <ul class="skill-list" aria-label={`${category.title} skills`}>
-              {category.skills.map((skill) => (
-                <li>{skill}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
+              <div class="card-content">
+                <ul class="skill-list" aria-label={`${category.title} skills`}>
+                  {category.skills.map((skill) => (
+                    <li class="skill-pill">{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -57,7 +145,41 @@ const categories = [
 
 <style>
   .skills-section {
-    padding: 3rem 0 4rem;
+    position: relative;
+    background-color: #000000;
+    padding: 4rem 0 6rem;
+    overflow: hidden;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+  }
+
+  .glow-wrapper {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .glow-effect {
+    filter: blur(50px);
+    background: radial-gradient(circle at 50% 0%, rgba(30, 64, 175, 0.15) 0%, transparent 70%);
+    width: 800px;
+    height: 600px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    max-width: 1200px;
   }
 
   .skills-grid {
@@ -67,69 +189,91 @@ const categories = [
   }
 
   .skill-card {
-    grid-column: span 12;
     display: flex;
+    grid-column: span 12;
     flex-direction: column;
-    gap: 1.25rem;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 1rem;
-    background: color-mix(in srgb, var(--background-color) 92%, transparent);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    background: #0a0a0a;
+    padding: 2rem;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.12);
+    background: #121212;
   }
 
   .card-header {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
   }
 
-  .card-badge {
-    display: inline-flex;
-    align-self: flex-start;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--background-color) 88%, transparent);
-    color: var(--foreground-color);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    width: 48px;
+    height: 48px;
+    color: #ffffff;
   }
 
   .card-header h2 {
     margin: 0;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    line-height: 1.3;
-    color: var(--foreground-color);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .card-content {
+    flex-grow: 1;
   }
 
   .skill-list {
-    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
+    gap: 0.75rem;
     margin: 0;
     padding: 0;
+    list-style: none;
   }
 
-  .skill-list li {
+  .skill-pill {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    min-height: 2.5rem;
-    padding: 0.55rem 0.85rem;
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--background-color) 82%, transparent);
-    color: var(--foreground-color);
-    font-size: 0.96rem;
+    align-items: center;
+    transition: all 0.2s ease;
+    cursor: default;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    background: #111111;
+    padding: 0.5rem 1rem;
+    color: #a1a1aa;
+    font-weight: 400;
+    font-size: 0.9rem;
     line-height: 1.4;
-    word-break: break-word;
   }
 
-  @media (min-width: 700px) {
+  /* Subtle hover interaction for pills */
+  .skill-pill:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+  }
+
+  /* Responsive Grid Handling */
+  @media (min-width: 768px) {
     .skill-card {
       grid-column: span 6;
     }
@@ -138,6 +282,23 @@ const categories = [
   @media (min-width: 1024px) {
     .skill-card {
       grid-column: span 4;
+    }
+
+    .skill-card:last-child:nth-child(2n - 1) {
+      grid-column: span 8;
+    }
+
+    .skill-card:last-child:nth-child(3n - 1),
+    .skill-card:nth-last-child(2):nth-child(3n - 2) {
+      grid-column: span 6;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-card,
+    .skill-pill {
+      transform: none;
+      transition: none;
     }
   }
 </style>
