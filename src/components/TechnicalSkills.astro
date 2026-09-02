@@ -6,58 +6,77 @@ import { Heading } from 'accessible-astro-components'
 
 const topRow = [
   {
-    name: 'Intercom',
-    bg: '#1F8DED',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M6 14v-2M10 16v-6M14 16v-6M18 14v-2"/></svg>`
+    name: 'Java',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />`
   },
   {
-    name: 'Kickstarter',
-    bg: '#05CE78',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 4h3v16H8zM12.5 12.5l5.5 6.5h-3.5l-4.5-5.5 4.5-6.5h3.5z"/></svg>`
+    name: 'Spring',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" />`
   },
   {
-    name: 'Hubspot',
-    bg: '#FF7A59',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="7" r="2.5" fill="white"/><circle cx="19" cy="16" r="2.5" fill="white"/><circle cx="5" cy="16" r="2.5" fill="white"/><path d="M11 9L7 14M13 9l4 5M6 16h12"/></svg>`
+    name: 'Quarkus',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/quarkus/quarkus-original.svg" />`
   },
   {
-    name: 'Hubspot',
-    bg: '#FF7A59',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="7" r="2.5" fill="white"/><circle cx="19" cy="16" r="2.5" fill="white"/><circle cx="5" cy="16" r="2.5" fill="white"/><path d="M11 9L7 14M13 9l4 5M6 16h12"/></svg>`
+    name: 'Micronaut',
+    icon: `<img src="https://micronaut.io/micronaut-assets/logos/micronaut-stacked-white.svg" />`
   },
   {
-    name: 'Intercom',
-    bg: '#1F8DED',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M6 14v-2M10 16v-6M14 16v-6M18 14v-2"/></svg>`
+    name: 'Dropwizard',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dropwizard/dropwizard-original.svg" />`
+  },
+  {
+    name: 'Hibernate',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hibernate/hibernate-original.svg" />`
+  },
+  {
+    name: 'Maven',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" />`
+  },
+  {
+    name: 'MySQL',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" />`
   }
 ];
 
 const bottomRow = [
   {
-    name: 'Shopify',
-    bg: '#95BF47',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17 7h-3V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H3v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM10 5h4v2h-4V5zm-4 5h12v9H6v-9z"/></svg>`
+    name: 'Kotlin',
+    icon: ` <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" />`
   },
   {
-    name: 'Slack',
-    bg: '#ffffff',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" fill="none"><path stroke="#E01E5A" d="M9 5v14"/><path stroke="#36C5F0" d="M15 5v14"/><path stroke="#2EB67D" d="M5 9h14"/><path stroke="#ECB22E" d="M5 15h14"/></svg>`
+    name: 'GitHub',
+    icon: `<svg viewBox="0 0 128 128">
+              <circle cx="64" cy="64" r="60" fill="#ffffff" />
+              <g fill="#181616">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"></path>
+                 <path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"></path>
+              </g>
+          </svg>`
   },
   {
-    name: 'Zapier',
-    bg: '#FF4A00',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"><path d="M12 4v16M5 8.5l14 7M5 15.5l14-7"/></svg>`
+    name: 'GraalVM',
+    icon: ` <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/GraalVM_Logo_RGB.svg?" />`
   },
   {
-    name: 'Mailchimp',
-    bg: '#FFE01B',
-    color: '#000',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M5 13l4-6 3 4 3-4 4 6"/><path d="M9 17c1.5 1.5 4.5 1.5 6 0" stroke-linecap="round"/></svg>`
+    name: 'Helidon',
+    icon: `<img src="https://user-images.githubusercontent.com/12281454/211943562-1ed69d78-8745-4729-8864-6dcd40f3a172.svg" alt="" />`
   },
   {
-    name: 'Shopify',
-    bg: '#95BF47',
-    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17 7h-3V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H3v13c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7zM10 5h4v2h-4V5zm-4 5h12v9H6v-9z"/></svg>`
+    name: 'NextJs',
+    icon: `  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" /> `
+  },
+  {
+    name: 'PostgreSQL',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />`
+  },
+  {
+    name: 'Grails',
+    icon: `  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grails/grails-original.svg" /> `
+  },
+  {
+    name: 'Javascript',
+    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />`
   }
 ];
 ---
@@ -79,15 +98,8 @@ const bottomRow = [
         <ul class="marquee-group">
           {topRow.map((tool) => (
             <li class="tool-card">
-              <div
-                class="icon-circle"
-                style={`background-color: ${tool.bg};`}
-                set:html={tool.icon}
-              />
-              <span
-                class="tool-name"
-                style={`color: ${tool.color || '#ffffff'}`}
-              >
+              <div class="icon-circle" set:html={tool.icon} />
+              <span class="tool-name" >
                 {tool.name}
               </span>
             </li>
@@ -97,15 +109,8 @@ const bottomRow = [
         <ul class="marquee-group" aria-hidden="true">
           {topRow.map((tool) => (
             <li class="tool-card">
-              <div
-                class="icon-circle"
-                style={`background-color: ${tool.bg};`}
-                set:html={tool.icon}
-              />
-              <span
-                class="tool-name"
-                style={`color: ${tool.color || '#ffffff'}`}
-              >
+              <div class="icon-circle" set:html={tool.icon} />
+              <span class="tool-name">
                 {tool.name}
               </span>
             </li>
@@ -117,15 +122,8 @@ const bottomRow = [
         <ul class="marquee-group">
           {bottomRow.map((tool) => (
             <li class="tool-card">
-              <div
-                class="icon-circle"
-                style={`background-color: ${tool.bg};`}
-                set:html={tool.icon}
-              />
-              <span
-                class="tool-name"
-                style={`color: ${tool.color || '#ffffff'}`}
-              >
+              <div class="icon-circle" set:html={tool.icon} />
+              <span class="tool-name">
                 {tool.name}
               </span>
             </li>
@@ -135,15 +133,8 @@ const bottomRow = [
         <ul class="marquee-group" aria-hidden="true">
           {bottomRow.map((tool) => (
             <li class="tool-card">
-              <div
-                class="icon-circle"
-                style={`background-color: ${tool.bg};`}
-                set:html={tool.icon}
-              />
-              <span
-                class="tool-name"
-                style={`color: ${tool.color || '#ffffff'}`}
-              >
+              <div class="icon-circle" set:html={tool.icon}/>
+              <span class="tool-name">
                 {tool.name}
               </span>
             </li>
@@ -244,7 +235,7 @@ const bottomRow = [
     margin: 0;
     padding: 0;
     list-style: none;
-    animation: scroll-x 30s linear infinite;
+    animation: scroll-x 20s linear infinite;
   }
 
   .marquee-row--reverse .marquee-group {
@@ -272,13 +263,12 @@ const bottomRow = [
   }
 
   .icon-circle {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .tool-name {
@@ -311,8 +301,8 @@ const bottomRow = [
     }
 
     .icon-circle {
-      width: 48px;
-      height: 48px;
+      width: 58px;
+      height: 58px;
     }
   }
 
