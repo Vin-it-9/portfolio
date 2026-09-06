@@ -53,8 +53,8 @@ const { page, uniqueTags } = Astro.props
 >
   <PageHeader
     title="Projects"
-    subtitle='A showcase of projects built with Astro Content Collections, demonstrating dynamic content management and organization. Learn more about <a href="https://docs.astro.build/en/guides/content-collections/">Astro Content Collections</a> in the official documentation.'
-    bgType="bordered"
+    subtitle="A collection of projects I've built to explore ideas and apply what I learn through hands-on development."
+    bgType="gradient"
   />
   <section class="my-12">
     <div class="container">
@@ -78,7 +78,6 @@ const { page, uniqueTags } = Astro.props
                 url={'/projects/' + project.id}
                 title={project.data.title}
                 headingLevel="h2"
-                footer={'Author: ' + project.data.author}
                 fullHeight={true}
               >
                 <span slot="meta">

@@ -70,8 +70,8 @@ const { page, currentTag, uniqueTags } = Astro.props
 >
   <PageHeader
     title={`Projects: ${currentTag.label}`}
-    subtitle={`Showing ${page.total} project${page.total !== 1 ? 's' : ''} tagged with "${currentTag.label}". <a href="/projects">View all projects</a> or filter by other tags below.`}
-    bgType="bordered"
+    subtitle={`Showing ${page.total} project${page.total !== 1 ? 's' : ''} tagged with "${currentTag.label}". filter by other tags below.`}
+    bgType="gradient"
     customBreadcrumbLabels={{
       [currentTag.slug]: currentTag.label,
     }}
@@ -111,7 +111,6 @@ const { page, currentTag, uniqueTags } = Astro.props
                 url={'/projects/' + project.id}
                 title={project.data.title}
                 headingLevel="h2"
-                footer={'Author: ' + project.data.author}
                 fullHeight={true}
               >
                 <span slot="meta">
