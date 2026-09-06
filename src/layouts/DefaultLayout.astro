@@ -51,7 +51,7 @@ const {
 
 // For social sharing, we need the full absolute URL
 // If image is an ImageMetadata object, use its src, otherwise treat as string path
-const imagePath = image ? (typeof image === 'string' ? image : image.src) : '/social-preview-image.png'
+const imagePath = image ? (typeof image === 'string' ? image : image.src) : '/favicon.svg'
 const imageUrl = new URL(imagePath, Astro.site).href
 ---
 

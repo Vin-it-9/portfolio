@@ -31,6 +31,11 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
+        label: 'Blogs',
+        href: '/blog',
+      },
+      {
+        type: 'link',
         label: 'Skills',
         href: '/skills',
       },
