@@ -20,25 +20,38 @@
     "test:cli:e2e": "npm --workspace create-accessible-astro-starter run test:e2e"
   },
   "keywords": [
-    "astro",
-    "astro-component",
-    "astro-components",
-    "accessible",
-    "accessibility",
-    "a11y",
-    "wcag",
-    "responsive",
-    "ui-library",
-    "ui-components",
-    "blog",
-    "portfolio"
+    "java",
+    "java-developer",
+    "jvm",
+    "jvm-developer",
+    "backend-developer",
+    "software-developer",
+    "backend-development",
+    "java-backend",
+    "spring-boot",
+    "spring-framework",
+    "micronaut",
+    "quarkus",
+    "helidon",
+    "graalvm",
+    "microservices",
+    "rest-api",
+    "api-development",
+    "event-driven-architecture",
+    "hibernate",
+    "jpa",
+    "mysql",
+    "sql",
+    "maven",
+    "software-engineering",
+    "developer-portfolio"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Vin-it-9/portfolio.git"
   },
   "bugs": {
-    "url": "https://github.com/incluud/accessible-astro-starter/issues"
+    "url": "https://github.com/Vin-it-9/portfolio/issues"
   },
   "devDependencies": {
     "@astrojs/mdx": "^7.0.8",
