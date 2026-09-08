@@ -1,64 +1,86 @@
 ---
-title: FinanceForAll
-author: Viktor Nakamoto
-description: A fully accessible financial management platform that makes banking and investment tools available to users with various disabilities
-tags: ['Accessibility', 'Finance']
+title: Quote of the Day API
+author: Vinit Shinde
+description: A RESTful quote service built with Micronaut and Java 21, demonstrating Hexagonal Architecture with a clean separation between business logic and infrastructure.
+tags: ['Micronaut', 'Java 21', 'Hexagonal Architecture', 'Hibernate JPA', 'REST API']
 ---
 
 ## Project Overview
 
-FinanceForAll revolutionizes personal banking by making financial tools accessible to everyone. The platform provides screen-reader optimized interfaces, keyboard-only navigation, and simplified layouts for cognitive accessibility, ensuring equal access to banking, investment, and financial planning tools.
+Quote of the Day API is a RESTful service for managing and retrieving inspirational quotes. The project was built to demonstrate Hexagonal Architecture, also known as the Ports and Adapters Pattern, with a strong focus on keeping the domain and business logic independent from technical infrastructure.
+
+The API supports adding quotes, retrieving all quotes, and fetching a random quote through a simple REST interface. The architecture separates incoming requests, application use cases, domain logic, and persistence concerns into clearly defined components. 
 
 import BlockQuote from '@components/BlockQuote.astro'
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-<BreakoutImage src="/projects/project-image-3.png" />
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
 
 ## Technical Challenges
 
-The primary challenge was creating complex financial interfaces that remained fully accessible without sacrificing functionality. We developed a modular interface system that adapts to different assistive technologies while maintaining secure banking protocols and real-time market data integration.
+The main focus of the project was designing a clean architecture where the domain core does not depend directly on the web framework or database implementation.
+
+The inbound side exposes REST endpoints through `QuoteController` and connects them to application use cases such as adding a quote, retrieving all quotes, and retrieving a random quote. On the outbound side, the domain depends on the `QuoteRepository` port rather than directly interacting with the persistence layer. 
+
+This separation makes individual parts of the application easier to replace and test. For example, the persistence adapter can be changed without modifying the core business logic.
+
+The service also includes validation and business rules such as rejecting empty quote text, preventing duplicate quotes, and returning a default quote when no quotes are available. 
 
 ## Project Gallery
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
-    src="/projects/project-image-5.png"
-    alt="FinanceForAll accessible banking dashboard"
+    src="/projects/project-image-1.png"
+    alt="Quote of the Day API project overview"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
-    src="/projects/project-image-4.png"
-    alt="Screen-reader optimized investment charts"
+    src="/projects/project-image-2.png"
+    alt="Quote of the Day API architecture"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-3.png"
-    alt="Keyboard-navigable financial planning tools"
+    alt="Quote service REST API interface"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
-    src="/projects/project-image-1.png"
-    alt="Simplified interface for cognitive accessibility"
+    src="/projects/project-image-4.png"
+    alt="Quote service persistence and database structure"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
 </div>
 
-## Testimonial
+## Key Highlights
 
-<BlockQuote author="James Wu, Software Developer">
-  FinanceForAll has given me true financial independence. As a blind person, I can now manage my investments and banking
-  with the same ease as anyone else. The accessible charts and financial data are game-changing.
+The project demonstrates several backend engineering concepts:
+
+- Hexagonal Architecture using Ports and Adapters
+- Domain logic isolated from framework and infrastructure concerns
+- Micronaut 4 with Java 21
+- REST API endpoints for quote management
+- Hibernate JPA for persistence
+- H2 in-memory database
+- Flyway database migrations
+- HikariCP connection pooling
+- Input validation and duplicate prevention
+- Separate inbound and outbound application ports
+- Swappable persistence adapters
+- Structured error handling for invalid requests  
+
+<BlockQuote author="Quote of the Day API">
+  A clean and modular REST service designed to demonstrate Hexagonal Architecture and separation of business logic from infrastructure.
 </BlockQuote>
 
-<BreakoutImage src="/projects/project-image-4.png" />
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
 
-Expanding into voice-controlled trading features and developing more accessible financial education tools.
+The project provides a small but complete example of applying Hexagonal Architecture to a Java backend. Its domain-independent core, replaceable adapters, and separation of concerns make it easier to test, maintain, and extend as the system grows. 

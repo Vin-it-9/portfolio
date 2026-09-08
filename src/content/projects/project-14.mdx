@@ -1,0 +1,85 @@
+---
+title: Developer Portfolio
+author: Vinit Shinde
+description: A personal developer portfolio built with Astro, showcasing Java and JVM projects, technical skills, open-source contributions, and professional work.
+tags: ['Astro', 'TypeScript', 'Java', 'JVM', 'Portfolio']
+---
+
+## Project Overview
+
+This is my personal developer portfolio, built to showcase my work, technical skills, projects, and experience as a Java and JVM-focused developer.
+
+The website is built with Astro and uses a component-based architecture to keep pages and reusable UI elements organized and maintainable. The portfolio includes dedicated sections for projects, technical skills, resume, contact, and other professional information.
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main goals was to create a portfolio that reflects my development style rather than simply presenting a collection of information.
+
+The site uses Astro's static-first architecture together with reusable components, MDX-based project content, Tailwind CSS, and modern frontend tooling. The project is structured to keep content separate from reusable presentation components, making it easier to add and maintain project pages.
+
+Another focus was performance and usability. The site is designed to provide a fast browsing experience while maintaining responsive layouts across desktop and mobile devices.
+
+The portfolio also includes dedicated project pages so each project can have its own technical overview, challenges, screenshots, and implementation details without overcrowding the main projects page.
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="Developer portfolio homepage"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="Developer portfolio projects section"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="Developer portfolio technical skills section"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Developer portfolio contact and resume sections"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The portfolio demonstrates:
+
+- Astro-based static site development
+- TypeScript and component-based architecture
+- MDX-powered project content
+- Tailwind CSS styling
+- Responsive design for desktop and mobile
+- Dedicated project detail pages
+- Technical skills and project showcase sections
+- Integrated resume and contact pages
+- Sitemap and SEO support
+- GitHub and LinkedIn integration
+- Netlify deployment and production hosting
+
+<BlockQuote author="Developer Portfolio">
+  A personal space for sharing what I build, what I learn, and how I approach software development.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The portfolio is continuously evolving alongside my development work, with new projects, technical explorations, and open-source contributions added over time.

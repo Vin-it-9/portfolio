@@ -1,0 +1,84 @@
+---
+title: Password Strength Analyzer
+author: Vinit Shinde
+description: An intelligent password security analysis tool developed for the Barclays Hackathon 2025, combining machine learning, security analysis, and GenAI-powered password improvement recommendations.
+tags: ['Python', 'Machine Learning', 'GenAI', 'Flask', 'Cybersecurity']
+---
+
+## Project Overview
+
+Password Strength Analyzer is a web-based security tool developed for the Barclays Hackathon 2025 to analyze password strength and provide intelligent recommendations for improving password security.
+
+The application evaluates passwords using multiple security dimensions including entropy, character variety, common patterns, dictionary vulnerability, estimated crack time, and potential attack vectors. It also provides personalized password improvements designed to increase security while maintaining memorability. 
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was combining traditional password security analysis with machine-learning-based strength prediction and intelligent recommendations.
+
+The application analyzes password characteristics such as entropy, character composition, common patterns, dictionary vulnerabilities, and estimated crack time. It also identifies potential attack vectors including dictionary, brute-force, targeted-guessing, and hybrid attacks. 
+
+Another challenge was generating stronger passwords without making them difficult to remember. The enhancement engine applies targeted transformations such as character substitution, capitalization changes, special-character insertion, and security-level calibration. 
+
+The backend is implemented with Python and Flask, while the frontend uses JavaScript, HTML, Tailwind CSS, and asynchronous AJAX requests for interactive analysis. 
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="Password Strength Analyzer interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="Password security analysis results"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="Password improvement recommendations"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Password vulnerability analysis"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project combines several security and machine-learning capabilities:
+
+- Password strength analysis using entropy and character composition
+- Detection of common patterns, sequences, repetitions, and dictionary-based weaknesses
+- Estimated password crack time and security scoring
+- Attack-vector analysis for dictionary, brute-force, targeted-guessing, and hybrid attacks
+- Machine-learning-based password strength prediction
+- GenAI-powered security reasoning and personalized recommendations
+- Password enhancement through targeted character and pattern transformations
+- Real-time web interface with visual strength feedback
+- REST API endpoint for password analysis
+- Modular separation of analysis, feature extraction, model handling, and AI reasoning
+
+<BlockQuote author="Barclays Hackathon 2025">
+  Combining password security analysis, machine learning, and intelligent recommendations to help users create stronger passwords.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The project was developed as a security-focused solution for the Barclays Hackathon 2025, with an emphasis on making password security analysis more understandable and actionable for users. 

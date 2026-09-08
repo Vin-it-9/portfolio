@@ -1,0 +1,87 @@
+---
+title: URL Shortener
+author: Vinit Shinde
+description: A Quarkus-based URL shortening service with customizable expiration, click tracking, and detailed analytics for shortened links.
+tags: ['Quarkus', 'Java', 'REST API', 'JPA', 'Hibernate']
+---
+
+## Project Overview
+
+URL Shortener is a web application that converts long URLs into short, manageable links while providing users with control over link expiration and access tracking.
+
+The application is built with Quarkus and provides a modern web interface using Qute, Tailwind CSS, and JavaScript. Users can create shortened URLs, choose an expiration period from 1 to 365 days, and view statistics for individual links.
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was designing the complete lifecycle of a shortened URL, from generating the short link to handling redirection and tracking usage statistics.
+
+The application exposes a REST-based interface for creating shortened URLs, redirecting users from a short code to the original URL, and retrieving statistics such as access count, creation time, expiration time, and the most recent access.
+
+Another important aspect was handling expiration. Each shortened URL can be configured with an expiration period between 1 and 365 days, allowing links to become invalid after their configured lifetime.
+
+The application uses JPA and Hibernate for persistence and supports configurable database connections, while Quarkus provides the backend runtime and Maven handles the project build and packaging.
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="URL Shortener application homepage"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="URL Shortener link creation interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="URL Shortener statistics dashboard"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="URL Shortener analytics and link statistics"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates several practical backend and web-development concepts:
+
+- Long URL to short URL conversion
+- Configurable link expiration from 1 to 365 days
+- Click tracking and access statistics
+- Short-code based URL redirection
+- REST API endpoints for URL management
+- JPA and Hibernate-based persistence
+- Qute server-side templating
+- Quarkus backend with Java 21
+- Responsive UI built with Tailwind CSS
+- Database connection-pool configuration
+- Production packaging using a Quarkus uber-jar
+
+<BlockQuote author="URL Shortener">
+  A practical URL shortening service combining link management, expiration control, and access analytics.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The application provides three core operations: creating a shortened URL through `POST /shorten`, redirecting through the generated short code, and retrieving detailed statistics through `/stats/{shortCode}`.
+
+The project also includes a dedicated statistics view where users can inspect link usage, including access counts and the most recent access time.

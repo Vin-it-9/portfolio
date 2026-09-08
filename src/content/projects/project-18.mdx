@@ -1,0 +1,85 @@
+---
+title: GitRemind - Coding Contest Reminder
+author: Vinit Shinde
+description: A desktop reminder application built with Electron for tracking coding contests and important events with an interactive calendar, recurring reminders, and progressive notifications.
+tags: ['Electron', 'JavaScript', 'Tailwind CSS', 'Desktop App', 'Notifications']
+---
+
+## Project Overview
+
+GitRemind is a desktop reminder application designed for developers and programmers who want to keep track of coding competitions and important events.
+
+The application provides an interactive calendar for managing reminders and supports coding contests from platforms such as LeetCode, CodeChef, Codeforces, and GeeksforGeeks. It combines event reminders with desktop notifications so important contests and deadlines are less likely to be missed. 
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was designing a reminder system that could handle both one-time and recurring events while providing useful notifications at the right time.
+
+GitRemind supports daily, weekly, monthly, and yearly recurring reminders. Users can configure reminder details such as the date, time, event type, notification duration, recurrence pattern, and recurrence end conditions. 
+
+For coding contests, the application provides a progressive notification system that can send multiple reminders as an event approaches. Notifications can be triggered when the reminder is created, one day before the contest, one hour before it starts, and again when the contest begins. 
+
+Another focus was integrating the application with the desktop environment. GitRemind can start with the operating system, minimize to the system tray, play notification sounds, and maintain a persistent desktop experience instead of behaving like a traditional browser-only application. 
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="GitRemind desktop reminder application"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="GitRemind interactive calendar and reminder interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="GitRemind coding contest reminder interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="GitRemind settings and notification configuration"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates practical desktop application and event-management concepts:
+
+- Electron-based cross-platform desktop application
+- Interactive monthly calendar
+- Coding contest reminders for LeetCode, CodeChef, Codeforces, and GeeksforGeeks
+- Daily, weekly, monthly, and yearly recurring reminders
+- Progressive notifications for coding contests
+- Custom reminder types for meetings, deadlines, personal events, and contests
+- System startup integration
+- System tray support
+- Configurable notification duration and sound
+- Responsive GitHub-inspired dark mode interface
+- Tailwind CSS-based UI  
+
+<BlockQuote author="GitRemind">
+  A desktop reminder application built to help developers stay on top of coding contests, deadlines, and important events.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+GitRemind is packaged as a desktop application with build support for Windows, macOS, and Linux. Its Electron architecture separates the main process, preload layer, and renderer application, while Tailwind CSS is used for the application interface.  

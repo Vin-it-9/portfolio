@@ -1,0 +1,85 @@
+---
+title: ParkFlow - Parking Management System
+author: Vinit Shinde
+description: A full-stack parking management application with a separate frontend and backend, designed for deployment across local and cloud environments.
+tags: ['React', 'TypeScript', 'Node.js', 'REST API', 'Full-Stack']
+---
+
+## Project Overview
+
+ParkFlow is a full-stack parking management application built with a separate frontend and backend architecture.
+
+The project is organized so both servers can be started together during local development, while also supporting deployment as a single repository or as independently deployed frontend and backend services. The application includes environment-based configuration to support different deployment environments.
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main focuses of the project was organizing the application into independent frontend and backend services while still allowing them to work together seamlessly during development and deployment.
+
+The repository provides a shared local development workflow that starts both servers together, with the backend running on port `5000` and the frontend on port `5173`. The frontend can also be configured to communicate with a separately deployed backend through the `VITE_API_BASE_URL` environment variable.
+
+Deployment was another consideration. The project includes Vercel configuration for hosting the frontend and backend from the same repository, including API rewrites between the public `/api/*` routes and the backend service. Environment variables are used for backend configuration such as JWT secrets, administrator email settings, email credentials, and CORS configuration.
+
+The backend currently uses in-memory data storage, which keeps the application simple during development but means data is reset whenever the backend process or serverless instance restarts.
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="ParkFlow parking management application"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="ParkFlow frontend interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="ParkFlow backend and API integration"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="ParkFlow responsive parking application"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates several full-stack development concepts:
+
+- Separate frontend and backend application structure
+- One-command local startup for both services
+- Environment-based frontend and backend configuration
+- REST API communication between frontend and backend
+- JWT-related backend security configuration
+- CORS configuration for frontend/backend communication
+- Vercel deployment using a single repository
+- Support for independent frontend and backend deployment
+- API rewrites through Vercel configuration
+- In-memory backend data management
+- Responsive full-stack application architecture
+
+<BlockQuote author="ParkFlow">
+  A full-stack parking application exploring frontend-backend separation, API integration, deployment configuration, and practical application architecture.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+ParkFlow is structured to support both local development and cloud deployment, with separate frontend and backend services that can communicate through configurable API endpoints.

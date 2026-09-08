@@ -1,0 +1,92 @@
+---
+title: College inventory management System
+author: Vinit Shinde
+description: A full-stack college management platform built with Spring Boot, Spring Security, Thymeleaf, and JPA, providing role-based administration for users, departments, laboratories, and institutional inventory.
+tags: ['Spring Boot', 'Spring Security', 'Java', 'JPA', 'Thymeleaf']
+---
+
+## Project Overview
+
+College Inventory Management System is a web-based application designed to digitize and streamline administrative workflows within an educational institution.
+
+The platform provides role-based access for administrators, principals, directors, HODs, teachers, and lab assistants while bringing together user administration, department management, laboratory management, inventory tracking, approvals, and dashboard analytics in a single application. 
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was designing access control for multiple stakeholder roles with different responsibilities and permissions.
+
+The system uses role-based access control to provide different capabilities to Admins, Principals, Directors, HODs, Teachers, and Lab Assistants. Users can manage their profiles, while administrators can control accounts, permissions, and system-wide configuration. 
+
+Another major part of the project was implementing inventory workflows across departments and laboratories. Inventory items can be assigned to specific labs, quantities and availability can be tracked, and requests submitted by lab staff can be routed to the relevant HOD for approval or rejection. 
+
+The application follows a multi-tier architecture that separates the presentation layer, business logic, data access layer, and database layer. Controllers handle HTTP requests, service classes contain business logic, and repository interfaces manage persistence through Spring Data JPA. 
+
+Security was another important consideration. The application includes password hashing, CSRF protection, role-based authorization, protected URLs, session management, and input validation. 
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="College Management System dashboard"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="College Management System inventory management interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="College Management System laboratory and department management"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="College Management System role-based administration interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates several practical enterprise application concepts:
+
+- Role-based access control across multiple user roles
+- Secure authentication and authorization with Spring Security
+- User profile and account management
+- Department and building administration
+- Laboratory creation and staff assignment
+- Inventory tracking and resource allocation
+- Inventory approval workflows between staff and HODs
+- Role-specific dashboards and analytics
+- Spring Boot and Spring MVC backend
+- Spring Data JPA and Hibernate persistence
+- Thymeleaf server-side rendering
+- Tailwind CSS responsive interface
+- Amazon S3 integration for profile photo and media storage
+- Maven-based project management 
+
+<BlockQuote author="College Management System">
+  A full-stack institutional management platform focused on secure access, resource management, and streamlined administrative workflows.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The system organizes institutional data around core entities such as users, roles, departments, buildings, laboratories, inventory items, categories, and inventory statuses. These entities work together to support resource allocation, approvals, and role-specific administration. 
+
+The inventory workflow allows lab assistants and teachers to submit requests, routes those requests to the relevant HOD, and makes approved items available within the inventory system. 

@@ -1,0 +1,90 @@
+---
+title: CyberWatch - Cybersecurity Monitoring System
+author: Vinit Shinde
+description: A Spring Boot-based cybersecurity monitoring system for real-time attack detection, threat analytics, and automated IP blocking with WebSocket-powered security updates.
+tags: ['Spring Boot', 'Spring Security', 'WebSockets', 'MySQL', 'Cybersecurity']
+---
+
+## Project Overview
+
+CyberWatch is a cybersecurity monitoring system designed to detect and monitor malicious activity in real time while providing security analytics and automated threat mitigation.
+
+The application monitors different attack patterns, classifies their severity, records security events, and can automatically block suspicious IP addresses. A live dashboard provides security metrics, attack trends, recent alerts, and other monitoring information through a web-based interface. 
+
+The system also supports separate testing and production modes, allowing attack detection and security workflows to be tested without enabling real IP blocking during development. 
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was designing a backend that could continuously detect and process different types of security threats while keeping monitoring data available to the dashboard in real time.
+
+CyberWatch uses Spring Boot as the backend framework, with Spring Security for authentication and authorization, Spring Data JPA and Hibernate for persistence, and WebSocket support using STOMP for real-time communication. 
+
+The application detects multiple attack categories, including SQL injection, command injection, XXE, XSS, brute force, CSRF, directory traversal, and DDoS-related activity. Each detected event is assigned a severity level that can influence the automated IP-blocking workflow. 
+
+Another challenge was building a security response mechanism that could operate at different levels. CyberWatch supports configurable blocking durations, manual IP management, expiration tracking, and different security modes for testing, production, and selective blocking. 
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="CyberWatch cybersecurity monitoring dashboard"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="CyberWatch real-time attack monitoring interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="CyberWatch security analytics dashboard"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="CyberWatch security configuration and IP management interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+CyberWatch combines application security, real-time monitoring, and backend engineering concepts:
+
+- Real-time detection of 10+ attack categories
+- Automatic IP blocking based on attack severity and frequency
+- Configurable detection thresholds and security rules
+- JWT-based security and Spring Security integration
+- WebSocket-powered real-time dashboard updates
+- STOMP messaging for live communication
+- MySQL persistence with Hibernate and Spring Data JPA
+- Security analytics with attack trends and severity distribution
+- Source IP tracking and geographic attack analysis
+- Attack log export and system backup capabilities
+- Testing, production, and hybrid security modes
+- API endpoints for security metrics, alerts, and blocked IP management  
+
+<BlockQuote author="CyberWatch">
+  A real-time cybersecurity monitoring system focused on threat detection, security analytics, and automated IP-based threat mitigation.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The monitoring dashboard provides live security metrics, attack feeds, interactive charts, severity analysis, and historical trends. WebSockets are used to push updates to the interface without requiring a page refresh.  
+
+CyberWatch also includes dedicated test endpoints for simulating attack traffic, making it possible to validate detection and blocking behavior without relying on real-world attacks. 

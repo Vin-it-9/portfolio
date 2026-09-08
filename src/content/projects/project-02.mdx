@@ -1,64 +1,80 @@
 ---
-title: Sign Language Bridge
-author: Jane Smith
-description: An AI-powered real-time sign language translation system that enables seamless communication between deaf and hearing individuals
-tags: ['Accessibility', 'AI', 'Computer Vision']
+title: NextExt
+author: Vinit Shinde
+description: A modern desktop text editor built with Electron, featuring multi-tab editing, file management, auto-save, and a GitHub-inspired dark mode interface.
+tags: ['Electron', 'JavaScript', 'Tailwind CSS', 'Desktop App', 'GitHub']
 ---
 
 ## Project Overview
 
-Sign Language Bridge revolutionizes communication for the deaf community by providing real-time translation between sign language and spoken/written language. Using advanced computer vision and natural language processing, the system captures sign language gestures and converts them into text or speech, while also translating spoken words into animated sign language.
+NextExt is a modern, feature-rich desktop text editor built with Electron and styled with Tailwind CSS. The application was designed as an enhanced alternative to a basic notepad, focusing on a clean user interface and practical file editing features.
+
+It provides multi-tab editing, an integrated file explorer, automatic saving, keyboard shortcuts, and a GitHub-inspired dark mode interface. The application can also be packaged and distributed as a desktop application for Windows and other supported platforms.
 
 import BlockQuote from '@components/BlockQuote.astro'
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
 
 ## Technical Challenges
 
-The biggest hurdle was developing a system that could accurately capture and interpret the nuanced movements of sign language in real-time, including facial expressions and hand positions. We implemented a novel approach using 3D motion tracking and contextual understanding to achieve high accuracy in varied lighting conditions.
+One of the main challenges was building a desktop application that could provide a smooth editing experience while managing local files through Electron's main and renderer processes.
+
+The project separates the Electron main process, preload layer, and renderer application to handle desktop functionality while keeping the editing interface responsive. The file explorer and tab system were designed to allow users to work with multiple files without leaving the application.
+
+Another focus was creating a consistent and intuitive interface. Tailwind CSS was used to build the GitHub-inspired dark theme, custom scrollbars, animations, and other interface elements while keeping the application lightweight and easy to use.
 
 ## Project Gallery
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
+    src="/projects/project-image-1.png"
+    alt="NextExt desktop text editor interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
     src="/projects/project-image-2.png"
-    alt="Sign language translation app interface showing gesture recognition"
+    alt="NextExt file explorer and multi-tab editing interface"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-3.png"
-    alt="Person using sign language with the translation system"
+    alt="NextExt text editing workspace"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-4.png"
-    alt="Mobile version of the Sign Language Bridge application"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
-  />
-  <Image
-    src="/projects/project-image-5.png"
-    alt="Group demonstration of the Sign Language Bridge system"
+    alt="NextExt desktop application interface in dark mode"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
 </div>
 
-## Testimonial
+## Key Highlights
 
-<BlockQuote author="David Chen, Software Engineer">
-  Sign Language Bridge has transformed how I communicate with my hearing colleagues. It's like having a skilled
-  interpreter available 24/7, giving me true independence in professional settings.
+NextExt focuses on providing a practical desktop editing experience with features such as:
+
+- Multi-tab editing for working with multiple files simultaneously
+- Built-in file explorer for browsing and managing files
+- Automatic saving when using supported keyboard shortcuts
+- Keyboard shortcuts for creating, opening, saving, closing, and switching files
+- GitHub-inspired dark mode interface
+- Custom UI elements, animations, and scrollbars
+- Electron-based desktop architecture with separate main, preload, and renderer processes
+- Build and packaging support for Windows, macOS, and Linux
+
+<BlockQuote author="NextExt">
+  A modern desktop text editor focused on simple file management, multi-tab editing, and a clean developer-friendly interface.
 </BlockQuote>
 
-<BreakoutImage src="/projects/project-image-3.png" decorative={true} />
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
 
-The project is currently expanding to support more sign languages and developing specialized vocabularies for professional environments.
+NextExt is distributed as a desktop application and includes build scripts for generating platform-specific packages. The project is released under the MIT License and is available as an open-source Electron application.

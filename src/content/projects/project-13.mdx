@@ -1,0 +1,85 @@
+---
+title: Nursery Website
+author: Vinit Shinde
+description: A modern responsive nursery website built with Next.js and Tailwind CSS, designed to showcase plants, collections, services, and nursery information through a polished web experience.
+tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Responsive Design']
+---
+
+## Project Overview
+
+Nursery Website is a modern responsive website created for a plant nursery, providing visitors with a clear way to explore plant categories, featured collections, available plants, nursery information, and ways to visit or contact the business.
+
+The application is built with Next.js, React, TypeScript, and Tailwind CSS, with the homepage organized into reusable sections such as categories, featured collections, plant previews, information about the nursery, how the process works, and visit-us content.
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main focuses of the project was building a clean and responsive experience while keeping the different sections of the website modular and reusable.
+
+The homepage is composed of separate React components for areas such as categories, featured collections, plant previews, the nursery introduction, the customer journey, and visit information. This structure keeps individual sections isolated and makes the application easier to maintain and extend.
+
+Another important consideration was responsive presentation across desktop and mobile devices. Tailwind CSS provides the utility-based styling used throughout the application, while Next.js handles the application structure and rendering.
+
+The project also includes supporting interface elements such as a floating WhatsApp contact action and a structured footer to make communication and navigation easier for visitors.
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="Nursery website homepage"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="Nursery plant categories and collections"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="Nursery plant showcase and website sections"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Nursery website visit and contact section"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates practical modern frontend development concepts:
+
+- Next.js 15 application development
+- React component-based architecture
+- TypeScript for typed application code
+- Tailwind CSS for responsive styling
+- Reusable homepage sections and UI components
+- Plant categories and featured collections
+- Plant showcase and preview sections
+- Responsive desktop and mobile design
+- Contact integration through a floating WhatsApp action
+- Canonical site URL and Open Graph URL configuration
+- Modular page composition for maintainability
+
+<BlockQuote author="Nursery Website">
+  A responsive nursery website designed to present plants, collections, and business information through a clean and accessible web experience.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The website is structured as a collection of focused React components rather than a single large page, making individual sections easier to maintain and evolve as the nursery's content grows.

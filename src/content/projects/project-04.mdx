@@ -1,64 +1,86 @@
 ---
-title: Accessible Learning Hub
-author: Sarah Johnson
-description: An inclusive e-learning platform that adapts to various learning disabilities and provides personalized learning experiences for all students
-tags: ['Accessibility', 'Education']
+title: Nexo - Multi-Framework Cryptocurrency Platform
+author: Vinit Shinde
+description: A cryptocurrency platform built with a polyglot microservices architecture using Spring Boot, Micronaut, and Quarkus for wallet management, authentication, real-time market data, and trading operations.
+tags: ['Spring Boot', 'Micronaut', 'Quarkus', 'Microservices', 'JWT']
 ---
 
 ## Project Overview
 
-Accessible Learning Hub transforms online education by making it truly inclusive for all learners. The platform automatically adapts content presentation based on individual needs, supporting dyslexia, ADHD, visual impairments, and other learning differences through AI-driven personalization.
+Nexo is a cryptocurrency platform designed around a multi-framework microservices architecture. The system uses Spring Boot, Micronaut, and Quarkus across different services, allowing each framework to be used where its capabilities best fit the service requirements.
+
+The platform provides a unified gateway through which users can authenticate, manage cryptocurrency wallets, track market prices, and interact with platform services. Its architecture separates responsibilities across independently deployable services while maintaining centralized routing, authentication, and service discovery. 
 
 import BlockQuote from '@components/BlockQuote.astro'
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-<BreakoutImage src="/projects/project-image-6.png" decorative={true} />
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
 
 ## Technical Challenges
 
-The biggest challenge was creating a system that could dynamically adjust content presentation without losing educational value. We implemented an adaptive engine that modifies text layout, color schemes, and content pacing while maintaining curriculum integrity and learning objectives.
+One of the main challenges was designing communication and coordination between services built with different Java frameworks.
+
+Nexo uses Spring Boot for the API Gateway, discovery server, and user service, Micronaut for the wallet service, and Quarkus for the PriceFeed service. This polyglot approach required consistent service communication, authentication, and configuration across the different frameworks. 
+
+The API Gateway acts as the central entry point for client requests and provides routing, JWT validation, load balancing, rate limiting, and circuit breaking. A dedicated discovery server handles service registration and dynamic discovery, allowing services to communicate without relying on fixed service locations. 
+
+Security was another important part of the system. The User Service handles registration and authentication, integrates with Google OAuth 2.0, issues JWT tokens, and provides role-based access control. Shared JWT validation is then used across services for cross-service authentication. 
 
 ## Project Gallery
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
     src="/projects/project-image-1.png"
-    alt="Accessible Learning Hub student dashboard with personalized content"
-    width={1200}
-    height={600}
-    class="h-[250px] w-full rounded-lg object-cover"
-  />
-  <Image
-    src="/projects/project-image-6.png"
-    alt="Content adaptation settings for different learning needs"
+    alt="Nexo cryptocurrency platform architecture"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-2.png"
-    alt="Interactive lesson with multiple accessibility features enabled"
+    alt="Nexo microservices platform interface"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-3.png"
-    alt="Learning analytics showing improvement in student engagement"
+    alt="Nexo cryptocurrency wallet and service interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Nexo cryptocurrency price tracking interface"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
 </div>
 
-## Testimonial
+## Key Highlights
 
-<BlockQuote author="Prof. Helen Martinez, Director of Special Education">
-  Accessible Learning Hub has revolutionized how our students with learning differences engage with online content. The
-  personalized adaptations have dramatically improved both comprehension and confidence.
+Nexo brings together several backend engineering concepts in a single distributed platform:
+
+- Polyglot microservices architecture using Spring Boot, Micronaut, and Quarkus
+- Spring Cloud API Gateway as the central entry point for client requests
+- Service discovery and load balancing
+- JWT-based authentication and authorization
+- Google OAuth 2.0 integration
+- Role-based access control
+- Rate limiting and circuit breaking for API resilience
+- Cryptocurrency wallet management and transaction history
+- Real-time cryptocurrency price data through CoinMarketCap API
+- In-memory caching for price data and reduced external API calls
+- Swagger UI for API documentation
+- Quarkus native compilation for the PriceFeed service 
+
+<BlockQuote author="Nexo">
+  A multi-framework microservices platform built to explore distributed architecture, service resilience, security, and performance across the Java ecosystem.
 </BlockQuote>
 
-<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
 
-Currently expanding into multi-modal content delivery and developing more sophisticated learning pattern recognition algorithms.
+Nexo demonstrates how different Java frameworks can work together within a distributed system while maintaining consistent security, service communication, and operational concerns. The project uses Docker and Docker Compose for its development environment and requires a CoinMarketCap API key for market data integration. 

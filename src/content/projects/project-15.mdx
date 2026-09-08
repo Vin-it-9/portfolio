@@ -1,0 +1,94 @@
+---
+title: Distributed Multiplayer Games
+author: Vinit Shinde
+description: A real-time multiplayer gaming platform built with Next.js, TypeScript, and Socket.IO, featuring server-authoritative game state, synchronized rooms, timers, scoring, and concurrent player interactions.
+tags: ['Next.js', 'TypeScript', 'Socket.IO', 'WebSockets', 'Distributed Systems']
+---
+
+## Project Overview
+
+Distributed Multiplayer Games is a real-time multiplayer platform where multiple players can join shared game rooms and compete through synchronized browser sessions.
+
+The application uses a single Next.js server as the source of truth for rooms, players, game state, timers, scoring, and leaderboards. Browsers communicate with the server through Socket.IO, allowing game state and events to be updated in real time across connected players. 
+
+The platform currently includes five game modes: Multiplayer Quiz, Number Guessing, Math Sprint, Word Scramble, and Emoji Decode. Each game uses a shared room and round-based model while applying different rules for scoring and winner selection. 
+
+import BlockQuote from '@components/BlockQuote.astro'
+import BreakoutImage from '@components/BreakoutImage.astro'
+import { Image } from 'astro:assets'
+
+<BreakoutImage src="/projects/project-image-1.png" decorative={true} />
+
+## Technical Challenges
+
+One of the main challenges was maintaining a consistent game state when multiple players interact with the same room at nearly the same time.
+
+The server is authoritative for room state, player state, timers, scoring, and winner selection. Clients send validated events to the server, and the server broadcasts the resulting state back to all connected players. Socket.IO handles room communication, broadcasts, acknowledgements, and reconnection support. 
+
+Concurrency and race conditions were another important part of the project. Multiple players can submit answers or guesses almost simultaneously, so the server controls which submission is accepted and ensures that only valid results affect the game.
+
+For the number-guessing game, the server keeps the target value private, records when guesses are received, and applies deterministic rules to select the winner. Exact guesses immediately end the round, while ties are resolved using server receipt order. 
+
+The quiz mode uses similar server-side rules: each player can submit only one answer per round, late or duplicate answers are rejected, and scoring combines correctness with a speed bonus based on the remaining timer. 
+
+## Project Gallery
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/project-image-1.png"
+    alt="Distributed Multiplayer Games home screen"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-2.png"
+    alt="Multiplayer game room and lobby interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-3.png"
+    alt="Real-time multiplayer game interface"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/project-image-4.png"
+    alt="Multiplayer leaderboard and game results"
+    width={1200}
+    height={600}
+    class="h-[250px] w-full rounded-lg object-cover"
+  />
+</div>
+
+## Key Highlights
+
+The project demonstrates several real-time and distributed-systems concepts:
+
+- Real-time multiplayer communication using Socket.IO
+- Server-authoritative room and game state
+- Shared game rooms and synchronized player state
+- Five multiplayer game modes
+- Server-controlled timers and round lifecycles
+- Concurrent answer and guess handling
+- Race-condition prevention and deterministic winner selection
+- Server-side fairness rules
+- Zod validation for incoming socket payloads
+- Zustand for client-side session and game state
+- Typed Socket.IO event contracts
+- In-memory room state without requiring a database
+- Rejoin support using per-session tokens
+- Leaderboard and round-history synchronization  
+
+<BlockQuote author="Distributed Multiplayer Games">
+  A real-time multiplayer platform built around synchronized game state, server-side fairness, and concurrent player interactions.
+</BlockQuote>
+
+<BreakoutImage src="/projects/project-image-2.png" decorative={true} />
+
+The application uses a custom Node server so Socket.IO can run alongside the Next.js application on the same server. Shared event definitions, domain models, Zod schemas, room state, timers, and game engines keep the multiplayer logic separated into focused components.  
+
+The project intentionally keeps room state in memory, making the system straightforward to understand while clearly exposing the challenges involved in reconnection, server restarts, and horizontal scaling. Persistent shared state or a Socket.IO Redis adapter would be required to scale the application across multiple server instances. 

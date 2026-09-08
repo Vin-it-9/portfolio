@@ -1,13 +1,15 @@
 ---
-title: Voice-First Smart Home Assistant
-author: John Doe
-description: A comprehensive smart home solution designed specifically for users with visual impairments, featuring voice-first interactions and haptic feedback
-tags: ['Accessibility', 'Smart-Home', 'IoT']
+title: Preonus Framework
+author: Vinit Shinde
+description: A build-time Java framework for full-stack applications, designed for fast startup, low memory usage, modular architecture, and native-friendly deployments.
+tags: ['Java', 'Java 25', 'Build-Time DI', 'GraalVM', 'Microservices']
 ---
 
 ## Project Overview
 
-Our team developed an inclusive smart home solution that makes home automation accessible to everyone, with a special focus on users with visual impairments. The system uses advanced speech recognition and natural language processing to provide intuitive voice control, while incorporating haptic feedback for tactile confirmation of actions.
+Preonus Framework is a build-time Java framework for full-stack applications, designed to move dependency injection, configuration binding, and route registration from runtime to compile time.
+
+Instead of relying on runtime classpath scanning, reflection, or proxy generation, Preonus resolves and generates the required application wiring during compilation. This results in fast, predictable startup times, a smaller runtime footprint, and a framework that is designed with native deployments in mind.
 
 import BlockQuote from '@components/BlockQuote.astro'
 import BreakoutImage from '@components/BreakoutImage.astro'
@@ -17,48 +19,64 @@ import { Image } from 'astro:assets'
 
 ## Technical Challenges
 
-One of the biggest challenges was creating a reliable voice recognition system that could work effectively in noisy environments and understand diverse speech patterns, including users with speech impediments. We solved this by implementing a custom machine learning model trained on a diverse dataset of voices and ambient conditions.
+One of the main challenges was designing a Java framework that could perform dependency injection and application wiring at build time while still providing a familiar developer experience.
+
+Preonus addresses this by resolving beans and their dependencies during compilation and generating the required application components ahead of runtime. Route registration and other framework infrastructure can also be generated during the build process, avoiding the need for runtime discovery.
+
+Another important focus was native compatibility. By minimizing reflection and avoiding runtime-generated proxies, Preonus is designed to work smoothly with GraalVM Native Image while maintaining a modular and lightweight runtime.
 
 ## Project Gallery
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
     src="/projects/project-image-1.png"
-    alt="Smart home assistant interface showing voice command visualization"
+    alt="Preonus Framework project overview"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-2.png"
-    alt="User interacting with the smart home system via voice commands"
+    alt="Preonus Framework build-time dependency injection architecture"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-3.png"
-    alt="Haptic feedback device component of the smart home system"
+    alt="Preonus Framework application and routing configuration"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/project-image-4.png"
-    alt="Dashboard showing analytics of voice command usage patterns"
+    alt="Preonus Framework modular Java application development"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
 </div>
 
-## Testimonial
+## Key Highlights
 
-<BlockQuote author="Maria Rodriguez, Beta Tester">
-  This system has given me back my independence at home. The voice controls are so natural, and the haptic feedback
-  helps me confirm every action without needing to see anything.
+Preonus is built around several core ideas:
+
+- Build-time dependency injection with no runtime bean discovery
+- Generated beans and routes created during compilation
+- No classpath scanning or reflection-based dependency wiring
+- Fast and predictable application startup
+- Small runtime footprint
+- Spring-style annotations such as `@Service`, `@Repository`, `@Transactional`, and `@Controller`
+- Full-stack and microservices-oriented architecture
+- REST APIs, backend services, and data-access support
+- GraalVM Native Image compatibility
+- Modular application design
+
+<BlockQuote author="Preonus Framework">
+  Build-time Java development focused on fast startup, low runtime overhead, and native-friendly applications.
 </BlockQuote>
 
 <BreakoutImage src="/projects/project-image-2.png" decorative={true} />
 
-The project continues to evolve with regular updates based on user feedback, with a focus on expanding support for multiple languages and additional accessibility features.
+Preonus is actively evolving as a Java framework with a focus on build-time processing, modular architecture, performance, and modern Java development. The project currently targets Java 25+ and is available under the Apache License.
