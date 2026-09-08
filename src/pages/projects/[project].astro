@@ -39,7 +39,7 @@ const { project } = Astro.props
 const { Content } = await render(project)
 
 const author = {
-  name: project.data.author,
+  name: 'Vinit Shinde',
   image: '/projects/project-image-1.png',
   bio: 'Project Creator',
 }
@@ -49,20 +49,12 @@ const author = {
   <PageHeader
     title={project.data.title}
     subtitle={project.data.description}
-    author={author}
     bgType="bordered"
     featuredImage={project.featuredImage}
   />
   <section class="my-12">
     <div class="narrow space-content container">
       <Content />
-    </div>
-  </section>
-  <section class="my-12">
-    <div class="narrow space-content container">
-      <Heading level="h2">Share this project</Heading>
-      <p>Like this project? Share it with your network!</p>
-      <SocialShares />
     </div>
   </section>
 </DefaultLayout>
