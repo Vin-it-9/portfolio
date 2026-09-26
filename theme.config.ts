@@ -29,11 +29,11 @@ export default defineThemeConfig({
         label: 'Projects',
         href: '/projects',
       },
-      {
-        type: 'link',
-        label: 'Blogs',
-        href: '/blog',
-      },
+      // {
+      //   type: 'link',
+      //   label: 'Blogs',
+      //   href: '/blog',
+      // },
       {
         type: 'link',
         label: 'Skills',
