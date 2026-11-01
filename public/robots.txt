@@ -1,6 +1,6 @@
 # Vinit Shinde Portfolio - robots.txt
 
-Sitemap: https://vinitshinde.netlify.app/sitemap-index.xml
+Sitemap: https://vinitshinde.netlify.app/sitemap.xml
 
 # Google Crawlers (All variants - grouped)
 User-agent: Googlebot

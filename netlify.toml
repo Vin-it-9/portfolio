@@ -16,7 +16,7 @@
 # Some crawlers and SEO tools expect the conventional /sitemap.xml URL.
 [[redirects]]
   from = "/sitemap.xml"
-  to = "/sitemap-index.xml"
+  to = "/sitemap-0.xml"
   status = 301
 
 # Preserve any links pointing at the old Netlify subdomain.
