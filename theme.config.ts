@@ -54,7 +54,7 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
-        label: 'Go to our GitHub page, opens in new tab',
+        label: 'Go to my GitHub page, opens in new tab',
         href: 'https://github.com/Vin-it-9/',
         icon: 'lucide:github',
         external: true,
@@ -62,7 +62,7 @@ export default defineThemeConfig({
       },
       {
         type: 'link',
-        label: 'Go to our LinkedIn page, opens in new tab',
+        label: 'Go to my LinkedIn page, opens in new tab',
         href: 'https://www.linkedin.com/in/vinit-shinde-920531254/',
         icon: 'lucide:linkedin',
         external: true,

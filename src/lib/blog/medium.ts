@@ -1,5 +1,5 @@
 import { blogSources } from '@data/blog/config'
-import { getDescription, getImage, parseRssFeed } from './rss'
+import { calculateReadingTime, getDescription, getImage, parseRssFeed } from './rss'
 import type { BlogPost } from './types'
 
 const MEDIUM_FEED_URL = `https://medium.com/feed/@${blogSources.medium.username}`
@@ -35,6 +35,7 @@ const parseFallback = (items: Rss2JsonItem[]): BlogPost[] =>
         platform: 'medium',
         tags: item.categories ?? [],
         image: item.thumbnail || getImage('', content),
+        readingTime: calculateReadingTime(content),
         content,
       },
     ]

@@ -57,6 +57,19 @@ export const getDescription = (content?: string): string | undefined => {
   return description ? truncate(description) : undefined
 }
 
+export const calculateReadingTime = (content?: string): number | undefined => {
+  if (!content) return undefined
+  const text = sanitizeHtml(decodeXml(content), {
+    allowedTags: [],
+    allowedAttributes: {},
+  })
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (!text) return undefined
+  const words = text.split(/\s+/).filter(Boolean).length
+  return words > 0 ? Math.max(1, Math.ceil(words / 200)) : undefined
+}
+
 /**
  * Parses a standard RSS 2.0 feed into the unified blog post shape.
  * Used by DEV.to and Medium, both of which expose RSS feeds.
@@ -84,6 +97,7 @@ export const parseRssFeed = (xml: string, platform: BlogPlatform): BlogPost[] =>
         platform,
         tags: getTagValues(item, 'category').map(decodeXml),
         image: getImage(item, content),
+        readingTime: calculateReadingTime(content),
         content: content ? decodeXml(content) : undefined,
       },
     ]

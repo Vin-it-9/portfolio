@@ -96,9 +96,51 @@ const safeContent = post.content
         td: ['colspan', 'rowspan'],
         th: ['colspan', 'rowspan', 'scope'],
         time: ['datetime'],
+        h2: ['id'],
+        h3: ['id'],
       },
     })
   : undefined
+
+interface TocItem {
+  id: string
+  text: string
+  level: number
+}
+
+const toc: TocItem[] = []
+let processedContent = safeContent
+
+if (safeContent) {
+  let headingIndex = 0
+  processedContent = safeContent.replace(
+    /<h([23])\b([^>]*)>([\s\S]*?)<\/h\1>/gi,
+    (match, levelStr, attrs, innerHtml) => {
+      headingIndex++
+      const level = parseInt(levelStr, 10)
+      const text = sanitizeHtml(innerHtml, { allowedTags: [] }).trim()
+      if (!text) return match
+
+      const existingIdMatch = attrs.match(/id=["']([^"']+)["']/i)
+      const slugified = text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '')
+      const id = existingIdMatch ? existingIdMatch[1] : slugified ? `section-${slugified}` : `heading-${headingIndex}`
+
+      toc.push({ id, text, level })
+
+      if (existingIdMatch) {
+        return match
+      }
+
+      return `<h${level} id="${id}"${attrs}>${innerHtml}</h${level}>`
+    }
+  )
+}
+
+const readTimeLabel = post.readingTime ? ` · ${post.readingTime} min read` : ''
+const headerSubtitle = `${platformName[post.platform]} · <time datetime="${publishedIso}">${publishedDate}</time>${readTimeLabel}`
 ---
 
 <DefaultLayout
@@ -116,7 +158,7 @@ const safeContent = post.content
 >
   <PageHeader
     title={post.title}
-    subtitle={`${platformName[post.platform]} · <time datetime="${publishedIso}">${publishedDate}</time>`}
+    subtitle={headerSubtitle}
     bgType="bordered"
     customBreadcrumbLabels={{ blog: 'Blog', [postSlug]: post.title }}
   />
@@ -135,8 +177,27 @@ const safeContent = post.content
         )
       }
       {
-        safeContent ? (
-          <div class="blog-content" set:html={safeContent} />
+        toc.length >= 2 && (
+          <nav class="toc-wrapper" aria-label="Table of contents">
+            <details open class="toc-details">
+              <summary class="toc-summary">
+                <span class="toc-title">Table of contents</span>
+                <span class="toc-count">({toc.length} sections)</span>
+              </summary>
+              <ol class="toc-list">
+                {toc.map((item) => (
+                  <li class={`toc-item toc-item--h${item.level}`}>
+                    <a href={`#${item.id}`}>{item.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </nav>
+        )
+      }
+      {
+        processedContent ? (
+          <div class="blog-content" set:html={processedContent} />
         ) : post.description ? (
           <p class="text-xl">{post.description}</p>
         ) : (
@@ -159,6 +220,85 @@ const safeContent = post.content
     max-width: 65ch;
   }
 
+  .toc-wrapper {
+    margin-block-end: var(--space-l);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-m);
+    background: light-dark(
+      color-mix(in srgb, var(--background-color) 94%, var(--foreground-color) 6%),
+      #0e0e11
+    );
+    padding: var(--space-s) var(--space-m);
+  }
+
+  .toc-details {
+    summary {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--foreground-color);
+      user-select: none;
+      list-style: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before {
+        content: '▸';
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+    }
+
+    &[open] summary::before {
+      transform: rotate(90deg);
+    }
+  }
+
+  .toc-title {
+    font-size: var(--font-size-0);
+  }
+
+  .toc-count {
+    font-size: var(--font-size--1);
+    color: color-mix(in srgb, var(--foreground-color) 70%, transparent);
+    font-weight: normal;
+  }
+
+  .toc-list {
+    margin-block-start: var(--space-s);
+    margin-block-end: 0;
+    padding-inline-start: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    list-style: decimal;
+
+    li {
+      line-height: 1.5;
+      font-size: var(--font-size--1);
+
+      &.toc-item--h3 {
+        margin-inline-start: 1rem;
+        list-style: disc;
+      }
+
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+          text-decoration: underline;
+          color: var(--link-hover-color);
+        }
+      }
+    }
+  }
+
   .blog-content {
     overflow-wrap: anywhere;
     font-size: var(--font-size-0);
@@ -178,6 +318,7 @@ const safeContent = post.content
       font-size: var(--font-size-3);
       line-height: 1.2;
       text-wrap: balance;
+      scroll-margin-top: 6rem;
     }
 
     > h3 {
@@ -185,12 +326,14 @@ const safeContent = post.content
       font-size: var(--font-size-2);
       line-height: 1.3;
       text-wrap: balance;
+      scroll-margin-top: 6rem;
     }
 
     > h4 {
       margin-block-start: var(--space-m);
       font-size: var(--font-size-1);
       line-height: 1.4;
+      scroll-margin-top: 6rem;
     }
 
     > p {

@@ -37,16 +37,9 @@ const viteConfig = {
   },
 }
 
-// Pages that are theme demos, form confirmations, or error pages. They are
-// intentionally excluded from the XML sitemap and marked noindex in the page
-// metadata so search engines focus on the portfolio content.
+// Form confirmations and error pages excluded from the XML sitemap.
 const excludedSitemapPaths = new Set([
   '/404',
-  '/accessible-components',
-  '/accessible-launcher',
-  '/color-contrast-checker',
-  '/markdown-page',
-  '/mdx-page',
   '/thank-you',
 ])
 const excludedSitemapPrefixes = ['/projects/tag/']

@@ -1,84 +1,29 @@
 ---
-// Define the tools with their brand colors and simplified inline SVGs
 import { Link } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 import { Heading } from 'accessible-astro-components'
 
 const topRow = [
-  {
-    name: 'Java',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />`
-  },
-  {
-    name: 'Spring',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" />`
-  },
-  {
-    name: 'Quarkus',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/quarkus/quarkus-original.svg" />`
-  },
-  {
-    name: 'Micronaut',
-    icon: `<img src="https://micronaut.io/micronaut-assets/logos/micronaut-stacked-white.svg" />`
-  },
-  {
-    name: 'Dropwizard',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dropwizard/dropwizard-original.svg" />`
-  },
-  {
-    name: 'Hibernate',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hibernate/hibernate-original.svg" />`
-  },
-  {
-    name: 'Maven',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg" />`
-  },
-  {
-    name: 'MySQL',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" />`
-  }
-];
+  { name: 'Java', icon: '/icons/skills/java.svg' },
+  { name: 'Spring', icon: '/icons/skills/spring.svg' },
+  { name: 'Quarkus', icon: '/icons/skills/quarkus.svg' },
+  { name: 'Micronaut', icon: '/icons/skills/micronaut.svg', adaptive: true },
+  { name: 'Dropwizard', icon: '/icons/skills/dropwizard.svg' },
+  { name: 'Hibernate', icon: '/icons/skills/hibernate.svg' },
+  { name: 'Maven', icon: '/icons/skills/maven.svg' },
+  { name: 'MySQL', icon: '/icons/skills/mysql.svg' },
+]
 
 const bottomRow = [
-  {
-    name: 'Kotlin',
-    icon: ` <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" />`
-  },
-  {
-    name: 'GitHub',
-    icon: `<svg viewBox="0 0 128 128">
-              <circle cx="64" cy="64" r="60" fill="#ffffff" />
-              <g fill="#181616">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"></path>
-                 <path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"></path>
-              </g>
-          </svg>`
-  },
-  {
-    name: 'GraalVM',
-    icon: ` <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/GraalVM_Logo_RGB.svg?" />`
-  },
-  {
-    name: 'Helidon',
-    icon: `<img src="https://user-images.githubusercontent.com/12281454/211943562-1ed69d78-8745-4729-8864-6dcd40f3a172.svg" alt="" />`
-  },
-  {
-    name: 'NextJs',
-    icon: `  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" /> `
-  },
-  {
-    name: 'PostgreSQL',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />`
-  },
-  {
-    name: 'Grails',
-    icon: `  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grails/grails-original.svg" /> `
-  },
-  {
-    name: 'Javascript',
-    icon: `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />`
-  }
-];
+  { name: 'Kotlin', icon: '/icons/skills/kotlin.svg' },
+  { name: 'GitHub', icon: '/icons/skills/github.svg' },
+  { name: 'GraalVM', icon: '/icons/skills/graalvm.svg' },
+  { name: 'Helidon', icon: '/icons/skills/helidon.svg' },
+  { name: 'NextJs', icon: '/icons/skills/nextjs.svg' },
+  { name: 'PostgreSQL', icon: '/icons/skills/postgresql.svg' },
+  { name: 'Grails', icon: '/icons/skills/grails.svg' },
+  { name: 'Javascript', icon: '/icons/skills/javascript.svg' },
+]
 ---
 
 <section class="tools-connect-section" aria-labelledby="tools-title">
@@ -90,73 +35,108 @@ const bottomRow = [
     <Heading level="h2" class="mb-8">Technical Skills &amp; Expertise</Heading>
     <p class="mb-12 max-w-3xl text-xl">
       Technologies and tools I use to build reliable, practical, and
-      user-focused software solutions.</p>
+      user-focused software solutions.
+    </p>
 
     <div class="marquee-stack" aria-label="Technical skills and technologies">
-
       <div class="marquee-row">
         <ul class="marquee-group">
-          {topRow.map((tool) => (
-            <li class="tool-card">
-              <div class="icon-circle" set:html={tool.icon} />
-              <span class="tool-name" >
-                {tool.name}
-              </span>
-            </li>
-          ))}
+          {
+            topRow.map((tool) => (
+              <li class="tool-card">
+                <div class="icon-circle">
+                  <img
+                    src={tool.icon}
+                    alt={`${tool.name} logo`}
+                    class={`tool-img ${tool.adaptive ? 'tool-img--adaptive' : ''}`}
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="tool-name">{tool.name}</span>
+              </li>
+            ))
+          }
         </ul>
 
         <ul class="marquee-group" aria-hidden="true">
-          {topRow.map((tool) => (
-            <li class="tool-card">
-              <div class="icon-circle" set:html={tool.icon} />
-              <span class="tool-name">
-                {tool.name}
-              </span>
-            </li>
-          ))}
+          {
+            topRow.map((tool) => (
+              <li class="tool-card">
+                <div class="icon-circle">
+                  <img
+                    src={tool.icon}
+                    alt=""
+                    class={`tool-img ${tool.adaptive ? 'tool-img--adaptive' : ''}`}
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="tool-name">{tool.name}</span>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="marquee-row marquee-row--reverse">
         <ul class="marquee-group">
-          {bottomRow.map((tool) => (
-            <li class="tool-card">
-              <div class="icon-circle" set:html={tool.icon} />
-              <span class="tool-name">
-                {tool.name}
-              </span>
-            </li>
-          ))}
+          {
+            bottomRow.map((tool) => (
+              <li class="tool-card">
+                <div class="icon-circle">
+                  <img
+                    src={tool.icon}
+                    alt={`${tool.name} logo`}
+                    class={`tool-img ${tool.adaptive ? 'tool-img--adaptive' : ''}`}
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="tool-name">{tool.name}</span>
+              </li>
+            ))
+          }
         </ul>
 
         <ul class="marquee-group" aria-hidden="true">
-          {bottomRow.map((tool) => (
-            <li class="tool-card">
-              <div class="icon-circle" set:html={tool.icon}/>
-              <span class="tool-name">
-                {tool.name}
-              </span>
-            </li>
-          ))}
+          {
+            bottomRow.map((tool) => (
+              <li class="tool-card">
+                <div class="icon-circle">
+                  <img
+                    src={tool.icon}
+                    alt=""
+                    class={`tool-img ${tool.adaptive ? 'tool-img--adaptive' : ''}`}
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="tool-name">{tool.name}</span>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
-    <div class="flex justify-start mt-12">
-      <Link
-        href="/skills"
-        isButton
-        animateOnHover
-        animationType="boop"
-      >
+    <div class="mt-12 flex justify-start">
+      <Link href="/skills" isButton animateOnHover animationType="boop">
         <Icon aria-hidden="true" name="lucide:code-2" size="1.5rem" />
         Explore My Skills
       </Link>
     </div>
-
   </div>
 </section>
+
 <style>
   .tools-connect-section {
     position: relative;
@@ -178,7 +158,11 @@ const bottomRow = [
   .glow-effect {
     width: 700px;
     height: 500px;
-    background: radial-gradient(circle at center, rgba(30, 64, 175, 0.25) 0%, rgba(0, 0, 0, 0) 65%);
+    background: radial-gradient(
+      circle at center,
+      light-dark(rgba(214, 72, 255, 0.12), rgba(30, 64, 175, 0.22)) 0%,
+      transparent 65%
+    );
     filter: blur(60px);
     transform: translateY(-20%);
   }
@@ -189,26 +173,6 @@ const bottomRow = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
-  }
-
-  .header-content {
-    text-align: center;
-    margin-bottom: 3.5rem;
-  }
-
-  .header-content h2 {
-    color: #ffffff;
-    font-size: 2.75rem;
-    font-weight: 400;
-    margin: 0 0 1.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  .header-content p {
-    color: #a1a1aa;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin: 0 0 2.5rem;
   }
 
   .marquee-stack {
@@ -249,17 +213,22 @@ const bottomRow = [
     justify-content: center;
     width: 180px;
     height: 150px;
-    background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: light-dark(
+      color-mix(in srgb, var(--background-color) 94%, var(--foreground-color) 6%),
+      #0e0e11
+    );
+    border: 1px solid var(--border-color-subtle);
     border-radius: 16px;
     gap: 1.25rem;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   }
 
   .tool-card:hover {
-    background: #121212;
+    background: light-dark(var(--background-color), #16161b);
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--link-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   }
 
   .icon-circle {
@@ -269,11 +238,24 @@ const bottomRow = [
     display: flex;
     align-items: center;
     justify-content: center;
+    background: light-dark(rgba(0, 0, 0, 0.03), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--border-color-subtle);
+  }
+
+  .tool-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+
+  .tool-img--adaptive {
+    filter: light-dark(invert(1) brightness(0.2), none);
   }
 
   .tool-name {
     font-size: 0.95rem;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--foreground-color);
   }
 
   @keyframes scroll-x {
@@ -281,20 +263,11 @@ const bottomRow = [
       transform: translateX(0);
     }
     to {
-      /* Shifts the row left by exactly 100% of its width + 1 gap to perfectly loop */
       transform: translateX(calc(-100% - 1.25rem));
     }
   }
 
   @media (max-width: 768px) {
-    .header-content h2 {
-      font-size: 2rem;
-    }
-
-    .header-content p {
-      font-size: 0.9rem;
-    }
-
     .tool-card {
       width: 150px;
       height: 130px;
@@ -303,6 +276,11 @@ const bottomRow = [
     .icon-circle {
       width: 58px;
       height: 58px;
+    }
+
+    .tool-img {
+      width: 36px;
+      height: 36px;
     }
   }
 
