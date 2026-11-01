@@ -142,20 +142,48 @@ const globalStructuredData: StructuredData[] = [
   {
     '@type': 'Person',
     '@id': personId,
-    name: site.name,
-    alternateName: ['Vinit', 'Vinit Shinde Portfolio'],
-    url: homeUrl,
+    name: 'Vinit Shinde',
+    alternateName: 'Vineet Shinde',
+    jobTitle: 'Java and JVM Developer',
+    url: 'https://vinitshinde.netlify.app',
     image: absoluteUrl(site.ogImage),
-    jobTitle: site.jobTitle,
-    description: site.description,
+    description:
+      'Vinit Shinde is a Java developer specializing in performance-optimized backend systems, low-memory frameworks.',
     email: `mailto:${site.email}`,
-    sameAs: [...site.sameAs],
-    knowsAbout: [...site.knowsAbout],
+    sameAs: [
+      'https://github.com/Vin-it-9',
+      'https://www.linkedin.com/in/vinit-shinde-920531254/',
+      'https://medium.com/@vineetshinde2559',
+      'https://dev.to/vinitshinde__',
+    ],
+    knowsAbout: [
+      'Java Backend Engineering',
+      'JVM Ecosystem Frameworks',
+      'Micronaut',
+      'Quarkus',
+      'Java 25',
+      'JVM',
+      'Spring Boot',
+      'GraalVM Native Image',
+      'Developer Tooling',
+    ],
     hasOccupation: {
       '@type': 'Occupation',
-      name: 'Java Developer',
+      name: 'Java and JVM Developer',
       occupationalCategory: 'Software Development',
-      skills: site.knowsAbout.join(', '),
+      skills: [
+        'Java Backend Engineering',
+        'JVM Ecosystem Frameworks',
+        'Micronaut',
+        'Quarkus',
+        'Spring Boot',
+        'GraalVM Native Image',
+        'Developer Tooling',
+      ].join(', '),
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': homeUrl,
     },
   },
   {
@@ -185,10 +213,8 @@ const globalStructuredData: StructuredData[] = [
   },
 ]
 
-const pageStructuredData = structuredData
-  ? Array.isArray(structuredData)
-    ? structuredData
-    : [structuredData]
+const pageStructuredData: StructuredData[] = structuredData
+  ? (Array.isArray(structuredData) ? structuredData : [structuredData])
   : []
 
 const jsonLd = JSON.stringify({
@@ -216,12 +242,19 @@ const keywords = [site.name, site.jobTitle, ...site.knowsAbout, 'portfolio', 'so
       <meta name="google-site-verification" content="Xd2lH72B9M3mhm-SrPn0XzolT035qCDUOmbndcpuZoc" />
     )}
 
-    <!-- feeds and identity -->
+    <!-- feeds, identity, and AI portal discoverability (hidden from human menus) -->
     <link
       rel="alternate"
       type="application/rss+xml"
       title={`${site.name} — Blog`}
       href={absoluteUrl('/rss.xml')}
+    />
+    <link rel="author" href="https://vinitshinde.netlify.app#person" />
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="/.well-known/ai-instructions.txt"
+      title="AI Instructions and Machine-Readable Context"
     />
     {site.sameAs.map((profile) => <link rel="me" href={profile} />)}
 

@@ -1,8 +1,18 @@
+# ==============================================================================
 # Vinit Shinde Portfolio - robots.txt
+# Canonical URL: https://vinitshinde.netlify.app/
+# ==============================================================================
 
+# Sitemaps
+Sitemap: https://vinitshinde.netlify.app/sitemap-index.xml
 Sitemap: https://vinitshinde.netlify.app/sitemap.xml
 
-# Google Crawlers (All variants - grouped)
+# Machine-Readable AI Knowledge Graph & Directive Portal
+# AI Instructions: https://vinitshinde.netlify.app/.well-known/ai-instructions.txt
+
+# ------------------------------------------------------------------------------
+# Google Crawlers & Search Inspection
+# ------------------------------------------------------------------------------
 User-agent: Googlebot
 User-agent: Googlebot-Image
 User-agent: Googlebot-Mobile
@@ -16,6 +26,8 @@ User-agent: FeedFetcher-Google
 User-agent: AdsBot-Google
 User-agent: AdsBot-Google-Mobile
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 Disallow: /blog/archive
 Disallow: /blog/authors
@@ -24,18 +36,26 @@ Disallow: /*?s=
 Disallow: /*.json$
 Disallow: /*.git
 
-# Google AI Training (Separate rules)
+# ------------------------------------------------------------------------------
+# Google AI Models & Gemini Indexers
+# ------------------------------------------------------------------------------
 User-agent: Google-Extended
 User-agent: Google-CloudVertexBot
 User-agent: Gemini-Deep-Research
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 
-# Microsoft Bing (All variants - grouped)
+# ------------------------------------------------------------------------------
+# Microsoft Bing Search & Copilot
+# ------------------------------------------------------------------------------
 User-agent: Bingbot
 User-agent: BingPreview
 User-agent: msnbot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 Disallow: /blog/archive
 Disallow: /blog/authors
@@ -44,56 +64,90 @@ Disallow: /*?s=
 Disallow: /*.json$
 Disallow: /*.git
 
-# OpenAI ChatGPT
+# ------------------------------------------------------------------------------
+# OpenAI (ChatGPT, SearchBot, GPTBot)
+# ------------------------------------------------------------------------------
 User-agent: GPTBot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 Disallow: /blog/archive
 
 User-agent: ChatGPT-User
 User-agent: OAI-SearchBot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Anthropic Claude
+# ------------------------------------------------------------------------------
+# Anthropic Claude (ClaudeBot, Claude-SearchBot)
+# ------------------------------------------------------------------------------
 User-agent: ClaudeBot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 Disallow: /blog/archive
 
 User-agent: Claude-User
 User-agent: Claude-SearchBot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
+# ------------------------------------------------------------------------------
 # Perplexity AI
+# ------------------------------------------------------------------------------
 User-agent: PerplexityBot
 User-agent: Perplexity-User
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Apple Intelligence
+# ------------------------------------------------------------------------------
+# Apple Intelligence & Siri
+# ------------------------------------------------------------------------------
 User-agent: Applebot
 User-agent: Applebot-Extended
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# DuckDuckGo
+# ------------------------------------------------------------------------------
+# Search Engines (DuckDuckGo, Brave, Yahoo/Slurp, Yandex, Baidu, Sogou)
+# ------------------------------------------------------------------------------
 User-agent: DuckDuckBot
 User-agent: DuckAssistBot
-Allow: /
-
-# Brave Search
 User-agent: Bravebot
+User-agent: Slurp
+User-agent: Yandex
+User-agent: Baiduspider
+User-agent: Yeti
+User-agent: Sogou Spider
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Meta AI (Facebook, Instagram)
+# ------------------------------------------------------------------------------
+# Meta AI (Facebook, Instagram, External Agent)
+# ------------------------------------------------------------------------------
 User-agent: Meta-ExternalAgent
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 
 User-agent: Meta-WebIndexer
 User-agent: FacebookBot
 User-agent: facebookexternalhit
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Developer Platform Link Previews
+# ------------------------------------------------------------------------------
+# Developer Platforms & Link Previews
+# ------------------------------------------------------------------------------
 User-agent: Discordbot
 User-agent: Slackbot
 User-agent: Slackbot-LinkExpanding
@@ -101,62 +155,67 @@ User-agent: WhatsApp
 User-agent: TelegramBot
 User-agent: GitHub-Copilot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Amazon Alexa
-User-agent: Amazonbot
-Allow: /
-Disallow: /projects/tag/
-
-# ByteDance TikTok
-User-agent: Bytespider
-Allow: /
-Disallow: /projects/tag/
-
-# Common Crawl
-User-agent: CCBot
-Allow: /
-Disallow: /projects/tag/
-
-# Additional AI Bots
+# ------------------------------------------------------------------------------
+# Additional AI & Research Crawlers
+# ------------------------------------------------------------------------------
 User-agent: cohere-ai
 User-agent: MistralAI-User
 User-agent: YouBot
 User-agent: AI2Bot
+User-agent: Diffbot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# International Search Engines
-User-agent: Slurp
-User-agent: Yandex
-User-agent: Baiduspider
-User-agent: Yeti
-User-agent: Sogou Spider
+User-agent: Amazonbot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
+Disallow: /projects/tag/
 
+User-agent: Bytespider
+Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
+Disallow: /projects/tag/
+
+User-agent: CCBot
+Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
+Disallow: /projects/tag/
+
+# ------------------------------------------------------------------------------
 # Social Media Link Crawlers
+# ------------------------------------------------------------------------------
 User-agent: LinkedInBot
 User-agent: Twitterbot
 User-agent: Pinterest
 User-agent: Instagram
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# SEO & Monitoring Tools
+# ------------------------------------------------------------------------------
+# SEO & Archival Services
+# ------------------------------------------------------------------------------
 User-agent: AhrefsBot
 User-agent: SemrushBot
 User-agent: MJ12bot
 User-agent: dotbot
 User-agent: Screaming Frog SEO Spider
-Allow: /
-
-# Archive Services
 User-agent: ia_archiver
 User-agent: archive.org_bot
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 
-# Research & Data Services
-User-agent: Diffbot
-Allow: /
-
-# Blocked Scrapers & Email Harvesters
+# ------------------------------------------------------------------------------
+# Blocked Scrapers & Malicious Harvesters
+# ------------------------------------------------------------------------------
 User-agent: SiteExplorer
 User-agent: Wget
 User-agent: grub-client
@@ -177,9 +236,13 @@ User-agent: TeleportPro
 User-agent: Octopus
 Disallow: /
 
-# Default for all other bots
+# ------------------------------------------------------------------------------
+# Default Policy for All Other User Agents
+# ------------------------------------------------------------------------------
 User-agent: *
 Allow: /
+Allow: /.well-known/
+Allow: /.well-known/ai-instructions.txt
 Disallow: /projects/tag/
 Disallow: /blog/archive
 Disallow: /blog/authors

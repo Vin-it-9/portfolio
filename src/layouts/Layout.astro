@@ -1,0 +1,10 @@
+---
+import type { ComponentProps } from 'astro/types'
+import DefaultLayout from './DefaultLayout.astro'
+
+type Props = ComponentProps<typeof DefaultLayout>
+---
+
+<DefaultLayout {...Astro.props}>
+  <slot />
+</DefaultLayout>

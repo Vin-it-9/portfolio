@@ -7,9 +7,9 @@ export default defineThemeConfig({
   logo: logoImage,
   seo: {
     title: 'Vinit Shinde',
-    subtitle: 'Java & JVM Developer',
+    subtitle: 'Java Developer',
     description:
-      'Vinit Shinde is a Java and JVM developer building reliable backend systems, REST APIs, and practical software projects. Explore his projects, technical skills, and resume.',
+      'Vinit Shinde is a Java and JVM developer specializing in performance-optimized backend systems, low-memory frameworks.',
     author: 'Vinit Shinde',
     image: '/og-image.png',
   },
