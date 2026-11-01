@@ -212,6 +212,10 @@ const keywords = [site.name, site.jobTitle, ...site.knowsAbout, 'portfolio', 'so
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    {canonical === absoluteUrl('/') && (
+      <meta name="google-site-verification" content="Xd2lH72B9M3mhm-SrPn0XzolT035qCDUOmbndcpuZoc" />
+    )}
+
     <!-- feeds and identity -->
     <link
       rel="alternate"
