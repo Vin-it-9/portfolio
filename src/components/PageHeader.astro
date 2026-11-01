@@ -46,11 +46,6 @@ interface Props {
    * @description Object mapping URL segments to their display labels
    */
   customBreadcrumbLabels?: Record<string, string>
-
-  /**
-   * Whether to join the last breadcrumb
-   */
-  joinLastBreadcrumb?: boolean
 }
 
 const {
@@ -62,13 +57,15 @@ const {
   featuredImage,
   featuredImageAlt = '',
   customBreadcrumbLabels,
-  joinLastBreadcrumb = false,
 } = Astro.props
 
 // Helper function to format segment names
 const formatSegment = (segment: string): string => {
   if (customBreadcrumbLabels?.[segment]) {
     return customBreadcrumbLabels[segment]
+  }
+  if (/^\d+$/.test(segment)) {
+    return `Page ${segment}`
   }
   return segment
     .split('-')
@@ -98,30 +95,17 @@ interface BreadcrumbItem {
   current: boolean
 }
 
-const breadcrumbItems: BreadcrumbItem[] = segments.flatMap((segment, index) => {
-  if (joinLastBreadcrumb && index === segments.length - 1) {
-    return []
-  }
+// `tag` is a structural route segment (/projects/tag/java), not a page of its
+// own. Keep it in the URL but leave it out of the visible breadcrumb trail.
+const visibleSegments = segments
+  .map((segment, index) => ({ segment, index }))
+  .filter(({ segment, index }) => !(segment === 'tag' && index > 0 && index < segments.length - 1))
 
-  const isLast = index === segments.length - 1 || (joinLastBreadcrumb && index === segments.length - 2)
-  const formattedName = (() => {
-    if (joinLastBreadcrumb && isLast) {
-      const prevSegment = segments[segments.length - 2]
-      const lastSegment = segments[segments.length - 1]
-      return `${formatSegment(prevSegment)}: ${formatSegment(lastSegment)}`
-    }
-
-    return formatSegment(segment)
-  })()
-
-  return [
-    {
-      label: formattedName,
-      url: `/${segments.slice(0, index + 1).join('/')}`,
-      current: isLast,
-    },
-  ]
-})
+const breadcrumbItems: BreadcrumbItem[] = visibleSegments.map(({ segment, index }, visibleIndex) => ({
+  label: formatSegment(segment),
+  url: `/${segments.slice(0, index + 1).join('/')}`,
+  current: visibleIndex === visibleSegments.length - 1,
+}))
 
 const breadcrumbJsonLd =
   showBreadcrumbs && breadcrumbItems.length > 0

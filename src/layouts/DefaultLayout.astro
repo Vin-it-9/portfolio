@@ -143,6 +143,7 @@ const globalStructuredData: StructuredData[] = [
     '@type': 'Person',
     '@id': personId,
     name: site.name,
+    alternateName: ['Vinit', 'Vinit Shinde Portfolio'],
     url: homeUrl,
     image: absoluteUrl(site.ogImage),
     jobTitle: site.jobTitle,
@@ -150,12 +151,19 @@ const globalStructuredData: StructuredData[] = [
     email: `mailto:${site.email}`,
     sameAs: [...site.sameAs],
     knowsAbout: [...site.knowsAbout],
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Java Developer',
+      occupationalCategory: 'Software Development',
+      skills: site.knowsAbout.join(', '),
+    },
   },
   {
     '@type': 'WebSite',
     '@id': websiteId,
     url: homeUrl,
     name: site.name,
+    alternateName: ['Vinit Shinde Portfolio', 'Vinit Shinde Blog'],
     description: site.description,
     inLanguage: 'en',
     publisher: { '@id': personId },
@@ -211,8 +219,7 @@ const keywords = [site.name, site.jobTitle, ...site.knowsAbout, 'portfolio', 'so
       title={`${site.name} — Blog`}
       href={absoluteUrl('/rss.xml')}
     />
-    <link rel="me" href="https://github.com/Vin-it-9/" />
-    <link rel="me" href="https://www.linkedin.com/in/vinit-shinde-920531254/" />
+    {site.sameAs.map((profile) => <link rel="me" href={profile} />)}
 
     <!-- theme colors from config -->
     <style
@@ -254,6 +261,7 @@ const keywords = [site.name, site.jobTitle, ...site.knowsAbout, 'portfolio', 'so
         },
         image: {
           url: imageUrl,
+          secureUrl: imageUrl,
           type: imageType,
           ...imageDimensions,
           alt: pageImageAlt,

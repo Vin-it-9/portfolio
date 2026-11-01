@@ -8,6 +8,7 @@ import { absoluteUrl } from '@data/site'
 
 const posts = await fetchBlogPosts()
 const blogUrl = absoluteUrl('/blog')
+const personId = `${absoluteUrl('/')}#person`
 const postList = {
   '@type': 'ItemList',
   '@id': `${blogUrl}#posts`,
@@ -20,12 +21,36 @@ const postList = {
     name: post.title,
   })),
 }
+const blogSchema = {
+  '@type': 'Blog',
+  '@id': `${blogUrl}#blog`,
+  url: blogUrl,
+  name: 'Vinit Shinde — Blog',
+  description:
+    'Articles and notes by Vinit Shinde on Java, JVM, backend development, AI, and software engineering.',
+  inLanguage: 'en',
+  author: { '@id': personId },
+  publisher: { '@id': personId },
+  blogPost: posts.map((post) => {
+    const postUrl = absoluteUrl(`/blog/${getBlogPostSlug(post)}`)
+
+    return {
+      '@type': 'BlogPosting',
+      '@id': `${postUrl}#article`,
+      headline: post.title,
+      url: postUrl,
+      datePublished: new Date(post.publishedAt).toISOString(),
+      image: post.image ? absoluteUrl(post.image) : absoluteUrl('/og-image.png'),
+      author: { '@id': personId },
+    }
+  }),
+}
 ---
 
 <DefaultLayout
   title="Blog"
   description="Articles and notes by Vinit Shinde on Java, JVM, backend development, and software engineering."
-  structuredData={postList}
+  structuredData={[postList, blogSchema]}
 >
   <PageHeader
     title="Blog"

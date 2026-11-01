@@ -3,6 +3,7 @@ import DefaultLayout from '@layouts/DefaultLayout.astro'
 import Hero from '@components/Hero.astro'
 import Feature from '@components/Feature.astro'
 import FeaturedProjects from '@components/FeaturedProjects.astro'
+import FeaturedPosts from '@components/FeaturedPosts.astro'
 import { Accordion, AccordionItem, Heading } from 'accessible-astro-components'
 import TechnicalSkills from '@components/TechnicalSkills.astro'
 import { absoluteUrl, site } from '@data/site'
@@ -66,6 +67,7 @@ const profilePage = {
 
   <TechnicalSkills />
   <FeaturedProjects />
+  <FeaturedPosts />
 
   <section class="my-24">
     <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">

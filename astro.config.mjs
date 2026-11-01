@@ -49,6 +49,7 @@ const excludedSitemapPaths = new Set([
   '/mdx-page',
   '/thank-you',
 ])
+const excludedSitemapPrefixes = ['/projects/tag/']
 
 // https://astro.build/config
 export default defineConfig({
@@ -66,7 +67,10 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname.replace(/\/+$/, '') || '/'
-        return !excludedSitemapPaths.has(pathname)
+        return (
+          !excludedSitemapPaths.has(pathname) &&
+          !excludedSitemapPrefixes.some((prefix) => pathname.startsWith(prefix))
+        )
       },
     }),
   ],

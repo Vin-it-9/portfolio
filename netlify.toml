@@ -12,3 +12,16 @@
   from = "/portfolio/*"
   to = "/projects/:splat"
   status = 301
+
+# Some crawlers and SEO tools expect the conventional /sitemap.xml URL.
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+
+# Preserve any links pointing at the old Netlify subdomain.
+[[redirects]]
+  from = "https://vinits-portfolio.netlify.app/*"
+  to = "https://vinitshinde.netlify.app/:splat"
+  status = 301
+  force = true

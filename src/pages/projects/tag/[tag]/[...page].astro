@@ -85,6 +85,7 @@ const projectList = {
   title={pageTitle}
   description={`Explore ${page.total} project${page.total !== 1 ? 's' : ''} by Vinit Shinde built with ${currentTag.label} and related technologies.`}
   structuredData={projectList}
+  noindex
 >
   <PageHeader
     title={`Projects: ${currentTag.label}`}
@@ -93,7 +94,6 @@ const projectList = {
     customBreadcrumbLabels={{
       [currentTag.slug]: currentTag.label,
     }}
-    joinLastBreadcrumb={true}
   />
   <section class="my-12">
     <div class="container">

@@ -2,6 +2,7 @@
 import { Link } from 'accessible-astro-components'
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
 import logoImage from '@assets/img/logo.svg'
 
 /**
@@ -13,10 +14,11 @@ interface Props {
   /**
    * The source URL for the image
    */
-  src?: string
+  src?: ImageMetadata | string
 }
 
 const { src = logoImage }: Props = Astro.props
+const imageSrc = typeof src === 'string' ? src : src.src
 ---
 
 <section class="hero my-4">
@@ -56,7 +58,7 @@ const { src = logoImage }: Props = Astro.props
           </Link>
         </div>
       </div>
-      <Image class="hero-logo hidden lg:block" src={src} alt="Java Duke mascot" decoding="async" loading="eager" />
+      <Image class="hero-logo hidden lg:block" src={imageSrc} alt="Java Duke mascot" width={520} height={520} decoding="async" loading="eager" />
     </div>
   </div>
   <div class="hero-scroll-cue" aria-hidden="true">↓ Explore</div>
