@@ -24,7 +24,7 @@ const { src = logoImage }: Props = Astro.props
     <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
         <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Building</span> with Java</slot>
+          <slot><span class="sr-only">Vinit Shinde — </span><span class="text-gradient">Building</span> with Java</slot>
         </h1>
         <p class="text-center text-lg md:text-left">
           I enjoy building practical software with Java and the JVM ecosystem, exploring different frameworks
@@ -33,7 +33,7 @@ const { src = logoImage }: Props = Astro.props
         </p>
         <div class="flex flex-col gap-3 min-[500px]:flex-row">
           <Link
-            href="/portfolio"
+            href="/projects"
             isButton
             type="primary"
             animateOnHover

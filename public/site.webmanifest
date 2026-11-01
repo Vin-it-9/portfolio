@@ -1,0 +1,23 @@
+{
+  "name": "Vinit Shinde — Java & JVM Developer",
+  "short_name": "Vinit Shinde",
+  "description": "Portfolio of Vinit Shinde, a Java and JVM developer building reliable backend systems, REST APIs, and practical software projects.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b0c10",
+  "theme_color": "#d648ff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

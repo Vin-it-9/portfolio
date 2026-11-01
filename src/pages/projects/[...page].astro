@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import { slugify } from '@utils/slugify'
+import { absoluteUrl } from '@data/site'
 
 // Import images directly for optimization
 import projectImage1 from '@assets/images/projects/project-image-1.png'
@@ -45,11 +46,25 @@ interface Props {
 }
 
 const { page, uniqueTags } = Astro.props
+const pageTitle = page.currentPage > 1 ? `Projects – Page ${page.currentPage}` : 'Projects'
+const projectList = {
+  '@type': 'ItemList',
+  '@id': `${absoluteUrl(page.url.current)}#projects`,
+  name: pageTitle,
+  numberOfItems: page.total,
+  itemListElement: page.data.map((project, index) => ({
+    '@type': 'ListItem',
+    position: page.start + index + 1,
+    url: absoluteUrl(`/projects/${project.id}`),
+    name: project.data.title,
+  })),
+}
 ---
 
 <DefaultLayout
-  title="Projects"
-  description="A showcase of projects built with Astro Content Collections, demonstrating dynamic content management."
+  title={pageTitle}
+  description={`Explore ${page.total} Java, Spring Boot, and full-stack projects built by Vinit Shinde, covering backend APIs, databases, and practical software engineering.`}
+  structuredData={projectList}
 >
   <PageHeader
     title="Projects"

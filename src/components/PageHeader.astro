@@ -2,6 +2,7 @@
 import { Avatar, Breadcrumbs, BreadcrumbsItem, Heading } from 'accessible-astro-components'
 import { Image } from 'astro:assets'
 import sanitizeHtml from 'sanitize-html'
+import { absoluteUrl } from '@data/site'
 
 /**
  * PageHeader Component
@@ -17,6 +18,10 @@ interface Props {
    * The featured image of the page
    */
   featuredImage?: string
+  /**
+   * Alt text for the featured image
+   */
+  featuredImageAlt?: string
   /**
    * The title of the page
    */
@@ -55,6 +60,7 @@ const {
   bgType,
   showBreadcrumbs = true,
   featuredImage,
+  featuredImageAlt = '',
   customBreadcrumbLabels,
   joinLastBreadcrumb = false,
 } = Astro.props
@@ -73,54 +79,86 @@ const formatSegment = (segment: string): string => {
 // Sanitize subtitle HTML if present
 const sanitizedSubtitle: string = subtitle
   ? sanitizeHtml(subtitle, {
-      allowedTags: ['b', 'i', 'em', 'strong', 'a', 'span', 'br'],
+      allowedTags: ['b', 'i', 'em', 'strong', 'a', 'span', 'br', 'time'],
       allowedAttributes: {
         a: ['href', 'title', 'target', 'rel'],
         span: ['class'],
+        time: ['datetime'],
       },
     })
   : ''
+
+// `build.format: 'file'` appends `.html` to pathnames during the build.
+const path = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '')
+const segments = path.split('/').filter(Boolean)
+
+interface BreadcrumbItem {
+  label: string
+  url: string
+  current: boolean
+}
+
+const breadcrumbItems: BreadcrumbItem[] = segments.flatMap((segment, index) => {
+  if (joinLastBreadcrumb && index === segments.length - 1) {
+    return []
+  }
+
+  const isLast = index === segments.length - 1 || (joinLastBreadcrumb && index === segments.length - 2)
+  const formattedName = (() => {
+    if (joinLastBreadcrumb && isLast) {
+      const prevSegment = segments[segments.length - 2]
+      const lastSegment = segments[segments.length - 1]
+      return `${formatSegment(prevSegment)}: ${formatSegment(lastSegment)}`
+    }
+
+    return formatSegment(segment)
+  })()
+
+  return [
+    {
+      label: formattedName,
+      url: `/${segments.slice(0, index + 1).join('/')}`,
+      current: isLast,
+    },
+  ]
+})
+
+const breadcrumbJsonLd =
+  showBreadcrumbs && breadcrumbItems.length > 0
+    ? JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrl('/'),
+          },
+          ...breadcrumbItems.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 2,
+            name: item.label,
+            item: absoluteUrl(item.url),
+          })),
+        ],
+      }).replace(/</g, '\\u003c')
+    : null
 ---
 
 <section class:list={[className, 'page-header']}>
   <div class="container my-3">
     {
-      showBreadcrumbs &&
-        (() => {
-          const path = Astro.url.pathname
-          const segments = path.split('/').filter(Boolean)
-
-          if (segments.length === 0) {
-            return null
-          }
-
-          return (
-            <Breadcrumbs>
-              <BreadcrumbsItem href="/" label="Home" />
-              {segments.map((segment, index) => {
-                if (joinLastBreadcrumb && index === segments.length - 1) {
-                  return null
-                }
-
-                const url = `/${segments.slice(0, index + 1).join('/')}`
-                const isLast = index === segments.length - 1 || (joinLastBreadcrumb && index === segments.length - 2)
-
-                const formattedName = (() => {
-                  if (joinLastBreadcrumb && isLast) {
-                    const prevSegment = segments[segments.length - 2]
-                    const lastSegment = segments[segments.length - 1]
-                    return `${formatSegment(prevSegment)}: ${formatSegment(lastSegment)}`
-                  }
-
-                  return formatSegment(segment)
-                })()
-
-                return <BreadcrumbsItem href={isLast ? undefined : url} label={formattedName} currentPage={isLast} />
-              })}
-            </Breadcrumbs>
-          )
-        })()
+      showBreadcrumbs && breadcrumbItems.length > 0 && (
+        <Breadcrumbs>
+          <BreadcrumbsItem href="/" label="Home" />
+          {breadcrumbItems.map((item) => (
+            <BreadcrumbsItem href={item.current ? undefined : item.url} label={item.label} currentPage={item.current} />
+          ))}
+        </Breadcrumbs>
+      )
     }
+    {breadcrumbJsonLd && <script type="application/ld+json" set:html={breadcrumbJsonLd} />}
   </div>
   <div class:list={['py-16', bgType && `bg-${bgType}`]}>
     <div class="space-content container">
@@ -129,7 +167,7 @@ const sanitizedSubtitle: string = subtitle
           <div class="featured-image-container mb-8">
             <Image
               src={featuredImage}
-              alt=""
+              alt={featuredImageAlt}
               width={1200}
               height={250}
               class="h-[250px] w-full rounded-lg object-cover"

@@ -9,9 +9,8 @@ import {
 } from 'accessible-astro-launcher'
 import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
-import { BLOG_API_URL } from 'astro:env/server'
 import themeConfig from '@theme-config'
-import { slugify } from '@utils/slugify'
+import { fetchBlogPosts } from '@lib/blog'
 
 /**
  * Launcher preferences for accessibility and theme.
@@ -50,33 +49,21 @@ const truncateBlogTitle = (title: string): string => {
 }
 
 /**
- * Blog items for the launcher, fetched from `BLOG_API_URL`.
+ * Blog items for the launcher, fetched from the unified blog feed.
  * Shows up to `maxLauncherBlogPosts` items.
  *
  * @type {Array<{ label: string, href: string }>}
  */
 const launcherBlogItems = await (async () => {
-  if (!BLOG_API_URL) return []
-
   try {
-    const response = await fetch(BLOG_API_URL)
-    if (!response.ok) {
-      console.warn(`Failed to fetch blog posts: ${response.status} ${response.statusText}`)
-      return []
-    }
-
-    const data = (await response.json()) as Array<{ title: string }>
-
-    return data.slice(0, maxLauncherBlogPosts).map((post) => {
-      const truncatedTitle = truncateBlogTitle(post.title)
-      const shortUrl = slugify(truncatedTitle)
-
+    return (await fetchBlogPosts()).slice(0, maxLauncherBlogPosts).map((post) => {
       return {
-        label: truncatedTitle,
-        href: `/blog/${shortUrl}`,
+        label: truncateBlogTitle(post.title),
+        href: post.url,
       }
     })
-  } catch {
+  } catch (error) {
+    console.warn('Failed to load blog posts for the launcher:', error)
     return []
   }
 })()
@@ -88,8 +75,8 @@ const launcherBlogItems = await (async () => {
  */
 const launcherProjectItems = (await getCollection('projects')).map((project) => ({
   label: project.data.title,
-  href: `/portfolio/${project.id}`,
-  keywords: [project.data.author, ...project.data.tags],
+  href: `/projects/${project.id}`,
+  keywords: project.data.tags,
 }))
 
 /**
@@ -161,7 +148,7 @@ const launcherSocialItems = (themeConfig.socials ?? []).map((item) => ({
     launcherBlogItems.length > 0 && (
       <LauncherNav label="Blog posts">
         {launcherBlogItems.map((item) => (
-          <LauncherLink label={item.label} href={item.href}>
+          <LauncherLink label={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
             <Icon slot="icon" aria-hidden="true" name="lucide:scroll-text" size="16" />
           </LauncherLink>
         ))}

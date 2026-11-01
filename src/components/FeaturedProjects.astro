@@ -51,10 +51,9 @@ const featuredProjects = projects.slice(0, limit).map((project, index) => ({
         featuredProjects.map((project) => (
           <Card
             imageComponent={project.featuredImage}
-            url={'/portfolio/' + project.id}
+            url={'/projects/' + project.id}
             headingLevel="h2"
             title={project.data.title}
-            footer={'Author: ' + project.data.author}
           >
             {project.data.description}
           </Card>
@@ -62,7 +61,7 @@ const featuredProjects = projects.slice(0, limit).map((project, index) => ({
       }
     </div>
     <div class="mt-12">
-      <Link href="/portfolio/" isButton animateOnHover animationType="nudge">
+      <Link href="/projects" isButton animateOnHover animationType="nudge">
         View all projects
         <Icon aria-hidden="true" name="lucide:arrow-right" size="1.5rem" />
       </Link>

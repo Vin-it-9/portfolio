@@ -1,0 +1,126 @@
+---
+import type { BlogPost } from '@lib/blog/types'
+import { getBlogPostSlug } from '@lib/blog'
+
+interface Props {
+  post: BlogPost
+}
+
+const { post } = Astro.props
+const platformNames = {
+  devto: 'DEV.to',
+  medium: 'Medium',
+  hashnode: 'Hashnode',
+  linkedin: 'LinkedIn',
+} as const
+const platformName = platformNames[post.platform]
+const publishedDate = new Intl.DateTimeFormat('en', {
+  dateStyle: 'medium',
+}).format(new Date(post.publishedAt))
+const readLabel = post.readingTime ? `${post.readingTime} min read` : undefined
+const excerpt = post.description
+  ? `${post.description.trim().slice(0, 220)}${post.description.trim().length > 220 ? '…' : ''}`
+  : undefined
+---
+
+<article class="blog-card card flex h-full flex-col overflow-hidden rounded-lg border border-[var(--border-color-subtle)]">
+  {
+    post.image && (
+      <img
+        src={post.image}
+        alt={`Cover image for ${post.title}`}
+        loading="lazy"
+        class="blog-card__image h-48 w-full object-cover"
+        referrerpolicy="no-referrer"
+      />
+    )
+  }
+  <div class="flex flex-1 flex-col gap-5 p-6">
+    <div class="flex flex-wrap items-center justify-between gap-3 text-sm">
+      <span class:list={['blog-card__platform', `blog-card__platform--${post.platform}`]}>{platformName}</span>
+      <time datetime={new Date(post.publishedAt).toISOString()}>{publishedDate}</time>
+    </div>
+    <h2 class="m-0 line-clamp-2 text-2xl leading-tight">
+      <a
+        class="blog-card__title"
+        href={`/blog/${getBlogPostSlug(post)}`}
+        aria-label={`Read ${post.title}`}
+      >
+        {post.title}
+      </a>
+    </h2>
+    {excerpt && <p class="line-clamp-4 m-0 text-base text-[var(--foreground-color)]/80">{excerpt}</p>}
+    {
+      (post.tags.length > 0 || readLabel) && (
+        <div class="mt-auto flex flex-wrap items-center gap-x-3 gap-y-2 pt-2 text-sm">
+          {post.tags.map((tag) => <span class="blog-card__tag">#{tag}</span>)}
+          {readLabel && <span class="blog-card__reading-time">{readLabel}</span>}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .blog-card {
+    background: light-dark(color-mix(in srgb, var(--background-color) 94%, var(--link-color)), var(--background-color));
+    box-shadow: var(--elevation-1);
+    transition:
+      border-color var(--animation-speed-fast) var(--cubic-bezier),
+      box-shadow var(--animation-speed-fast) var(--cubic-bezier),
+      translate var(--animation-speed-fast) var(--cubic-bezier);
+  }
+
+  .blog-card:hover {
+    border-color: var(--link-color);
+    box-shadow: var(--elevation-2);
+    translate: 0 -2px;
+  }
+
+  .blog-card__image {
+    border-block-end: 1px solid var(--border-color-subtle);
+  }
+
+  .blog-card__platform {
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem;
+    background: var(--color-neutral-200);
+    color: var(--color-neutral-800);
+    font-size: var(--font-size--1);
+    font-weight: 700;
+  }
+
+  .blog-card__platform--devto {
+    background: color-mix(in srgb, var(--color-neutral-800) 14%, transparent);
+  }
+
+  .blog-card__platform--medium {
+    background: color-mix(in srgb, var(--color-secondary-500) 18%, transparent);
+  }
+
+  .blog-card__title {
+    color: var(--foreground-color);
+    text-decoration-color: transparent;
+  }
+
+  .blog-card__title:hover,
+  .blog-card__title:focus-visible {
+    color: var(--link-hover-color);
+    text-decoration-color: currentColor;
+  }
+
+  .blog-card__tag {
+    color: var(--link-color);
+  }
+
+  .blog-card__reading-time {
+    border-inline-start: 1px solid var(--border-color-subtle);
+    padding-inline-start: 0.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog-card {
+      transition: none;
+    }
+  }
+</style>

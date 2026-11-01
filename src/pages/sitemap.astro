@@ -3,73 +3,64 @@ import DefaultLayout from '@layouts/DefaultLayout.astro'
 import PageHeader from '@components/PageHeader.astro'
 import { Heading, Notification } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
+import { fetchBlogPosts, getBlogPostSlug } from '@lib/blog'
 
-// Get all portfolio projects
+// Get all projects and blog posts
 const projects = await getCollection('projects')
+const posts = await fetchBlogPosts()
 
 // Define static pages with their descriptions
 const staticPages = [
   {
     title: 'Home',
     url: '/',
-    description: 'Welcome to our accessible website featuring modern web development and inclusive design principles.',
+    description: 'The portfolio of Vinit Shinde, a Java and JVM developer building reliable backend systems and practical software.',
   },
   {
-    title: 'Accessible components',
-    url: '/accessible-components',
-    description: 'A comprehensive showcase of accessible UI components and design patterns for modern web development.',
+    title: 'Projects',
+    url: '/projects',
+    description: 'A collection of Java, Spring Boot, and full-stack projects I have built to explore ideas and apply what I learn.',
   },
   {
-    title: 'Portfolio',
-    url: '/portfolio',
-    description: 'A collection of projects demonstrating accessible design and development practices.',
+    title: 'Skills',
+    url: '/skills',
+    description: 'The languages, frameworks, databases, and tools I use to build software.',
+  },
+  {
+    title: 'Resume',
+    url: '/resume',
+    description: 'A summary of my experience, education, and technical background.',
   },
   {
     title: 'Blog',
     url: '/blog',
-    description: 'Articles and insights about web accessibility, development best practices, and inclusive design.',
+    description: 'Articles and notes on Java, JVM, backend development, and software engineering.',
   },
   {
     title: 'Contact',
     url: '/contact',
-    description:
-      'Get in touch with us for accessibility consulting, development services, or collaboration opportunities.',
-  },
-  {
-    title: 'Color contrast checker',
-    url: '/color-contrast-checker',
-    description: 'An interactive tool to check color contrast ratios and ensure WCAG compliance for your designs.',
+    description: 'Contact me for development opportunities, projects, collaborations, and professional connections.',
   },
   {
     title: 'Accessibility statement',
     url: '/accessibility-statement',
-    description: 'Our commitment to accessibility and information about the accessibility features of this website.',
+    description: 'How this website approaches accessibility, including conformance, feedback, and technical details.',
   },
   {
-    title: 'Markdown page example',
-    url: '/markdown-page',
-    description: 'A demonstration of Markdown content rendering with accessible formatting and typography.',
-  },
-  {
-    title: 'MDX page example',
-    url: '/mdx-page',
-    description: 'An example of MDX content combining Markdown with interactive React components.',
-  },
-  {
-    title: 'Thank you',
-    url: '/thank-you',
-    description: 'Confirmation page for successful form submissions and user interactions.',
+    title: 'Sitemap',
+    url: '/sitemap',
+    description: 'A human-readable overview of the pages, projects, and articles available on this website.',
   },
 ]
 ---
 
 <DefaultLayout
   title="Sitemap"
-  description="Complete site map showing all pages, portfolio projects, and sections available on our accessible website."
+  description="Browse every page, project, and article on Vinit Shinde's portfolio website."
 >
   <PageHeader
     title="Sitemap"
-    subtitle="A comprehensive overview of all pages and content available on our website, organized for easy navigation."
+    subtitle="A complete overview of the pages, projects, and articles available on this website."
     bgType="gradient"
   />
 
@@ -98,32 +89,26 @@ const staticPages = [
         </div>
       </div>
 
-      <!-- Portfolio Projects Section -->
+      <!-- Projects Section -->
       <div>
-        <Heading level="h2">Portfolio projects</Heading>
+        <Heading level="h2">Projects</Heading>
         <p class="mb-6">
-          Explore our collection of {projects.length} accessibility-focused projects showcasing inclusive design and development
-          practices.
+          Explore {projects.length} projects showcasing the ideas and technologies I have worked with.
         </p>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {
             projects.map((project) => (
               <article>
                 <Heading level="h3" size="h6" class="mb-3">
-                  <a href={`/portfolio/${project.id}`}>{project.data.title}</a>
+                  <a href={`/projects/${project.id}`}>{project.data.title}</a>
                 </Heading>
                 <p class="mb-3">{project.data.description}</p>
-                <div class="text-xs">
-                  <p class="mb-1">
-                    By: <span class="font-medium">{project.data.author}</span>
-                  </p>
-                  <p>
-                    URL:{' '}
-                    <code class="rounded bg-neutral-100 px-1 py-0.5 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-500">
-                      /portfolio/{project.id}
-                    </code>
-                  </p>
-                </div>
+                <p class="text-xs">
+                  URL:{' '}
+                  <code class="rounded bg-neutral-100 px-1 py-0.5 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-500">
+                    /projects/{project.id}
+                  </code>
+                </p>
               </article>
             ))
           }
@@ -132,31 +117,28 @@ const staticPages = [
 
       <!-- Blog Section -->
       <div>
-        <Heading level="h2" class="mb-6">Blog</Heading>
-        <article>
-          <Heading level="h3" size="h6" class="mb-3">
-            <a href="/blog"> Blog posts </a>
-          </Heading>
-          <p>
-            Discover articles about web accessibility, development best practices, and inclusive design. Our blog
-            features dynamic content with pagination for easy browsing.
-          </p>
-          <div class="text-xs">
-            <p>Features: Dynamic content from JSONPlaceholder API</p>
-            <p>
-              Base URL: <code
-                class="rounded bg-neutral-100 px-1 py-0.5 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-500"
-                >/blog</code
-              >
-            </p>
-            <p>
-              Individual posts: <code
-                class="rounded bg-neutral-100 px-1 py-0.5 text-xs text-neutral-500 dark:bg-neutral-800 dark:text-neutral-500"
-                >/blog/[post-title]</code
-              >
-            </p>
-          </div>
-        </article>
+        <Heading level="h2" class="mb-6">Blog posts</Heading>
+        {
+          posts.length > 0 ? (
+            <ul class="grid list-none grid-cols-1 gap-6 p-0 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <li>
+                  <article>
+                    <Heading level="h3" size="h6" class="mb-3">
+                      <a href={`/blog/${getBlogPostSlug(post)}`}>{post.title}</a>
+                    </Heading>
+                    {post.description && <p class="mb-3">{post.description}</p>}
+                  </article>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>New articles will appear here when the publishing platforms are reachable again.</p>
+          )
+        }
+        <p class="mt-6">
+          <a href="/blog">Browse the blog</a> or subscribe to the <a href="/rss.xml">RSS feed</a>.
+        </p>
       </div>
 
       <!-- Technical Information -->
@@ -165,12 +147,17 @@ const staticPages = [
           <Heading level="h2" size="h6" class="mb-4">Technical sitemap information</Heading>
           <ul>
             <li>
-              <span class="font-bold">XML Sitemap:</span> An automated XML sitemap is generated at
-              <code>/sitemap.xml</code>
-              for search engine optimization.
+              <span class="font-bold">XML sitemap:</span> An automated sitemap is generated at
+              <code>/sitemap-index.xml</code>
+              for search engines.
             </li>
             <li>
-              <strong>Generated by:</strong> @astrojs/sitemap integration configured in astro.config.mjs
+              <span class="font-bold">RSS feed:</span> Blog posts are available at
+              <code>/rss.xml</code>.
+            </li>
+            <li>
+              <strong>Generated by:</strong> @astrojs/sitemap and Astro endpoints configured in
+              <code>astro.config.mjs</code>
             </li>
             <li>
               <strong>Last updated:</strong> Automatically updated on each build

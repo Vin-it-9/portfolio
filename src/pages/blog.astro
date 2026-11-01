@@ -1,0 +1,71 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import BlogCard from '@components/BlogCard.astro'
+import { fetchBlogPosts, getBlogPostSlug } from '@lib/blog'
+import { blogSources } from '@data/blog/config'
+import { absoluteUrl } from '@data/site'
+
+const posts = await fetchBlogPosts()
+const blogUrl = absoluteUrl('/blog')
+const postList = {
+  '@type': 'ItemList',
+  '@id': `${blogUrl}#posts`,
+  name: 'Blog posts by Vinit Shinde',
+  numberOfItems: posts.length,
+  itemListElement: posts.map((post, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: absoluteUrl(`/blog/${getBlogPostSlug(post)}`),
+    name: post.title,
+  })),
+}
+---
+
+<DefaultLayout
+  title="Blog"
+  description="Articles and notes by Vinit Shinde on Java, JVM, backend development, and software engineering."
+  structuredData={postList}
+>
+  <PageHeader
+    title="Blog"
+    subtitle="A unified feed of articles and notes from my writing across platforms."
+    bgType="gradient"
+  />
+
+  <section class="my-12 md:my-16">
+    <div class="container">
+      <div class="mb-8 flex flex-col gap-4 md:mb-10 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--link-color)]">Writing</p>
+          <p class="max-w-2xl text-xl">
+            Explore the latest posts, ordered by publication date so every platform feels like one continuous feed.
+          </p>
+        </div>
+        <nav aria-label="Blog publishing profiles" class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <a href={blogSources.devto.profileUrl} target="_blank" rel="noopener noreferrer">DEV.to profile</a>
+          <a href={blogSources.medium.profileUrl} target="_blank" rel="noopener noreferrer">Medium profile</a>
+          <a href={blogSources.hashnode.profileUrl} target="_blank" rel="noopener noreferrer">Hashnode profile</a>
+          <a href={blogSources.linkedin.profileUrl} target="_blank" rel="noopener noreferrer">LinkedIn profile</a>
+          <a href="/rss.xml">RSS feed</a>
+        </nav>
+      </div>
+      {
+        posts.length > 0 ? (
+          <ul class="grid list-none grid-cols-1 gap-8 p-0 md:grid-cols-2 xl:grid-cols-3">
+            {posts.map((post) => (
+              <li>
+                <BlogCard post={post} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div class="rounded-lg border border-[var(--border-color-subtle)] p-8 text-center">
+            <h2 class="mb-2 text-2xl">No posts available right now</h2>
+            <p>New articles will appear here when the publishing platforms are reachable again.</p>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</DefaultLayout>

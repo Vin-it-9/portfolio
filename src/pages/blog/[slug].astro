@@ -1,0 +1,150 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import { fetchBlogPosts, getBlogPostSlug } from '@lib/blog'
+import { absoluteUrl } from '@data/site'
+import sanitizeHtml from 'sanitize-html'
+
+export async function getStaticPaths() {
+  const posts = await fetchBlogPosts()
+
+  return posts.map((post) => ({
+    params: { slug: getBlogPostSlug(post) },
+    props: { post },
+  }))
+}
+
+interface Props {
+  post: Awaited<ReturnType<typeof fetchBlogPosts>>[number]
+}
+
+const { post } = Astro.props as Props
+const postSlug = getBlogPostSlug(post)
+const platformName = {
+  devto: 'DEV.to',
+  medium: 'Medium',
+  hashnode: 'Hashnode',
+  linkedin: 'LinkedIn',
+} as const
+const publishedDate = new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(post.publishedAt))
+const publishedIso = new Date(post.publishedAt).toISOString()
+const postUrl = absoluteUrl(`/blog/${postSlug}`)
+const blogPosting = {
+  '@type': 'BlogPosting',
+  '@id': `${postUrl}#article`,
+  headline: post.title,
+  description: post.description ?? post.title,
+  url: postUrl,
+  mainEntityOfPage: { '@id': `${postUrl}#webpage` },
+  datePublished: publishedIso,
+  dateModified: publishedIso,
+  author: { '@id': `${absoluteUrl('/')}#person` },
+  publisher: { '@id': `${absoluteUrl('/')}#person` },
+  image: [post.image ? absoluteUrl(post.image) : absoluteUrl('/og-image.png')],
+  articleSection: 'Blog',
+  keywords: post.tags.join(', '),
+  inLanguage: 'en',
+  isBasedOn: post.url,
+}
+const safeContent = post.content
+  ? sanitizeHtml(post.content, {
+      allowedTags: [
+        'a',
+        'blockquote',
+        'br',
+        'code',
+        'em',
+        'figcaption',
+        'figure',
+        'h2',
+        'h3',
+        'h4',
+        'hr',
+        'img',
+        'li',
+        'ol',
+        'p',
+        'pre',
+        'strong',
+        'ul',
+      ],
+      allowedAttributes: {
+        a: ['href', 'title', 'target', 'rel'],
+        img: ['src', 'alt', 'width', 'height', 'loading'],
+      },
+    })
+  : undefined
+---
+
+<DefaultLayout
+  title={post.title}
+  description={post.description ?? post.title}
+  type="article"
+  url={`/blog/${postSlug}`}
+  image={post.image}
+  imageAlt={`Cover image for ${post.title}`}
+  publishedTime={publishedIso}
+  modifiedTime={publishedIso}
+  tags={post.tags}
+  section="Blog"
+  structuredData={blogPosting}
+>
+  <PageHeader
+    title={post.title}
+    subtitle={`${platformName[post.platform]} · <time datetime="${publishedIso}">${publishedDate}</time>`}
+    bgType="bordered"
+    customBreadcrumbLabels={{ blog: 'Blog', [postSlug]: post.title }}
+  />
+  <section class="my-12">
+    <div class="narrow space-content container">
+      {
+        post.image && (
+          <img
+            src={post.image}
+            alt={`Cover image for ${post.title}`}
+            class="article-cover"
+            referrerpolicy="no-referrer"
+          />
+        )
+      }
+      {
+        safeContent ? (
+          <div class="blog-content" set:html={safeContent} />
+        ) : post.description ? (
+          <p class="text-xl">{post.description}</p>
+        ) : (
+          <p class="text-xl">Read the full article on {platformName[post.platform]}.</p>
+        )
+      }
+      <p>
+        <a href={post.url} target="_blank" rel="noopener noreferrer">
+          Read the original article on {platformName[post.platform]}
+        </a>
+      </p>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss" is:global>
+  .narrow {
+    margin-inline: auto;
+    max-width: 65ch;
+  }
+
+  .blog-content {
+    overflow-wrap: anywhere;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-m);
+    }
+  }
+
+  .article-cover {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: cover;
+    border-radius: var(--radius-m);
+  }
+</style>

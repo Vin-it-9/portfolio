@@ -1,10 +1,9 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import PageHeader from '@components/PageHeader.astro'
-import SocialShares from '@components/SocialShares.astro'
-import { Heading } from 'accessible-astro-components'
 import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { absoluteUrl } from '@data/site'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects')
@@ -37,20 +36,36 @@ interface Props {
 
 const { project } = Astro.props
 const { Content } = await render(project)
-
-const author = {
-  name: 'Vinit Shinde',
-  image: '/projects/project-image-1.png',
-  bio: 'Project Creator',
+const projectUrl = absoluteUrl(`/projects/${project.id}`)
+const projectSchema = {
+  '@type': 'CreativeWork',
+  '@id': `${projectUrl}#project`,
+  name: project.data.title,
+  description: project.data.description,
+  url: projectUrl,
+  mainEntityOfPage: { '@id': `${projectUrl}#webpage` },
+  image: absoluteUrl(project.featuredImage),
+  keywords: project.data.tags.join(', '),
+  creator: { '@id': `${absoluteUrl('/')}#person` },
+  inLanguage: 'en',
 }
 ---
 
-<DefaultLayout title={project.data.title} description={project.data.description} url={`/projects/${project.id}`}>
+<DefaultLayout
+  title={project.data.title}
+  description={project.data.description}
+  url={`/projects/${project.id}`}
+  image={project.featuredImage}
+  imageAlt={`${project.data.title} — project preview`}
+  structuredData={projectSchema}
+>
   <PageHeader
     title={project.data.title}
     subtitle={project.data.description}
     bgType="bordered"
     featuredImage={project.featuredImage}
+    featuredImageAlt={`${project.data.title} — project preview`}
+    customBreadcrumbLabels={{ projects: 'Projects', [project.id]: project.data.title }}
   />
   <section class="my-12">
     <div class="narrow space-content container">

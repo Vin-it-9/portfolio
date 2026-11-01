@@ -1,4 +1,4 @@
-import { defineConfig, envField } from 'astro/config'
+import { defineConfig } from 'astro/config'
 import { fileURLToPath } from 'url'
 import compress from 'astro-compress'
 import icon from 'astro-icon'
@@ -25,6 +25,8 @@ const viteConfig = {
       '@layouts': fileURLToPath(new URL('./src/layouts', import.meta.url)),
       '@assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
       '@content': fileURLToPath(new URL('./src/content', import.meta.url)),
+      '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
+      '@lib': fileURLToPath(new URL('./src/lib', import.meta.url)),
       '@pages': fileURLToPath(new URL('./src/pages', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url)),
       '@post-images': fileURLToPath(new URL('./public/posts', import.meta.url)),
@@ -35,25 +37,38 @@ const viteConfig = {
   },
 }
 
+// Pages that are theme demos, form confirmations, or error pages. They are
+// intentionally excluded from the XML sitemap and marked noindex in the page
+// metadata so search engines focus on the portfolio content.
+const excludedSitemapPaths = new Set([
+  '/404',
+  '/accessible-components',
+  '/accessible-launcher',
+  '/color-contrast-checker',
+  '/markdown-page',
+  '/mdx-page',
+  '/thank-you',
+])
+
 // https://astro.build/config
 export default defineConfig({
   prefetch: false,
   compressHTML: true,
-  site: 'https://vinits-portfolio.netlify.app/',
+  site: 'https://vinitshinde.netlify.app/',
   trailingSlash: 'never',
   build: {
     format: 'file'
   },
-  integrations: [compress(), icon(), mdx(), sitemap()],
+  integrations: [
+    compress(),
+    icon(),
+    mdx(),
+    sitemap({
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/+$/, '') || '/'
+        return !excludedSitemapPaths.has(pathname)
+      },
+    }),
+  ],
   vite: viteConfig,
-  env: {
-    schema: {
-      BLOG_API_URL: envField.string({
-        context: 'server',
-        access: 'secret',
-        optional: true,
-        default: 'https://jsonplaceholder.typicode.com/posts',
-      }),
-    },
-  },
 })

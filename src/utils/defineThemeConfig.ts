@@ -58,9 +58,9 @@ const defaultConfig: Omit<ThemeConfig, 'name' | 'id'> = {
     title: 'Vinit Shinde',
     subtitle: 'Java & JVM Developer',
     description:
-      'Personal portfolio of Vinit Shinde, showcasing Java and JVM projects, technical skills, and software development work.',
+      'Vinit Shinde is a Java and JVM developer building reliable backend systems, REST APIs, and practical software projects.',
     author: 'Vinit Shinde',
-    image: null,
+    image: '/og-image.png',
   },
   colors: {
     primary: '#d648ff',

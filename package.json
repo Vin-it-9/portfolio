@@ -1,23 +1,16 @@
 {
   "name": "vinits-portfolio",
-  "description": "Personal portfolio website showcasing projects, skills, and professional work.",
+  "description": "Vinit Shinde's portfolio: Java and JVM developer showcasing backend projects, technical skills, and professional work.",
   "version": "6.0.0",
   "author": "Vinit Shinde",
   "license": "MIT",
   "type": "module",
-  "homepage": "https://vinits-portfolio.netlify.app/",
-  "workspaces": [
-    "packages/*"
-  ],
+  "homepage": "https://vinitshinde.netlify.app/",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "build:cli": "npm --workspace create-accessible-astro-starter run build",
-    "create:local": "node packages/create-accessible-astro-starter/scripts/run-local.mjs",
-    "test:cli": "npm --workspace create-accessible-astro-starter run test",
-    "test:cli:e2e": "npm --workspace create-accessible-astro-starter run test:e2e"
+    "preview": "astro preview"
   },
   "keywords": [
     "java",

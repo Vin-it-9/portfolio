@@ -5,7 +5,10 @@ import themeConfig from '@theme-config'
 import { SEO } from 'astro-seo'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
+import { absoluteUrl, site } from '@data/site'
 import type { ImageMetadata } from 'astro'
+
+type StructuredData = Record<string, unknown>
 
 interface Props {
   /**
@@ -25,6 +28,10 @@ interface Props {
    */
   image?: ImageMetadata | string | null
   /**
+   * Alt text for the social sharing image
+   */
+  imageAlt?: string
+  /**
    * The author of the page
    */
   author?: string
@@ -37,22 +44,153 @@ interface Props {
    * Set to false to use the title as-is without appending site name
    */
   useTitleTemplate?: boolean
+  /**
+   * Keep a page out of search results (theme demos, form confirmations, etc.)
+   */
+  noindex?: boolean
+  /**
+   * Prevent search engines from following links on this page
+   */
+  nofollow?: boolean
+  /**
+   * Publication date for article pages (ISO 8601)
+   */
+  publishedTime?: string
+  /**
+   * Last modification date for article pages (ISO 8601)
+   */
+  modifiedTime?: string
+  /**
+   * Article tags for Open Graph metadata
+   */
+  tags?: string[]
+  /**
+   * Article section for Open Graph metadata
+   */
+  section?: string
+  /**
+   * Page-specific JSON-LD. The layout adds the global Person/WebSite/WebPage
+   * graph automatically, so this only needs the page's own schema.
+   */
+  structuredData?: StructuredData | StructuredData[]
 }
 
 const {
   title = themeConfig.seo.title,
-  description = themeConfig.seo.description ?? '',
+  description = themeConfig.seo.description ?? site.description,
   url = Astro.url.href,
-  image = themeConfig.seo.image ?? null,
-  author = themeConfig.seo.author ?? '',
+  image = themeConfig.seo.image ?? site.ogImage,
+  imageAlt = `${site.name} — ${site.jobTitle}`,
+  author = themeConfig.seo.author ?? site.name,
   type = 'website',
   useTitleTemplate = true,
+  noindex = false,
+  nofollow = false,
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  section,
+  structuredData,
 } = Astro.props
 
-// For social sharing, we need the full absolute URL
-// If image is an ImageMetadata object, use its src, otherwise treat as string path
-const imagePath = image ? (typeof image === 'string' ? image : image.src) : '/favicon.svg'
-const imageUrl = new URL(imagePath, Astro.site).href
+// External sources (such as the blog feed) can contain HTML-like text. Titles
+// are rendered with `set:html` by astro-seo, so strip tags and collapse
+// whitespace before using them in the document head or JSON-LD.
+const cleanText = (value: string): string =>
+  value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+const pageTitle = cleanText(title) || themeConfig.seo.title
+const pageDescription = cleanText(description)
+const pageImageAlt = cleanText(imageAlt)
+const pageAuthor = cleanText(author)
+
+// For social sharing, we need the full absolute URL.
+// If image is an ImageMetadata object, use its src, otherwise treat as string path.
+const imagePath = image ? (typeof image === 'string' ? image : image.src) : site.ogImage
+const imageUrl = absoluteUrl(imagePath)
+const isDefaultOgImage = imagePath === site.ogImage || imageUrl === absoluteUrl(site.ogImage)
+const imageType = /\.jpe?g$/i.test(imagePath)
+  ? 'image/jpeg'
+  : /\.webp$/i.test(imagePath)
+    ? 'image/webp'
+    : /\.svg$/i.test(imagePath)
+      ? 'image/svg+xml'
+      : 'image/png'
+const imageDimensions = isDefaultOgImage
+  ? { width: site.ogImageWidth, height: site.ogImageHeight }
+  : {}
+
+// Normalize the canonical URL: `build.format: 'file'` adds `.html` during the
+// build, and the site is configured to never use trailing slashes.
+const canonicalUrl = new URL(url, Astro.site ?? `${site.url}/`)
+canonicalUrl.pathname = canonicalUrl.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '')
+if (canonicalUrl.pathname.length > 1) {
+  canonicalUrl.pathname = canonicalUrl.pathname.replace(/\/+$/, '')
+}
+const canonical = canonicalUrl.href
+
+const resolvedTitle = useTitleTemplate ? `${pageTitle} | ${themeConfig.seo.title}` : pageTitle
+const homeUrl = absoluteUrl('/')
+const personId = `${homeUrl}#person`
+const websiteId = `${homeUrl}#website`
+const pageId = `${canonical}#webpage`
+
+const globalStructuredData: StructuredData[] = [
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: site.name,
+    url: homeUrl,
+    image: absoluteUrl(site.ogImage),
+    jobTitle: site.jobTitle,
+    description: site.description,
+    email: `mailto:${site.email}`,
+    sameAs: [...site.sameAs],
+    knowsAbout: [...site.knowsAbout],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: homeUrl,
+    name: site.name,
+    description: site.description,
+    inLanguage: 'en',
+    publisher: { '@id': personId },
+  },
+  {
+    '@type': 'WebPage',
+    '@id': pageId,
+    url: canonical,
+    name: resolvedTitle,
+    description: pageDescription,
+    isPartOf: { '@id': websiteId },
+    about: { '@id': personId },
+    inLanguage: 'en',
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: imageUrl,
+      ...imageDimensions,
+    },
+  },
+]
+
+const pageStructuredData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : []
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [...globalStructuredData, ...pageStructuredData],
+}).replace(/</g, '\\u003c')
+
+const keywords = [site.name, site.jobTitle, ...site.knowsAbout, 'portfolio', 'software developer', 'backend developer'].join(
+  ', ',
+)
 ---
 
 <html lang="en" dir="ltr">
@@ -61,8 +199,20 @@ const imageUrl = new URL(imagePath, Astro.site).href
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- favicon -->
+    <!-- favicon and app icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- feeds and identity -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} — Blog`}
+      href={absoluteUrl('/rss.xml')}
+    />
+    <link rel="me" href="https://github.com/Vin-it-9/" />
+    <link rel="me" href="https://www.linkedin.com/in/vinit-shinde-920531254/" />
 
     <!-- theme colors from config -->
     <style
@@ -82,37 +232,70 @@ const imageUrl = new URL(imagePath, Astro.site).href
     </style>
 
     <SEO
-      title={title}
-      titleTemplate={useTitleTemplate ? `%s - ${themeConfig.seo.title}` : undefined}
+      title={pageTitle}
+      titleTemplate={useTitleTemplate ? `%s | ${themeConfig.seo.title}` : undefined}
       titleDefault={themeConfig.seo.title}
-      description={description}
-      canonical={url}
+      description={pageDescription}
+      canonical={canonical}
+      noindex={noindex}
+      nofollow={nofollow}
+      robotsExtras="max-image-preview:large, max-snippet:-1, max-video-preview:-1"
       openGraph={{
         basic: {
-          title: title,
+          title: resolvedTitle,
           type: type,
           image: imageUrl,
-          url: url,
+          url: canonical,
         },
         optional: {
-          description: description,
+          description: pageDescription,
+          locale: 'en_US',
+          siteName: site.name,
         },
+        image: {
+          url: imageUrl,
+          type: imageType,
+          ...imageDimensions,
+          alt: pageImageAlt,
+        },
+        ...(type === 'article' && publishedTime
+          ? {
+              article: {
+                publishedTime,
+                modifiedTime: modifiedTime ?? publishedTime,
+                authors: [pageAuthor],
+                section: section ?? 'Blog',
+                tags,
+              },
+            }
+          : {}),
       }}
       twitter={{
         card: 'summary_large_image',
-        title: title,
-        description: description,
+        title: resolvedTitle,
+        description: pageDescription,
         image: imageUrl,
+        imageAlt: pageImageAlt,
       }}
       extend={{
         meta: [
           {
             name: 'author',
-            content: author,
+            content: pageAuthor,
+          },
+          {
+            name: 'keywords',
+            content: keywords,
+          },
+          {
+            name: 'theme-color',
+            content: themeConfig.colors.primary,
           },
         ],
       }}
     />
+
+    <script type="application/ld+json" set:html={jsonLd} />
 
   </head>
   <body>

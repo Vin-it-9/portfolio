@@ -11,9 +11,11 @@ const pageHeader = frontmatter.pageHeader
   title={frontmatter.title}
   description={frontmatter.description}
   image={frontmatter.image}
+  imageAlt={frontmatter.imageAlt}
   author={frontmatter.author}
   type={frontmatter.type}
   useTitleTemplate={frontmatter.useTitleTemplate}
+  noindex={frontmatter.noindex}
 >
   {pageHeader && <PageHeader title={pageHeader.title} subtitle={pageHeader.subtitle} bgType={pageHeader.bgType} />}
   <div class={containerClass}>

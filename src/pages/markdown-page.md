@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
 title: Markdown Page
+noindex: true
 ---
 
 # Markdown Page

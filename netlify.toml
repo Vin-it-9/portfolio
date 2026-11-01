@@ -1,3 +1,14 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Keep old links working after the /portfolio -> /projects migration.
+[[redirects]]
+  from = "/portfolio"
+  to = "/projects"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/projects/:splat"
+  status = 301

@@ -6,6 +6,8 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
+      "@data/*": ["src/data/*"],
+      "@lib/*": ["src/lib/*"],
       "@utils/*": ["src/utils/*"],
       "@theme-config": ["theme.config.ts"]
     }

@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import { slugify } from '@utils/slugify'
+import { absoluteUrl } from '@data/site'
 
 // Import images directly for optimization
 import projectImage1 from '@assets/images/projects/project-image-1.png'
@@ -62,15 +63,32 @@ interface Props {
 }
 
 const { page, currentTag, uniqueTags } = Astro.props
+const pageTitle =
+  page.currentPage > 1
+    ? `${currentTag.label} Projects – Page ${page.currentPage}`
+    : `${currentTag.label} Projects`
+const projectList = {
+  '@type': 'ItemList',
+  '@id': `${absoluteUrl(page.url.current)}#projects`,
+  name: pageTitle,
+  numberOfItems: page.total,
+  itemListElement: page.data.map((project, index) => ({
+    '@type': 'ListItem',
+    position: page.start + index + 1,
+    url: absoluteUrl(`/projects/${project.id}`),
+    name: project.data.title,
+  })),
+}
 ---
 
 <DefaultLayout
-  title={`Projects - ${currentTag.label}`}
-  description={`Projects filtered by ${currentTag.label} tag. Discover our work in ${currentTag.label} and related technologies.`}
+  title={pageTitle}
+  description={`Explore ${page.total} project${page.total !== 1 ? 's' : ''} by Vinit Shinde built with ${currentTag.label} and related technologies.`}
+  structuredData={projectList}
 >
   <PageHeader
     title={`Projects: ${currentTag.label}`}
-    subtitle={`Showing ${page.total} project${page.total !== 1 ? 's' : ''} tagged with "${currentTag.label}". filter by other tags below.`}
+    subtitle={`Showing ${page.total} project${page.total !== 1 ? 's' : ''} tagged with "${currentTag.label}". Filter by other tags below.`}
     bgType="gradient"
     customBreadcrumbLabels={{
       [currentTag.slug]: currentTag.label,
